@@ -20,13 +20,14 @@ Machine: Darwin MacBook-Pro-14-inch-2021-2.local 21.6.0 Darwin Kernel Version 21
 $ make init # virtual environment setup, pypy source code and shell config
 ```
 
-### tutorial-1.py
+### Tutorial 1
+
 ```shell
 $ PYTHONPATH=${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py ${PWD}/tutorial-1.py 2> ./log/tutorial-1-translate-opt.logfile
 $ ./tutorial-1-c ./example_programs/*.b
 ```
 
-### tutorial-2.py
+### Tutorial 2
 
 ```shell 
 # non-optimized map
@@ -39,6 +40,9 @@ $ PYPYLOG=jit-log-opt:./log/tutorial-2-jit-log-optimized-opt.logfile ./tutorial-
 
 ```
 ## Issues
+
+## Tutorial logs
+My jit logs were quite different from the logs in the tutorial example-  I'm not sure if I did something weird or if the code changed? I did see the difference between the optimized and non-optimized dictionary (bracket_map) assess, but I could find logs mentioning `ll_dict_lookup` for example.
 
 ### Python version
 My local version (Python 3.8.13) wasn't supported when running pypy code, had to install Python 3.7.18.
