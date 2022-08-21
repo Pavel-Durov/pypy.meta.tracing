@@ -43,7 +43,7 @@ $ PYPYLOG=jit-log-opt:./log/tutorial-2-jit-log-optimized-opt.logfile ./tutorial-
 
 ## Tutorial jit logs
 My jit logs were quite different from the logs in the tutorial example(not sure if I did something weird or if the code changed?).
-I did see the difference between the optimized and non-optimized dictionary (bracket_map) assess, but I could find logs mentioning `ll_dict_lookup` for example.
+I did see the difference between the optimized and non-optimized dictionary (bracket_map) access, but I could find logs mentioning `ll_dict_lookup` for example.
 Example of diffrence between jit logs that seems to be similar in structure to the tutorial:
 ```shell
 +1088: i90 = call_i(ConstClass(ll_call_lookup_function_trampoline__v43___simple_call__function_ll), ConstPtr(ptr86), 455, 455, 0, descr=<Calli 8 riii EF=5 OS=4>)
