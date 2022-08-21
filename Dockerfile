@@ -1,3 +1,4 @@
+# TODO: Complete docker file!
 FROM python:2.7.18
 
 WORKDIR /app
