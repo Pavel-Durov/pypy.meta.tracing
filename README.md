@@ -41,7 +41,7 @@ $ PYPYLOG=jit-log-opt:./log/tutorial-2-jit-log-optimized-opt.logfile ./tutorial-
 ```
 ## Issues
 
-## Tutorial logs
+## Tutorial jit logs
 My jit logs were quite different from the logs in the tutorial example-  I'm not sure if I did something weird or if the code changed? I did see the difference between the optimized and non-optimized dictionary (bracket_map) assess, but I could find logs mentioning `ll_dict_lookup` for example.
 
 ### Python version
