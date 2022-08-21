@@ -1,0 +1,8 @@
+attrs==22.1.0
+cffi==1.15.1
+enum34==1.1.10
+hypothesis==4.39.3
+mercurial==6.1.4
+protobuf==4.21.5
+pycparser==2.21
+tabulate==0.8.10

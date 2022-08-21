@@ -127,3 +127,14 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Pypy source code
+.pypy
+.direnv
+
+# Pypy artefacts
+tutorial-*-c
+
+# IDE stuff
+.vscode
+.idea
