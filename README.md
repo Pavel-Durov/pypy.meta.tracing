@@ -1,14 +1,18 @@
 # bf.meta.tracing
 Simple bf metatracing code following pypy tutorials
 
-[Tutorial Part 1](https://morepypy.blogspot.com/2011/04/tutorial-writing-interpreter-with-pypy.html)
+## References
 
-[Tutorial Part 2](https://morepypy.blogspot.com/2011/04/tutorial-part-2-adding-jit.html)
+- [Tutorial Part 1](https://morepypy.blogspot.com/2011/04/tutorial-writing-interpreter-with-pypy.html)
+- [Tutorial Part 2](https://morepypy.blogspot.com/2011/04/tutorial-part-2-adding-jit.html)
+- [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck)
 
-[Brainfuck](https://en.wikipedia.org/wiki/Brainfuck)
+## Tooling
+Machine: Darwin MacBook-Pro-14-inch-2021-2.local 21.6.0 Darwin Kernel Version 21.6.0: Sat Jun 18 17:07:22 PDT 2022; root:xnu-8020.140.41~1/RELEASE_ARM64_T6000 arm64
 
-## Prerequisites
 [pyenv](https://github.com/pyenv/pyenv) - support multi version python executable
+
+[hg](https://formulae.brew.sh/formula/mercurial#default) - Mercurial Distributed SCM
 
 ## Getting Started
 
