@@ -1,0 +1,147 @@
+[translation:info] 2.7.18 (default, Aug 21 2022, 09:14:29) 
+[GCC Apple LLVM 13.1.6 (clang-1316.0.21.2.5)]
+[platform:msg] Set platform with 'host' cc=None, using cc='clang', version='Unknown'
+[translation:info] Translating target as defined by /Users/kimchi/git-repos/side-projects/bf.meta.tracing/tutorial-1
+[translation] translate.py configuration:
+[translation] [translate]
+    targetspec = /Users/kimchi/git-repos/side-projects/bf.meta.tracing/tutorial-1
+[translation] translation configuration:
+[translation] [translation]
+    gc = incminimark
+    gctransformer = framework
+    list_comprehension_operations = True
+    rpython_translate = True
+    withsmallfuncsets = 5
+[translation:info] Annotating&simplifying...
+[b] {translation-task
+starting annotate
+[translation:info] with policy: rpython.annotator.policy.AnnotatorPolicy
+[29] translation-task}
+[translation:info] RTyping...
+[29] {translation-task
+starting rtype_lltype
+[rtyper] specializing: 100 / 419 blocks   (23%)
+[rtyper] specializing: 400 / 1380 blocks   (28%)
+[rtyper] specializing: 500 / 1380 blocks   (36%)
+[rtyper] specializing: 600 / 1387 blocks   (43%)
+[rtyper] specializing: 700 / 1387 blocks   (50%)
+[rtyper] specializing: 800 / 1387 blocks   (57%)
+[rtyper] specializing: 900 / 1394 blocks   (64%)
+[rtyper] specializing: 1000 / 1394 blocks   (71%)
+[rtyper] specializing: 1100 / 1394 blocks   (78%)
+[rtyper] specializing: 1200 / 1394 blocks   (86%)
+[rtyper] specializing: 1300 / 1398 blocks   (92%)
+[rtyper] -=- specialized 1398 blocks -=-
+[rtyper] specializing: 1400 / 1402 blocks   (99%)
+[rtyper] -=- specialized 4 more blocks -=-
+[77] translation-task}
+[translation:info] lltype back-end optimisations...
+[77] {translation-task
+starting backendopt_lltype
+[backendopt:inlining] phase with threshold factor: 32.4
+[backendopt:inlining] heuristic: rpython.translator.backendopt.inline.inlining_heuristic
+[backendopt:inlining] inlined 373 callsites.
+[backendopt:malloc] starting malloc removal
+[backendopt:malloc] removed 98 simple mallocs in total
+[backendopt:mergeifblocks] starting to merge if blocks
+[93] translation-task}
+[translation:info] inserting stack checks...
+[93] {translation-task
+starting stackcheckinsertion_lltype
+[rtyper] -=- specialized 8 more blocks -=-
+[translation:info] inserted 0 stack checks.
+[94] translation-task}
+[translation:info] Creating database for generating c source...
+[94] {translation-task
+starting database_c
+[rtyper] -=- specialized 25 more blocks -=-
+[rtyper] specializing: 1500 / 3740 blocks   (40%)
+[rtyper] specializing: 1800 / 3814 blocks   (47%)
+[rtyper] specializing: 2000 / 3826 blocks   (52%)
+[rtyper] specializing: 2200 / 3826 blocks   (57%)
+[rtyper] specializing: 2500 / 3886 blocks   (64%)
+[rtyper] specializing: 2700 / 3886 blocks   (69%)
+[rtyper] specializing: 2900 / 3886 blocks   (74%)
+[rtyper] specializing: 3100 / 3886 blocks   (79%)
+[rtyper] specializing: 3300 / 3890 blocks   (84%)
+[rtyper] specializing: 3500 / 3892 blocks   (89%)
+[rtyper] specializing: 3700 / 3892 blocks   (95%)
+[rtyper] specializing: 3900 / 3916 blocks   (99%)
+[rtyper] -=- specialized 2485 more blocks -=-
+[rtyper] specializing: 4000 / 4040 blocks   (99%)
+[rtyper] -=- specialized 120 more blocks -=-
+[backendopt:inlining] phase with threshold factor: 32.4
+[backendopt:inlining] heuristic: rpython.translator.backendopt.inline.inlining_heuristic
+[backendopt:inlining] inlined 1572 callsites.
+[backendopt:malloc] starting malloc removal
+[backendopt:malloc] removed 49 simple mallocs in total
+[backendopt:mergeifblocks] starting to merge if blocks
+[rtyper] -=- specialized 57 more blocks -=-
+[rtyper] -=- specialized 0 more blocks -=-
+[c:database] GC transformer: finished helpers
+[rtyper] specializing: 4100 / 4127 blocks   (99%)
+[rtyper] -=- specialized 30 more blocks -=-
+[backendopt:inlining] phase with threshold factor: 32.4
+[backendopt:inlining] heuristic: rpython.translator.backendopt.inline.inlining_heuristic
+[backendopt:inlining] inlined 3 callsites.
+[backendopt:malloc] starting malloc removal
+[backendopt:malloc] removed 0 simple mallocs in total
+[backendopt:mergeifblocks] starting to merge if blocks
+[c:database] GC transformer: finished tables
+[gctransform:info] assigned 56 typeids
+[gctransform:info] added 122 push/pop stack root instructions
+[gctransform:info] inserted 12 write barrier calls
+[gctransform:info] inserted 6 write_barrier_from_array calls
+[gctransform:info] found 3 static roots
+[c:database] Inlining GC helpers and postprocessing
+[c]      733 nodes  [ array: 134  framework rtti: 19  func: 234  group: 1  struct: 345 ]
+[c:database] Completed
+[translation:info] database for generating C source was created
+[213] translation-task}
+[translation:info] Generating c source...
+[213] {translation-task
+starting source_c
+[c:writing] structdef.h
+[c:writing] forwarddecl.h
+[c:writing] preimpl.h
+[c:writing] data_rpython_flowspace.c
+[c:writing] data_rpython_memory_gc.c
+[c:writing] data_rpython_memory_gctransform.c
+[c:writing] data_rpython_rlib.c
+[c:writing] data_rpython_rtyper.c
+[c:writing] data_rpython_rtyper_lltypesystem.c
+[c:writing] data_rpython_translator_c.c
+[c:writing] nonfuncnodes.c
+[c:writing] data_rpython_memory_gc_1.c
+[c:writing] data_rpython_rlib_1.c
+[c:writing] data_rpython_rtyper_lltypesystem_1.c
+[c:writing] implement.c
+[c:writing] rpython_flowspace.c
+[c:writing] rpython_memory.c
+[c:writing] rpython_memory_gc.c
+[c:writing] rpython_memory_gctransform.c
+[c:writing] rpython_rlib.c
+[c:writing] rpython_rtyper.c
+[c:writing] rpython_rtyper_lltypesystem.c
+[c:writing] rpython_translator.c
+[c:writing] rpython_translator_c.c
+[translation:info] written: /var/folders/9k/mqmbmf8j2cj1cd_4g_47088w0000gn/T/usession-default-54/testing_1/testing_1.c
+[24b] translation-task}
+[translation:info] Compiling c source...
+[24b] {translation-task
+starting compile_c
+[platform:execute] make -j 8 in /var/folders/9k/mqmbmf8j2cj1cd_4g_47088w0000gn/T/usession-default-54/testing_1
+[translation:info] copied: /var/folders/9k/mqmbmf8j2cj1cd_4g_47088w0000gn/T/usession-default-54/testing_1/tutorial-1-c to /Users/kimchi/git-repos/side-projects/bf.meta.tracing/tutorial-1-c
+[translation:info] created: /Users/kimchi/git-repos/side-projects/bf.meta.tracing/tutorial-1-c
+[24c] translation-task}
+[translation:info] usession directory: /var/folders/9k/mqmbmf8j2cj1cd_4g_47088w0000gn/T/usession-default-54
+[Timer] Timings:
+[Timer] annotate                       ---  9.9 s
+[Timer] rtype_lltype                   ---  0.8 s
+[Timer] backendopt_lltype              ---  0.3 s
+[Timer] stackcheckinsertion_lltype     ---  0.0 s
+[Timer] database_c                     ---  4.7 s
+[Timer] source_c                       ---  0.6 s
+[Timer] compile_c                      ---  1.1 s
+[Timer] =========================================
+[Timer] Total:                         --- 17.5 s
