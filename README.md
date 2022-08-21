@@ -18,12 +18,21 @@ $ make init # virtual environment setup, pypy source code and shell config
 
 ### tutorial-1.py
 ```shell
-$ PYTHONPATH=${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py ${PWD}/tutorial-1.py
+$ PYTHONPATH=${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py ${PWD}/tutorial-1.py 2> ./log/tutorial-1-translate-opt.logfile
 $ ./tutorial-1-c ./example_programs/*.b
 ```
+
 ### tutorial-2.py
+
 ```shell 
-$ # TODO //
+# non-optimized map
+$ PYTHONPATH=${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py --opt=jit  ${PWD}/tutorial-2.py 2> ./log/tutorial-2-translate-opt.logfile
+$ PYPYLOG=jit-log-opt:./log/tutorial-2-jit-log-opt.logfile ./tutorial-2-c ./example_programs/*.b
+
+# non-optimized map
+$ PYTHONPATH=${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py --opt=jit  ${PWD}/tutorial-2.py 2> tutorial-2-jit-log-opt-optimised.logfile
+$ PYPYLOG=jit-log-opt:./log/tutorial-2-jit-log-optimized-opt.logfile ./tutorial-2-c ./example_programs/*.b
+
 ```
 ## Issues
 
@@ -38,6 +47,13 @@ https://bitbucket.org/brownan/pypy-tutorial/src/tip/example1.py
 
 https://bitbucket.org/brownan/pypy-tutorial/src/tip/example2.py
 
+#### Tutorial Part 2: Adding a JIT
+
+https://bitbucket.org/brownan/pypy-tutorial/src/tip/example3.py
+
+https://bitbucket.org/brownan/pypy-tutorial/src/tip/example4.py
+
+https://bitbucket.org/brownan/pypy-tutorial/src/tip/example5.py
 
 ### Broken imports in tutorials
 ```python
@@ -49,4 +65,9 @@ Don't know how to represent <module 'sys' (built-in)>
     v8 = getattr((module sys), ('stdout'))
 In <FunctionGraph of (pavel:11)mainloop at 0x105855848>:
 Happened at file /Users/kimchi/git-repos/side-projects/simple.bf.meta.tracing/pavel.py line 34
+
+## Valid import: from rpython.rlib.jit import JitDriver
+from pypy.rlib.jit import JitDriver 
+## Valid import: from rpython.jit.codewriter.policy import JitPolicy
+from pypy.jit.codewriter.policy import JitPolicy
 ```
