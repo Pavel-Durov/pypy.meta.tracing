@@ -30,12 +30,11 @@ $ ./tutorial-1-c ./example_programs/*.b
 ### Tutorial 2
 
 ```shell 
-# non-optimized map
+# non-optimized
 $ PYTHONPATH=${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py --opt=jit  ${PWD}/tutorial-2.py 2> ./log/tutorial-2-translate-opt.logfile
 $ PYPYLOG=jit-log-opt:./log/tutorial-2-jit-log-opt.logfile ./tutorial-2-c ./example_programs/*.b
-
-# non-optimized map
-$ PYTHONPATH=${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py --opt=jit  ${PWD}/tutorial-2.py 2> tutorial-2-jit-log-opt-optimised.logfile
+# optimized
+$ PYTHONPATH=${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py --opt=jit  ${PWD}/tutorial-2.py 2> ./log/tutorial-2-translate-log-opt-optimised.logfile
 $ PYPYLOG=jit-log-opt:./log/tutorial-2-jit-log-optimized-opt.logfile ./tutorial-2-c ./example_programs/*.b
 
 ```

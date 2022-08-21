@@ -16,3 +16,6 @@ clone-pypy:
 
 clear:
 	rm tutorial-*-*
+
+jit-diff:
+	git diff log/tutorial-2-jit-log-opt.logfile log/tutorial-2-jit-log-optimized-opt.logfile

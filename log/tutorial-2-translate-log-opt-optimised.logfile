@@ -19,31 +19,32 @@
 [13] {translation-task
 starting annotate
 [translation:info] with policy: rpython.annotator.policy.AnnotatorPolicy
-[31] translation-task}
+[32] translation-task}
 [translation:info] RTyping...
-[31] {translation-task
+[32] {translation-task
 starting rtype_lltype
-[rtyper] specializing: 100 / 895 blocks   (11%)
-[rtyper] specializing: 200 / 1031 blocks   (19%)
-[rtyper] specializing: 400 / 1403 blocks   (28%)
-[rtyper] specializing: 500 / 1403 blocks   (35%)
-[rtyper] specializing: 600 / 1403 blocks   (42%)
-[rtyper] specializing: 700 / 1403 blocks   (49%)
-[rtyper] specializing: 800 / 1403 blocks   (57%)
-[rtyper] specializing: 900 / 1403 blocks   (64%)
-[rtyper] specializing: 1000 / 1405 blocks   (71%)
-[rtyper] specializing: 1100 / 1410 blocks   (78%)
+[rtyper] specializing: 100 / 1177 blocks   (8%)
+[rtyper] specializing: 200 / 1287 blocks   (15%)
+[rtyper] specializing: 300 / 1346 blocks   (22%)
+[rtyper] specializing: 400 / 1407 blocks   (28%)
+[rtyper] specializing: 500 / 1409 blocks   (35%)
+[rtyper] specializing: 600 / 1414 blocks   (42%)
+[rtyper] specializing: 700 / 1414 blocks   (49%)
+[rtyper] specializing: 800 / 1419 blocks   (56%)
+[rtyper] specializing: 900 / 1419 blocks   (63%)
+[rtyper] specializing: 1000 / 1419 blocks   (70%)
+[rtyper] specializing: 1100 / 1419 blocks   (77%)
 [rtyper] specializing: 1200 / 1419 blocks   (84%)
-[rtyper] specializing: 1300 / 1421 blocks   (91%)
-[rtyper] specializing: 1400 / 1421 blocks   (98%)
-[rtyper] -=- specialized 1421 blocks -=-
+[rtyper] specializing: 1300 / 1419 blocks   (91%)
+[rtyper] specializing: 1400 / 1423 blocks   (98%)
+[rtyper] -=- specialized 1423 blocks -=-
 [rtyper] -=- specialized 4 more blocks -=-
 [7c] translation-task}
 [translation:info] JIT compiler generation...
 [7c] {translation-task
 starting pyjitpl_lltype
 [rtyper] -=- specialized 70 more blocks -=-
-[rtyper] specializing: 1500 / 1521 blocks   (98%)
+[rtyper] specializing: 1500 / 1519 blocks   (98%)
 [rtyper] -=- specialized 26 more blocks -=-
 [rtyper] -=- specialized 2 more blocks -=-
 [rtyper] -=- specialized 2 more blocks -=-
@@ -52,80 +53,82 @@ starting pyjitpl_lltype
 [rtyper] -=- specialized 2 more blocks -=-
 [backendopt:inlining] phase with threshold factor: 32.4
 [backendopt:inlining] heuristic: rpython.translator.backendopt.inline.inlining_heuristic
-[backendopt:inlining] inlined 72 callsites.
+[backendopt:inlining] inlined 53 callsites.
 [backendopt:malloc] starting malloc removal
-[backendopt:malloc] removed 29 simple mallocs in total
+[backendopt:malloc] removed 17 simple mallocs in total
 [backendopt:mergeifblocks] starting to merge if blocks
 [rtyper] -=- specialized 3 more blocks -=-
 [jitcodewriter:info] making JitCodes...
 [rtyper] -=- specialized 2 more blocks -=-
-[jitcodewriter:info] There are 25 JitCode instances.
-[jitcodewriter:info] There are 154 -live- ops. Size of liveness is 177 bytes
+[jitcodewriter:info] There are 15 JitCode instances.
+[jitcodewriter:info] There are 80 -live- ops. Size of liveness is 133 bytes
 [jitcodewriter] compute_bitstrings:
-[jitcodewriter]   15 effectinfos:
-[jitcodewriter]     7 descrs for arrays
-[jitcodewriter]     14 descrs for fields
-[jitcodewriter]     1 descrs for interiorfields
-[jitcodewriter] -> 12 bitstrings, mean length 0.9, max length 1
-[rtyper] specializing: 1800 / 34904 blocks   (5%)
-[rtyper] specializing: 4200 / 41371 blocks   (10%)
-[rtyper] specializing: 6700 / 44167 blocks   (15%)
-[rtyper] specializing: 9100 / 45284 blocks   (20%)
-[rtyper] specializing: 11900 / 47416 blocks   (25%)
-[rtyper] specializing: 14600 / 48522 blocks   (30%)
-[rtyper] specializing: 18000 / 51365 blocks   (35%)
-[rtyper] specializing: 20900 / 52231 blocks   (40%)
-[rtyper] specializing: 23700 / 52623 blocks   (45%)
-[rtyper] specializing: 26700 / 53242 blocks   (50%)
-[rtyper] specializing: 30100 / 54702 blocks   (55%)
-[rtyper] specializing: 33000 / 54848 blocks   (60%)
-[rtyper] specializing: 34200 / 55202 blocks   (61%)
-[rtyper] specializing: 36500 / 55250 blocks   (66%)
-[rtyper] specializing: 39300 / 55250 blocks   (71%)
-[rtyper] specializing: 42000 / 55250 blocks   (76%)
-[rtyper] specializing: 44900 / 55388 blocks   (81%)
-[rtyper] specializing: 47700 / 55435 blocks   (86%)
-[rtyper] specializing: 50500 / 55435 blocks   (91%)
-[rtyper] specializing: 53300 / 55435 blocks   (96%)
-[rtyper] specializing: 55300 / 55437 blocks   (99%)
-[rtyper] -=- specialized 53882 more blocks -=-
+[jitcodewriter]   10 effectinfos:
+[jitcodewriter]     3 descrs for arrays
+[jitcodewriter]     10 descrs for fields
+[jitcodewriter]     2 descrs for interiorfields
+[jitcodewriter] -> 4 bitstrings, mean length 0.8, max length 1
+[rtyper] specializing: 1700 / 33609 blocks   (5%)
+[rtyper] specializing: 3900 / 38765 blocks   (10%)
+[rtyper] specializing: 6200 / 40931 blocks   (15%)
+[rtyper] specializing: 9100 / 45197 blocks   (20%)
+[rtyper] specializing: 11500 / 45876 blocks   (25%)
+[rtyper] specializing: 14200 / 47293 blocks   (30%)
+[rtyper] specializing: 17100 / 48817 blocks   (35%)
+[rtyper] specializing: 20100 / 50036 blocks   (40%)
+[rtyper] specializing: 22900 / 50675 blocks   (45%)
+[rtyper] specializing: 26000 / 51811 blocks   (50%)
+[rtyper] specializing: 29100 / 52786 blocks   (55%)
+[rtyper] specializing: 31900 / 53150 blocks   (60%)
+[rtyper] specializing: 33600 / 53248 blocks   (63%)
+[rtyper] specializing: 36400 / 53403 blocks   (68%)
+[rtyper] specializing: 39000 / 53403 blocks   (73%)
+[rtyper] specializing: 41800 / 53476 blocks   (78%)
+[rtyper] specializing: 44400 / 53476 blocks   (83%)
+[rtyper] specializing: 47100 / 53476 blocks   (88%)
+[rtyper] specializing: 49800 / 53476 blocks   (93%)
+[rtyper] specializing: 52500 / 53481 blocks   (98%)
+[rtyper] specializing: 53300 / 53481 blocks   (99%)
+[rtyper] -=- specialized 51926 more blocks -=-
+[rtyper] specializing: 53500 / 53509 blocks   (99%)
 [rtyper] -=- specialized 26 more blocks -=-
 [rtyper] -=- specialized 0 more blocks -=-
 [translation:info] the JIT compiler was generated
-[119a] translation-task}
+[1185] translation-task}
 [translation:info] lltype back-end optimisations...
-[119a] {translation-task
+[1185] {translation-task
 starting backendopt_lltype
 [backendopt:inlining] phase with threshold factor: 32.4
 [backendopt:inlining] heuristic: rpython.translator.backendopt.inline.inlining_heuristic
-[backendopt:inlining] inlined 22188 callsites.
+[backendopt:inlining] inlined 21556 callsites.
 [backendopt:malloc] starting malloc removal
-[backendopt:malloc] removed 4048 simple mallocs in total
+[backendopt:malloc] removed 3753 simple mallocs in total
 [backendopt:mergeifblocks] starting to merge if blocks
-[19c2] translation-task}
+[19ea] translation-task}
 [translation:info] inserting stack checks...
-[19c2] {translation-task
+[19ea] {translation-task
 starting stackcheckinsertion_lltype
 [rtyper] -=- specialized 4 more blocks -=-
-[translation:info] inserted 168 stack checks.
-[19d8] translation-task}
+[translation:info] inserted 166 stack checks.
+[1a02] translation-task}
 [translation:info] Creating database for generating c source...
-[19d8] {translation-task
+[1a02] {translation-task
 starting database_c
 [rtyper] -=- specialized 25 more blocks -=-
-[rtyper] specializing: 55500 / 57915 blocks   (95%)
-[rtyper] specializing: 58000 / 58023 blocks   (99%)
+[rtyper] specializing: 53600 / 55961 blocks   (95%)
+[rtyper] specializing: 56000 / 56069 blocks   (99%)
 [rtyper] -=- specialized 2531 more blocks -=-
-[rtyper] specializing: 58100 / 58104 blocks   (99%)
+[rtyper] specializing: 56100 / 56150 blocks   (99%)
 [rtyper] -=- specialized 81 more blocks -=-
 [backendopt:inlining] phase with threshold factor: 32.4
 [backendopt:inlining] heuristic: rpython.translator.backendopt.inline.inlining_heuristic
-[backendopt:inlining] inlined 1603 callsites.
+[backendopt:inlining] inlined 1611 callsites.
 [backendopt:malloc] starting malloc removal
 [backendopt:malloc] removed 25 simple mallocs in total
 [backendopt:mergeifblocks] starting to merge if blocks
 [rtyper] -=- specialized 17 more blocks -=-
 [rtyper] -=- specialized 12 more blocks -=-
+[rtyper] specializing: 56200 / 56229 blocks   (99%)
 [rtyper] -=- specialized 50 more blocks -=-
 [rtyper] -=- specialized 0 more blocks -=-
 [c]     1000 nodes  [ array: 1019  framework rtti: 20  func: 154  group: 1  struct: 2421 ]
@@ -135,19 +138,18 @@ starting database_c
 [c]     5000 nodes  [ array: 4236  framework rtti: 22  func: 189  group: 1  struct: 2441 ]
 [c]     6000 nodes  [ array: 4236  framework rtti: 22  func: 189  group: 1  struct: 2441 ]
 [c]     7000 nodes  [ array: 4276  framework rtti: 28  func: 268  group: 1  struct: 2501 ]
-[c]     8000 nodes  [ array: 4428  framework rtti: 46  func: 576  group: 1  struct: 5314 ]
-[c]     9000 nodes  [ array: 4697  framework rtti: 95  func: 712  group: 1  struct: 5535 ]
-[c]    10000 nodes  [ array: 4697  framework rtti: 233  func: 919  group: 1  struct: 5673 ]
-[c]    11000 nodes  [ array: 4842  framework rtti: 284  func: 1129  group: 1  struct: 5882 ]
-[c]    12000 nodes  [ array: 5054  framework rtti: 286  func: 1250  group: 1  struct: 5961 ]
-[c]    13000 nodes  [ array: 5109  framework rtti: 291  func: 1601  group: 1  struct: 6283 ]
-[c]    14000 nodes  [ array: 5279  framework rtti: 304  func: 2159  group: 1  struct: 6531 ]
-[c]    15000 nodes  [ array: 5305  framework rtti: 310  func: 2635  group: 1  struct: 7117 ]
+[c]     8000 nodes  [ array: 4428  framework rtti: 46  func: 564  group: 1  struct: 5192 ]
+[c]     9000 nodes  [ array: 4686  framework rtti: 111  func: 715  group: 1  struct: 5384 ]
+[c]    10000 nodes  [ array: 4686  framework rtti: 251  func: 915  group: 1  struct: 5524 ]
+[c]    11000 nodes  [ array: 4848  framework rtti: 283  func: 1084  group: 1  struct: 5674 ]
+[c]    12000 nodes  [ array: 5002  framework rtti: 285  func: 1211  group: 1  struct: 5734 ]
+[c]    13000 nodes  [ array: 5112  framework rtti: 293  func: 1573  group: 1  struct: 6211 ]
+[c]    14000 nodes  [ array: 5248  framework rtti: 306  func: 2204  group: 1  struct: 6448 ]
+[c]    15000 nodes  [ array: 5258  framework rtti: 312  func: 2658  group: 1  struct: 7033 ]
 [c:database] GC transformer: finished helpers
-[c]    16000 nodes  [ array: 5497  framework rtti: 321  func: 2950  group: 1  struct: 7870 ]
-[c]    17000 nodes  [ array: 5802  framework rtti: 348  func: 2995  group: 1  struct: 8083 ]
-[c]    18000 nodes  [ array: 5942  framework rtti: 424  func: 3347  group: 1  struct: 8398 ]
-[rtyper] specializing: 58200 / 58242 blocks   (99%)
+[c]    16000 nodes  [ array: 5652  framework rtti: 321  func: 2867  group: 1  struct: 7794 ]
+[c]    17000 nodes  [ array: 5785  framework rtti: 392  func: 2997  group: 1  struct: 8052 ]
+[c]    18000 nodes  [ array: 5942  framework rtti: 438  func: 3260  group: 1  struct: 8400 ]
 [rtyper] -=- specialized 59 more blocks -=-
 [backendopt:inlining] phase with threshold factor: 32.4
 [backendopt:inlining] heuristic: rpython.translator.backendopt.inline.inlining_heuristic
@@ -156,18 +158,18 @@ starting database_c
 [backendopt:malloc] removed 16 simple mallocs in total
 [backendopt:mergeifblocks] starting to merge if blocks
 [c:database] GC transformer: finished tables
-[gctransform:info] assigned 1075 typeids
-[gctransform:info] added 20656 push/pop stack root instructions
-[gctransform:info] inserted 1195 write barrier calls
-[gctransform:info] inserted 1173 write_barrier_from_array calls
+[gctransform:info] assigned 1071 typeids
+[gctransform:info] added 20449 push/pop stack root instructions
+[gctransform:info] inserted 1179 write barrier calls
+[gctransform:info] inserted 1153 write_barrier_from_array calls
 [gctransform:info] found 3 static roots
 [c:database] Inlining GC helpers and postprocessing
-[c]    18482 nodes  [ array: 6035  framework rtti: 451  func: 3428  group: 1  struct: 8567 ]
+[c]    18180 nodes  [ array: 5980  framework rtti: 451  func: 3315  group: 1  struct: 8433 ]
 [c:database] Completed
 [translation:info] database for generating C source was created
-[2597] translation-task}
+[258b] translation-task}
 [translation:info] Generating c source...
-[2597] {translation-task
+[258b] {translation-task
 starting source_c
 [c:writing] structdef.h
 [c:writing] forwarddecl.h
@@ -221,134 +223,134 @@ starting source_c
 [c:writing] rpython_rtyper_lltypesystem_1.c
 [c:writing] rpython_translator.c
 [c:writing] rpython_translator_c.c
-[translation:info] written: /var/folders/9k/mqmbmf8j2cj1cd_4g_47088w0000gn/T/usession-default-64/testing_1/testing_1.c
-[2ab1] translation-task}
+[translation:info] written: /var/folders/9k/mqmbmf8j2cj1cd_4g_47088w0000gn/T/usession-default-66/testing_1/testing_1.c
+[29e7] translation-task}
 [translation:info] Compiling c source...
-[2ab1] {translation-task
+[29e7] {translation-task
 starting compile_c
-[platform:execute] make -j 8 in /var/folders/9k/mqmbmf8j2cj1cd_4g_47088w0000gn/T/usession-default-64/testing_1
+[platform:execute] make -j 8 in /var/folders/9k/mqmbmf8j2cj1cd_4g_47088w0000gn/T/usession-default-66/testing_1
 [platform:WARNING] rpython_jit_backend_llsupport.c:46:3: warning: 'pthread_jit_write_protect_np' is only available on macOS 11.0 or newer [-Wunguarded-availability-new]
-[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_38);
+[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_39);
 [platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [platform:WARNING] /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/pthread.h:561:6: note: 'pthread_jit_write_protect_np' has been marked as being introduced in macOS 11.0 here, but the deployment target is macOS 10.9.0
 [platform:WARNING] void pthread_jit_write_protect_np(int enabled);
 [platform:WARNING]      ^
 [platform:WARNING] rpython_jit_backend_llsupport.c:46:3: note: enclose 'pthread_jit_write_protect_np' in a __builtin_available check to silence this warning
-[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_38);
+[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_39);
 [platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [platform:WARNING] rpython_jit_backend_llsupport.c:89:3: warning: 'pthread_jit_write_protect_np' is only available on macOS 11.0 or newer [-Wunguarded-availability-new]
-[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_37);
+[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_38);
 [platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [platform:WARNING] /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/pthread.h:561:6: note: 'pthread_jit_write_protect_np' has been marked as being introduced in macOS 11.0 here, but the deployment target is macOS 10.9.0
 [platform:WARNING] void pthread_jit_write_protect_np(int enabled);
 [platform:WARNING]      ^
 [platform:WARNING] rpython_jit_backend_llsupport.c:89:3: note: enclose 'pthread_jit_write_protect_np' in a __builtin_available check to silence this warning
-[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_37);
+[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_38);
 [platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [platform:WARNING] rpython_jit_backend_llsupport.c:354:3: warning: 'pthread_jit_write_protect_np' is only available on macOS 11.0 or newer [-Wunguarded-availability-new]
-[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_40);
+[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_41);
 [platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [platform:WARNING] /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/pthread.h:561:6: note: 'pthread_jit_write_protect_np' has been marked as being introduced in macOS 11.0 here, but the deployment target is macOS 10.9.0
 [platform:WARNING] void pthread_jit_write_protect_np(int enabled);
 [platform:WARNING]      ^
 [platform:WARNING] rpython_jit_backend_llsupport.c:354:3: note: enclose 'pthread_jit_write_protect_np' in a __builtin_available check to silence this warning
-[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_40);
+[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_41);
 [platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [platform:WARNING] rpython_jit_backend_llsupport.c:403:3: warning: 'pthread_jit_write_protect_np' is only available on macOS 11.0 or newer [-Wunguarded-availability-new]
-[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_39);
+[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_40);
 [platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [platform:WARNING] /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/pthread.h:561:6: note: 'pthread_jit_write_protect_np' has been marked as being introduced in macOS 11.0 here, but the deployment target is macOS 10.9.0
 [platform:WARNING] void pthread_jit_write_protect_np(int enabled);
 [platform:WARNING]      ^
 [platform:WARNING] rpython_jit_backend_llsupport.c:403:3: note: enclose 'pthread_jit_write_protect_np' in a __builtin_available check to silence this warning
-[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_39);
+[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_40);
 [platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[platform:WARNING] rpython_jit_backend_llsupport.c:1894:3: warning: 'pthread_jit_write_protect_np' is only available on macOS 11.0 or newer [-Wunguarded-availability-new]
-[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_42);
-[platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[platform:WARNING] /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/pthread.h:561:6: note: 'pthread_jit_write_protect_np' has been marked as being introduced in macOS 11.0 here, but the deployment target is macOS 10.9.0
-[platform:WARNING] void pthread_jit_write_protect_np(int enabled);
-[platform:WARNING]      ^
-[platform:WARNING] rpython_jit_backend_llsupport.c:1894:3: note: enclose 'pthread_jit_write_protect_np' in a __builtin_available check to silence this warning
-[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_42);
-[platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[platform:WARNING] rpython_jit_backend_llsupport.c:1949:3: warning: 'pthread_jit_write_protect_np' is only available on macOS 11.0 or newer [-Wunguarded-availability-new]
-[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_41);
-[platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[platform:WARNING] /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/pthread.h:561:6: note: 'pthread_jit_write_protect_np' has been marked as being introduced in macOS 11.0 here, but the deployment target is macOS 10.9.0
-[platform:WARNING] void pthread_jit_write_protect_np(int enabled);
-[platform:WARNING]      ^
-[platform:WARNING] rpython_jit_backend_llsupport.c:1949:3: note: enclose 'pthread_jit_write_protect_np' in a __builtin_available check to silence this warning
-[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_41);
-[platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[platform:WARNING] rpython_jit_backend_llsupport.c:2284:3: warning: 'pthread_jit_write_protect_np' is only available on macOS 11.0 or newer [-Wunguarded-availability-new]
-[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_44);
-[platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[platform:WARNING] /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/pthread.h:561:6: note: 'pthread_jit_write_protect_np' has been marked as being introduced in macOS 11.0 here, but the deployment target is macOS 10.9.0
-[platform:WARNING] void pthread_jit_write_protect_np(int enabled);
-[platform:WARNING]      ^
-[platform:WARNING] rpython_jit_backend_llsupport.c:2284:3: note: enclose 'pthread_jit_write_protect_np' in a __builtin_available check to silence this warning
-[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_44);
-[platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[platform:WARNING] rpython_jit_backend_llsupport.c:2323:3: warning: 'pthread_jit_write_protect_np' is only available on macOS 11.0 or newer [-Wunguarded-availability-new]
+[platform:WARNING] rpython_jit_backend_llsupport.c:1891:3: warning: 'pthread_jit_write_protect_np' is only available on macOS 11.0 or newer [-Wunguarded-availability-new]
 [platform:WARNING]                 pthread_jit_write_protect_np(l_arg_43);
 [platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [platform:WARNING] /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/pthread.h:561:6: note: 'pthread_jit_write_protect_np' has been marked as being introduced in macOS 11.0 here, but the deployment target is macOS 10.9.0
 [platform:WARNING] void pthread_jit_write_protect_np(int enabled);
 [platform:WARNING]      ^
-[platform:WARNING] rpython_jit_backend_llsupport.c:2323:3: note: enclose 'pthread_jit_write_protect_np' in a __builtin_available check to silence this warning
+[platform:WARNING] rpython_jit_backend_llsupport.c:1891:3: note: enclose 'pthread_jit_write_protect_np' in a __builtin_available check to silence this warning
 [platform:WARNING]                 pthread_jit_write_protect_np(l_arg_43);
 [platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[platform:WARNING] rpython_jit_backend_llsupport.c:2850:3: warning: 'pthread_jit_write_protect_np' is only available on macOS 11.0 or newer [-Wunguarded-availability-new]
-[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_46);
+[platform:WARNING] rpython_jit_backend_llsupport.c:1946:3: warning: 'pthread_jit_write_protect_np' is only available on macOS 11.0 or newer [-Wunguarded-availability-new]
+[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_42);
 [platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [platform:WARNING] /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/pthread.h:561:6: note: 'pthread_jit_write_protect_np' has been marked as being introduced in macOS 11.0 here, but the deployment target is macOS 10.9.0
 [platform:WARNING] void pthread_jit_write_protect_np(int enabled);
 [platform:WARNING]      ^
-[platform:WARNING] rpython_jit_backend_llsupport.c:2850:3: note: enclose 'pthread_jit_write_protect_np' in a __builtin_available check to silence this warning
-[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_46);
+[platform:WARNING] rpython_jit_backend_llsupport.c:1946:3: note: enclose 'pthread_jit_write_protect_np' in a __builtin_available check to silence this warning
+[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_42);
 [platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[platform:WARNING] rpython_jit_backend_llsupport.c:2896:3: warning: 'pthread_jit_write_protect_np' is only available on macOS 11.0 or newer [-Wunguarded-availability-new]
+[platform:WARNING] rpython_jit_backend_llsupport.c:2280:3: warning: 'pthread_jit_write_protect_np' is only available on macOS 11.0 or newer [-Wunguarded-availability-new]
 [platform:WARNING]                 pthread_jit_write_protect_np(l_arg_45);
 [platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [platform:WARNING] /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/pthread.h:561:6: note: 'pthread_jit_write_protect_np' has been marked as being introduced in macOS 11.0 here, but the deployment target is macOS 10.9.0
 [platform:WARNING] void pthread_jit_write_protect_np(int enabled);
 [platform:WARNING]      ^
-[platform:WARNING] rpython_jit_backend_llsupport.c:2896:3: note: enclose 'pthread_jit_write_protect_np' in a __builtin_available check to silence this warning
+[platform:WARNING] rpython_jit_backend_llsupport.c:2280:3: note: enclose 'pthread_jit_write_protect_np' in a __builtin_available check to silence this warning
 [platform:WARNING]                 pthread_jit_write_protect_np(l_arg_45);
+[platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[platform:WARNING] rpython_jit_backend_llsupport.c:2319:3: warning: 'pthread_jit_write_protect_np' is only available on macOS 11.0 or newer [-Wunguarded-availability-new]
+[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_44);
+[platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[platform:WARNING] /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/pthread.h:561:6: note: 'pthread_jit_write_protect_np' has been marked as being introduced in macOS 11.0 here, but the deployment target is macOS 10.9.0
+[platform:WARNING] void pthread_jit_write_protect_np(int enabled);
+[platform:WARNING]      ^
+[platform:WARNING] rpython_jit_backend_llsupport.c:2319:3: note: enclose 'pthread_jit_write_protect_np' in a __builtin_available check to silence this warning
+[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_44);
+[platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[platform:WARNING] rpython_jit_backend_llsupport.c:2845:3: warning: 'pthread_jit_write_protect_np' is only available on macOS 11.0 or newer [-Wunguarded-availability-new]
+[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_47);
+[platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[platform:WARNING] /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/pthread.h:561:6: note: 'pthread_jit_write_protect_np' has been marked as being introduced in macOS 11.0 here, but the deployment target is macOS 10.9.0
+[platform:WARNING] void pthread_jit_write_protect_np(int enabled);
+[platform:WARNING]      ^
+[platform:WARNING] rpython_jit_backend_llsupport.c:2845:3: note: enclose 'pthread_jit_write_protect_np' in a __builtin_available check to silence this warning
+[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_47);
+[platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[platform:WARNING] rpython_jit_backend_llsupport.c:2891:3: warning: 'pthread_jit_write_protect_np' is only available on macOS 11.0 or newer [-Wunguarded-availability-new]
+[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_46);
+[platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[platform:WARNING] /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/pthread.h:561:6: note: 'pthread_jit_write_protect_np' has been marked as being introduced in macOS 11.0 here, but the deployment target is macOS 10.9.0
+[platform:WARNING] void pthread_jit_write_protect_np(int enabled);
+[platform:WARNING]      ^
+[platform:WARNING] rpython_jit_backend_llsupport.c:2891:3: note: enclose 'pthread_jit_write_protect_np' in a __builtin_available check to silence this warning
+[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_46);
 [platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [platform:WARNING] 10 warnings generated.
-[platform:WARNING] rpython_rlib.c:4618:3: warning: 'pthread_jit_write_protect_np' is only available on macOS 11.0 or newer [-Wunguarded-availability-new]
-[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_95);
+[platform:WARNING] rpython_rlib.c:4615:3: warning: 'pthread_jit_write_protect_np' is only available on macOS 11.0 or newer [-Wunguarded-availability-new]
+[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_93);
 [platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [platform:WARNING] /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/pthread.h:561:6: note: 'pthread_jit_write_protect_np' has been marked as being introduced in macOS 11.0 here, but the deployment target is macOS 10.9.0
 [platform:WARNING] void pthread_jit_write_protect_np(int enabled);
 [platform:WARNING]      ^
-[platform:WARNING] rpython_rlib.c:4618:3: note: enclose 'pthread_jit_write_protect_np' in a __builtin_available check to silence this warning
-[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_95);
+[platform:WARNING] rpython_rlib.c:4615:3: note: enclose 'pthread_jit_write_protect_np' in a __builtin_available check to silence this warning
+[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_93);
 [platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[platform:WARNING] rpython_rlib.c:4642:3: warning: 'pthread_jit_write_protect_np' is only available on macOS 11.0 or newer [-Wunguarded-availability-new]
-[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_96);
+[platform:WARNING] rpython_rlib.c:4639:3: warning: 'pthread_jit_write_protect_np' is only available on macOS 11.0 or newer [-Wunguarded-availability-new]
+[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_94);
 [platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [platform:WARNING] /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/pthread.h:561:6: note: 'pthread_jit_write_protect_np' has been marked as being introduced in macOS 11.0 here, but the deployment target is macOS 10.9.0
 [platform:WARNING] void pthread_jit_write_protect_np(int enabled);
 [platform:WARNING]      ^
-[platform:WARNING] rpython_rlib.c:4642:3: note: enclose 'pthread_jit_write_protect_np' in a __builtin_available check to silence this warning
-[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_96);
+[platform:WARNING] rpython_rlib.c:4639:3: note: enclose 'pthread_jit_write_protect_np' in a __builtin_available check to silence this warning
+[platform:WARNING]                 pthread_jit_write_protect_np(l_arg_94);
 [platform:WARNING]                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [platform:WARNING] 2 warnings generated.
-[translation:info] copied: /var/folders/9k/mqmbmf8j2cj1cd_4g_47088w0000gn/T/usession-default-64/testing_1/tutorial-2-c to /Users/kimchi/git-repos/side-projects/bf.meta.tracing/tutorial-2-c
+[translation:info] copied: /var/folders/9k/mqmbmf8j2cj1cd_4g_47088w0000gn/T/usession-default-66/testing_1/tutorial-2-c to /Users/kimchi/git-repos/side-projects/bf.meta.tracing/tutorial-2-c
 [translation:info] created: /Users/kimchi/git-repos/side-projects/bf.meta.tracing/tutorial-2-c
-[2ab3] translation-task}
-[translation:info] usession directory: /var/folders/9k/mqmbmf8j2cj1cd_4g_47088w0000gn/T/usession-default-64
+[29e9] translation-task}
+[translation:info] usession directory: /var/folders/9k/mqmbmf8j2cj1cd_4g_47088w0000gn/T/usession-default-66
 [Timer] Timings:
-[Timer] annotate                       ---   9.8 s
-[Timer] rtype_lltype                   ---   0.8 s
-[Timer] pyjitpl_lltype                 ---  45.4 s
-[Timer] backendopt_lltype              ---  20.9 s
+[Timer] annotate                       ---  10.4 s
+[Timer] rtype_lltype                   ---   0.7 s
+[Timer] pyjitpl_lltype                 ---  45.3 s
+[Timer] backendopt_lltype              ---  21.7 s
 [Timer] stackcheckinsertion_lltype     ---   0.2 s
-[Timer] database_c                     ---  30.1 s
-[Timer] source_c                       ---  13.1 s
-[Timer] compile_c                      ---   9.1 s
+[Timer] database_c                     ---  29.6 s
+[Timer] source_c                       ---  11.2 s
+[Timer] compile_c                      ---   6.1 s
 [Timer] ==========================================
-[Timer] Total:                         --- 129.4 s
+[Timer] Total:                         --- 125.2 s
