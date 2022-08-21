@@ -93,3 +93,8 @@ from pypy.rlib.jit import JitDriver
 ## Valid import: from rpython.jit.codewriter.policy import JitPolicy
 from pypy.jit.codewriter.policy import JitPolicy
 ```
+
+### Tutorial Mandelbrot referenced program
+> Translate again with the JIT option and observe the speedup. Mandelbrot now only takes 6 seconds! (from 12 seconds before this optimization)
+
+I couldn't find Mandelbrot program to compare (im sure if is search further I will) :(
