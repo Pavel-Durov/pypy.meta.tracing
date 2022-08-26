@@ -38,6 +38,11 @@ $ PYTHONPATH=${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py -
 $ PYPYLOG=jit-log-opt:./log/tutorial-2-jit-log-optimized-opt.logfile ./tutorial-2-c ./example_programs/*.b
 
 ```
+
+[1] https://github.com/ykjit/ykcbf/tree/master/lang_tests
+[2] https://tratt.net/laurie/src/multitime/
+[3] https://github.com/Pavel-Durov/bf.meta.tracing/blob/main/log/tutorial-2-jit-log-optimized-opt.logfile
+
 ## Issues
 
 ## Tutorial jit logs

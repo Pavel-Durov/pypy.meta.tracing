@@ -7,74 +7,48 @@ def jitpolicy(driver):
     return JitPolicy()
 
 
-def get_location(pc, program, bracket_map):
+def get_location(pc, position, program, bracket_map):
     return "%s_%s_%s" % (program[:pc], program[pc], program[pc + 1:])
 
 
-jitdriver = JitDriver(greens=['pc', 'program', 'bracket_map'], reds=['tape'],
+jitdriver = JitDriver(greens=['pc', 'position', 'program', 'bracket_map'], reds=['tape'],
                       get_printable_location=get_location)
-
 OPTIMIZED_BRACKET_MAP=True
 
+
+@purefunction
+def get_matching_bracket(bracket_map, pc):
+    return bracket_map[pc]
+
 def mainloop(program, bracket_map):
+    tape = [0]
+    position = 0
     pc = 0
-    tape = Tape()
 
     while pc < len(program):
-        jitdriver.jit_merge_point(pc=pc, tape=tape, program=program, bracket_map=bracket_map)
+        # jitdriver.jit_merge_point(pc=pc, position=position, program=program, bracket_map=bracket_map, tape=tape)
+        jitdriver.jit_merge_point(pc=pc, tape=tape, program=program, bracket_map=bracket_map, position=position)
         code = program[pc]
-
         if code == ">":
-            tape.advance()
+            position += 1
+            if len(tape) <= position:
+                tape.append(0)
         elif code == "<":
-            tape.devance()
+            position -= 1
         elif code == "+":
-            tape.inc()
+            tape[position] += 1
         elif code == "-":
-            tape.dec()
+            tape[position] -= 1
         elif code == ".":
-            os.write(1, chr(tape.get()))
+            os.write(1, chr(tape[position]))
         elif code == ",":
-            tape.set(ord(os.read(0, 1)[0]))
-        elif code == "[" and tape.get() == 0:
-            if OPTIMIZED_BRACKET_MAP:
-              pc = get_matching_bracket(bracket_map, pc)
-            else:
-              pc = bracket_map[pc]
-        elif code == "]" and tape.get() != 0:
-            if OPTIMIZED_BRACKET_MAP:
-              pc = get_matching_bracket(bracket_map, pc)
-            else:
-              pc = bracket_map[pc]
+            tape[position] = ord(os.read(0, 1)[0])
+        elif code == "[" and tape[position] == 0:
+            pc = get_matching_bracket(bracket_map, pc)
+        elif code == "]" and tape[position]!= 0:
+            pc = get_matching_bracket(bracket_map, pc)
 
         pc += 1
-
-
-class Tape(object):
-    def __init__(self):
-        self.thetape = [0]
-        self.position = 0
-
-    def get(self):
-        return self.thetape[self.position]
-
-    def set(self, val):
-        self.thetape[self.position] = val
-
-    def inc(self):
-        self.thetape[self.position] += 1
-
-    def dec(self):
-        self.thetape[self.position] -= 1
-
-    def advance(self):
-        self.position += 1
-        if len(self.thetape) <= self.position:
-            self.thetape.append(0)
-
-    def devance(self):
-        self.position -= 1
-
 
 def parse(program):
     parsed = []
@@ -97,10 +71,6 @@ def parse(program):
 
     return "".join(parsed), bracket_map
 
-
-@purefunction
-def get_matching_bracket(bracket_map, pc):
-    return bracket_map[pc]
 
 
 def run(input):

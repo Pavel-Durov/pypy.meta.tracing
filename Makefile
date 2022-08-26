@@ -19,3 +19,26 @@ clear:
 
 jit-diff:
 	git diff log/tutorial-2-jit-log-opt.logfile log/tutorial-2-jit-log-optimized-opt.logfile
+
+setup:
+	brew install hyperfine
+
+non-optimized:
+	PYTHONPATH=${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py --opt=jit  ${PWD}/tutorial-2-not-optimised.py
+	PYPYLOG=jit-log-opt:./log/tutorial-2-not-optimised-jit-log-opt.logfile ./tutorial-2-not-optimised-c ./example_programs/bench.bf
+	hyperfine './tutorial-2-not-optimised-c ./example_programs/bench.bf'
+
+optimised:
+	PYTHONPATH=${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py --opt=jit  ${PWD}/tutorial-2-optimised.py
+	PYPYLOG=jit-log-opt:./log/tutorial-2-optimised-jit-log-opt.logfile ./tutorial-2-c ./example_programs/bench.bf
+	hyperfine './tutorial-2-optimised-c ./example_programs/bench.bf'
+
+inline:
+	PYTHONPATH=${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/tutorial-2-inline.py
+	PYPYLOG=jit-log-opt:./log/tutorial-2-inline-jit-log-opt.logfile ./tutorial-2-inline-c ./example_programs/bench.bf
+	hyperfine './tutorial-2-inline-c ./example_programs/bench.bf'
+
+fixed-size:
+	PYTHONPATH=${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/tutorial-2-fixed-size.py
+	PYPYLOG=jit-log-opt:./log/tutorial-2-fixed-size-jit-log-opt.logfile ./tutorial-2-fixed-size-c ./example_programs/bench.bf
+	hyperfine './tutorial-2-fixed-size-c ./example_programs/bench.bf'
