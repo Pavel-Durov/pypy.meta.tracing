@@ -6,7 +6,6 @@ from rpython.jit.codewriter.policy import JitPolicy
 def jitpolicy(driver):
     return JitPolicy()
 
-
 def get_location(pc, position, program, bracket_map):
     return "%s_%s_%s" % (program[:pc], program[pc], program[pc + 1:])
 

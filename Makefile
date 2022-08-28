@@ -1,6 +1,12 @@
 SHELL := /bin/bash
 CWD := $(shell cd -P -- '$(shell dirname -- "$0")' && pwd -P)
 
+dev.setup.mac:
+	brew update
+	brew list hyperfine  || brew install hyperfine 
+	brew list hg || brew install hgkubectl
+	brew list pyenv || brew install pyenv
+	
 init: clone-pypy init-shell 
 
 init-shell: 
@@ -16,29 +22,25 @@ clone-pypy:
 
 clear:
 	rm tutorial-*-*
-
-jit-diff:
-	git diff log/tutorial-2-jit-log-opt.logfile log/tutorial-2-jit-log-optimized-opt.logfile
+	rm ./*-c
 
 setup:
 	brew install hyperfine
 
-non-optimized:
-	PYTHONPATH=${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py --opt=jit  ${PWD}/tutorial-2-not-optimised.py
-	PYPYLOG=jit-log-opt:./log/tutorial-2-not-optimised-jit-log-opt.logfile ./tutorial-2-not-optimised-c ./example_programs/bench.bf
-	hyperfine './tutorial-2-not-optimised-c ./example_programs/bench.bf'
+# builds 
+build-all: build-no-jit build-jit-not-optimised build-jit-purefunction build-jit-fixed-size-array build-jit-inlined-class
 
-optimised:
-	PYTHONPATH=${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py --opt=jit  ${PWD}/tutorial-2-optimised.py
-	PYPYLOG=jit-log-opt:./log/tutorial-2-optimised-jit-log-opt.logfile ./tutorial-2-c ./example_programs/bench.bf
-	hyperfine './tutorial-2-optimised-c ./example_programs/bench.bf'
+build-no-jit:
+	PYTHONPATH=${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py ${PWD}/src/no-jit.py
 
-inline:
-	PYTHONPATH=${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/tutorial-2-inline.py
-	PYPYLOG=jit-log-opt:./log/tutorial-2-inline-jit-log-opt.logfile ./tutorial-2-inline-c ./example_programs/bench.bf
-	hyperfine './tutorial-2-inline-c ./example_programs/bench.bf'
+build-jit-%:
+	PYTHONPATH=${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/jit-$*.py
 
-fixed-size:
-	PYTHONPATH=${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/tutorial-2-fixed-size.py
-	PYPYLOG=jit-log-opt:./log/tutorial-2-fixed-size-jit-log-opt.logfile ./tutorial-2-fixed-size-c ./example_programs/bench.bf
-	hyperfine './tutorial-2-fixed-size-c ./example_programs/bench.bf'
+# bench
+bench:
+	hyperfine './jit-fixed-size-array-c ./bf_programs/bench.bf'
+	hyperfine './jit-inlined-class-c ./bf_programs/bench.bf'
+	hyperfine './jit-not-optimised-c ./bf_programs/bench.bf'
+	hyperfine './jit-purefunction-c ./bf_programs/bench.bf'
+	hyperfine './no-jit-c ./bf_programs/bench.bf'
+	
