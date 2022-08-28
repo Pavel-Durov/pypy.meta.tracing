@@ -12,4 +12,4 @@ ENV PYTHONPATH=${PWD}/pypy/
 
 RUN python ${PWD}/pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/tutorial.py
 
-ENTRYPOINT [ "*-c", "example_programs/99bottles.b" ]
+ENTRYPOINT [ "*-c", "bf_programs/99bottles.b" ]
