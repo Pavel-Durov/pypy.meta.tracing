@@ -1,27 +1,27 @@
 SHELL := /bin/bash
 CWD := $(shell cd -P -- '$(shell dirname -- "$0")' && pwd -P)
-
+VENV := venv
+CONDA_ENV := bf-tracing
 dev.setup.mac:
 	brew update
 	brew list hyperfine  || brew install hyperfine 
 	brew list hg || brew install hgkubectl
 	brew list pyenv || brew install pyenv
 	
-init: clone-pypy init-shell 
+init: clone-pypy init-env
 
-init-shell: 
-	pyenv init
-	pyenv shell 2.7.18 # not sure why but latest python version is not supported
-	python -m pip install virtualenv
-	virtualenv --python=python2.7 venv
-	source ./venv/bin/activate
+init-env: 
+	conda env create -f environment.yml
+	conda init zsh && conda activate $(CONDA_ENV)
 	pip install -r requirements.txt
 
 clone-pypy:
 	hg clone https://foss.heptapod.net/pypy/pypy .pypy	
 
 clear:
-	rm tutorial-*-*
+	conda init zsh
+	conda deactivate
+	conda remove -n $(CONDA_ENV) --all
 	rm ./*-c
 
 setup:
@@ -44,3 +44,6 @@ bench:
 	hyperfine './jit-purefunction-c ./bf_programs/bench.bf'
 	hyperfine './no-jit-c ./bf_programs/bench.bf'
 	
+conda-info:
+	echo CONDA_PREFIX=${CONDA_PREFIX}
+	conda info --envs

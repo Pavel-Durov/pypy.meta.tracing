@@ -36,12 +36,13 @@ $ make bench # runs hyperfine benchmarking for all targets
 
 ## Tools
 
-[pyenv](https://github.com/pyenv/pyenv) - support multi version python executable
+[conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) - Package, dependency and environment management for Python
 
 [hg](https://formulae.brew.sh/formula/mercurial#default) - Mercurial Distributed SCM
 
 [hyperfine](https://github.com/sharkdp/hyperfine) - A command-line benchmarking tool
 
+[act](https://github.com/nektos/act) - Run your GitHub Actions locally
 
 ## Other Resources
 [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck)
