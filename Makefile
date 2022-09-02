@@ -47,3 +47,6 @@ bench:
 conda-info:
 	echo CONDA_PREFIX=${CONDA_PREFIX}
 	conda info --envs
+
+test:
+	pytest ./src
