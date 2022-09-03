@@ -27,6 +27,8 @@ clear:
 setup:
 	brew install hyperfine
 
+run-awk:
+	PYTHONPATH=${PWD} python ./src/awkward_vm/main.py ./programs/awkward/example.awk
 # builds 
 build-all: build-no-jit build-jit-not-optimised build-jit-purefunction build-jit-fixed-size-array build-jit-inlined-class
 
@@ -38,11 +40,11 @@ build-jit-%:
 
 # bench
 bench:
-	hyperfine './jit-fixed-size-array-c ./bf_programs/bench.bf'
-	hyperfine './jit-inlined-class-c ./bf_programs/bench.bf'
-	hyperfine './jit-not-optimised-c ./bf_programs/bench.bf'
-	hyperfine './jit-purefunction-c ./bf_programs/bench.bf'
-	hyperfine './no-jit-c ./bf_programs/bench.bf'
+	hyperfine './jit-fixed-size-array-c ./program/bf/bench.bf'
+	hyperfine './jit-inlined-class-c ./program/bf/bench.bf'
+	hyperfine './jit-not-optimised-c ./program/bf/bench.bf'
+	hyperfine './jit-purefunction-c ./program/bf/bench.bf'
+	hyperfine './no-jit-c ./program/bf/bench.bf'
 	
 conda-info:
 	echo CONDA_PREFIX=${CONDA_PREFIX}

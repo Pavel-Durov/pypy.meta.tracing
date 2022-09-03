@@ -26,6 +26,13 @@ $ make build-all # builds all src examples (might take a while)
 $ PYPYLOG=jit-log-opt:./log/${FILE_NAME}.logfile ${EXECUTABLE} ${BF_PROGRAM}
 ```
 
+## Awkward VM - (RPython VM)
+Awkward VM implements simplistic virtual machine with object creation and simple integer operations.
+Its call "Awkward" cause its what it is, clunky and awkward vm implementation.
+
+[Awkward Program example](./programs/awkward/example.awk)
+
+
 ## Benchmarking
 ```shell
 $ make bench # runs hyperfine benchmarking for all targets

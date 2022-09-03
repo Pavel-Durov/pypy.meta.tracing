@@ -1,4 +1,4 @@
-from src.vm.parser import clean_input, parse, TokenType
+from src.awkward_vm.parser import clean_input, parse, TokenType
 
 
 def test_new_object():

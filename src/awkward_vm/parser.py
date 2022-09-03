@@ -1,6 +1,6 @@
 
-from src.vm.program import Program
-from src.vm.token import TokenType, Token
+from src.awkward_vm.program import Program
+from src.awkward_vm.token import TokenType, Token
 
 def peek(str, i):
   if i >= len(str):

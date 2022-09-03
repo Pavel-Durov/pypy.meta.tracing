@@ -1,4 +1,4 @@
-from src.vm.parser import parse
+from src.awkward_vm.parser import parse
 
 
 def test_program_init_object():

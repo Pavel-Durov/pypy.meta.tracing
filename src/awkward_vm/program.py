@@ -1,5 +1,5 @@
 from audioop import reverse
-from src.vm.token import TokenType
+from src.awkward_vm.token import TokenType
 
 class Object():
     def __init__(self):

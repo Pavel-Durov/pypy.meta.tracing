@@ -8,7 +8,8 @@ class TokenType(Enum):
     Equal = '='
     Plus = '+'
     Dot = '.'
-    Identity = '<identity>'
+    Identity = 'id'
+    Literal = 'literal' # TODO: use literal type
     End = ';'
 
 class Token():
