@@ -1,7 +1,7 @@
-Benchmark 1: ./tutorial-2-not-optimised-c ./bf_programs/bench.bf
+Benchmark 1: ./tutorial-2-not-optimised-c ./program/bf/bench.bf
   Time (mean ± σ):      2.598 s ±  0.060 s    [User: 2.543 s, System: 0.016 s]
   Range (min … max):    2.512 s …  2.722 s    10 runs
 
-Benchmark 1: ./tutorial-2-optimised-c ./bf_programs/bench.bf
+Benchmark 1: ./tutorial-2-optimised-c ./program/bf/bench.bf
   Time (mean ± σ):      1.128 s ±  0.013 s    [User: 1.118 s, System: 0.005 s]
   Range (min … max):    1.113 s …  1.152 s    10 runs
