@@ -5,7 +5,6 @@ def test_program_init_object():
     p = parse("x = {};")
     p.evaluate()
     assert len(p.objects) == 1
-    # assert p.objects['x'] == {}
 
 
 def test_program_object_attribute_assign():

@@ -58,5 +58,3 @@ def parse(input):
           else:
             p.add_token(Token(TokenType.Identity, ch))
     return p
-
-
