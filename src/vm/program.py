@@ -1,10 +1,9 @@
+from audioop import reverse
 from src.vm.token import TokenType
 
 class Object():
     def __init__(self):
         self.props = {}
-    def set(self, name, value):
-        self.props[name] = value
 
 
 class Program():
@@ -25,16 +24,49 @@ class Program():
     for i in self.tokens:
         print(i.token, i.value)
 
+  def get_lfs(self, i, token):
+    while i > 0:
+      if self.tokens[i].token.value == token.value:
+        return self.tokens[i-1]
+      i -= 1
+      
+
   def evaluate(self):
     for i, tk in enumerate(self.tokens):
       if tk.token.value == TokenType.NewObjectStart.value:
         identity_token = self.tokens[i -2]
         self.objects[identity_token.value] = Object()
+
+      if tk.token.value == TokenType.Plus.value:
+        value = self.get_rhs_value(i+1)
+
       if tk.token.value == TokenType.Dot.value:
-        obj_key = self.tokens[i-1].value
         next_token = self.tokens[i+1]
-        value = self.tokens[i+2].value
         if next_token.token.value == TokenType.Equal.value:
-          # TODO: parse to int if value is int
-          self.objects[obj_key].set(tk.value, value)
+          value = self.get_rhs_value(i+2)
+          obj_key = self.tokens[i-1].value
+          self.objects[obj_key].props[tk.value] = value
+        
     return self.objects
+
+  def get_rhs_value(self, i):
+    value = None
+    tk = self.tokens[i]
+    next_tk = self.tokens[i+1]
+    try:
+      value = int(tk.value, base=10)
+    except Exception:
+      pass
+
+    if type(value) == int:
+      if next_tk.token.value == TokenType.Plus.value:
+        value = value + self.get_rhs_value(i+2)
+    else:
+      if tk.token.value == TokenType.Identity.value:
+        if next_tk.token.value == TokenType.Dot.value:
+          obj_ref = tk.value
+          prop_ref = next_tk.value
+          value = self.objects[obj_ref].props[prop_ref]
+    if (i + 2) < len(self.tokens) - 1 and self.tokens[i+2].token.value == TokenType.Plus.value:
+      value = value + self.get_rhs_value(i+3)
+    return value
