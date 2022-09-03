@@ -1,22 +1,6 @@
-from enum import Enum
-from posixpath import split
+
 from src.vm.program import Program
-
-class TokenType(Enum):
-    NewObjectStart = '{'
-    NewObjectEnd = '}'
-    Equal = '='
-    Plus = '+'
-    Dot = '.'
-    Identity = '<identity>'
-    End = ';'
-
-class Token():
-  def __init__(self, token, value):
-      self.token = token
-      self.value = value
-  def __str__(self):
-     return "Token: " + self.token.value + " Value: " + self.value
+from src.vm.token import TokenType, Token
 
 def peek(str, i):
   if i >= len(str):
