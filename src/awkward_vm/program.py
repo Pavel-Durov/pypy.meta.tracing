@@ -17,6 +17,9 @@ class Program():
   def add_token(self, token):
     self.tokens.append(token)
 
+  def add_tokens(self, tokens):
+    self.tokens = self.tokens + tokens
+
   def last_token(self):
     return self.tokens[-1]
 
@@ -33,7 +36,7 @@ class Program():
 
   def evaluate(self):
     for i, tk in enumerate(self.tokens):
-      if tk.token.value == TokenType.NewObjectStart.value:
+      if tk.token.value == TokenType.NewObject.value:
         identity_token = self.tokens[i -2]
         self.objects[identity_token.value] = Object()
 

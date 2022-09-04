@@ -24,37 +24,80 @@ def parse(input):
         if skip_next != 0:
             skip_next -= 1
             continue
-        if ch == TokenType.Equal.value:
+        if ch == '=':
             p.add_token(Token(TokenType.Equal, ""))
             continue
-        if ch == TokenType.Dot.value:
-            prop = peek(input, i)
-            if prop != None:  
-              p.add_token(Token(TokenType.Dot, prop))
-              continue
-        if ch == TokenType.Plus.value:
+        if ch == '>':
+            p.add_token(Token(TokenType.GreaterThan, ""))
+            continue
+        if ch == '<':
+            p.add_token(Token(TokenType.LessThan, ""))
+            continue
+        if ch == '.':
+            p.add_token(Token(TokenType.Dot, prop))
+            continue
+        if ch == '+':
             p.add_token(Token(TokenType.Plus, ''))
             continue
-        if ch == TokenType.End.value:
+        if ch == ';':
             p.add_token(Token(TokenType.End, ""))
             continue
-        if ch == TokenType.NewObjectEnd.value:
-            if p.last_token() != TokenType.NewObjectStart:
-              raise Exception("syntax error, expected closing new object declaration!")
-            continue
-        if ch == TokenType.NewObjectStart.value:
-            close = peek(input, i)
-            if close == TokenType.NewObjectEnd.value:
-              p.add_token(Token(TokenType.NewObjectStart, ""))
+        if ch == '{':
+            if input[i+1] == '}':
+              p.add_token(Token(TokenType.NewObject, ""))
               skip_next = 1
+              continue
+        if ch == 'w':
+            if input.startswith('while'):
+              skip_next = parse_while_token(i, input, p)
+            continue
         else:
-          token = peek(input, i)
-          if token == TokenType.Dot.value:
+          if i+1 < len(input) and input[i+1] == '.':
               p.add_token(Token(TokenType.Identity, ch))
               prop = peek(input, i+1)
               if prop != None:  
                 p.add_token(Token(TokenType.Dot, prop))
                 skip_next = 2
           else:
+            # TODO: use literals as tokens
             p.add_token(Token(TokenType.Identity, ch))
     return p
+
+def parse_while_token(i, input, p):
+  p.add_token(Token(TokenType.While, ""))
+  condition_tokens, cond_i = parse_while_condition(input[len('while'):])
+  p.add_tokens(condition_tokens)
+  body_tokens, body_i = parse_while_body(input[len('while')+cond_i + 1:])
+  p.add_tokens(body_tokens)
+  skip_next = len('while') + cond_i + body_i + 2
+  return skip_next
+
+def parse_while_body(input):
+  tokens = []
+  body = ""
+  for body_i, ch in enumerate(input):
+    if ch == '{':
+      tokens.append(Token(TokenType.BodyStart, ""))
+      continue
+    if ch == '}':
+      condition_tokens = parse(body)
+      tokens = tokens + condition_tokens.tokens
+      tokens.append(Token(TokenType.BodyEnd, ""))
+      return tokens, body_i
+    body = body + ch
+  return tokens, 0
+  
+
+def parse_while_condition(input):
+  tokens = None
+  condition = ""
+  for cond_i, ch in enumerate(input):
+    if ch == '(':
+      continue
+    if ch == ')':
+      condition_tokens = parse(condition)
+      tokens = condition_tokens.tokens
+      return tokens, cond_i
+    condition = condition + ch
+  return tokens, 0
+  
