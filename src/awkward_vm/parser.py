@@ -16,11 +16,11 @@ Rule 1: object names can be only single letter
 Rule 1: object attributes can be only single letter
 Rule 2: for now we can only use single value integers
 """
-def parse(input):
-    input = clean_input(input)
-    p = Program(input)
+def parse(raw_program):
+    clean_program = clean_input(raw_program)
+    p = Program(clean_program)
     skip_next = 0
-    for i, ch in enumerate(input):
+    for i, ch in enumerate(clean_program):
         if skip_next != 0:
             skip_next -= 1
             continue
@@ -33,9 +33,9 @@ def parse(input):
         if ch == '<':
             p.add_token(Token(TokenType.LessThan, ""))
             continue
-        if ch == '.':
-            p.add_token(Token(TokenType.Dot, prop))
-            continue
+        # if ch == '.':
+        #     p.add_token(Token(TokenType.Dot, prop))
+        #     continue
         if ch == '+':
             p.add_token(Token(TokenType.Plus, ''))
             continue
@@ -43,18 +43,18 @@ def parse(input):
             p.add_token(Token(TokenType.End, ""))
             continue
         if ch == '{':
-            if input[i+1] == '}':
+            if clean_program[i+1] == '}':
               p.add_token(Token(TokenType.NewObject, ""))
               skip_next = 1
               continue
         if ch == 'w':
-            if input.startswith('while'):
-              skip_next = parse_while_token(i, input, p)
+            if clean_program[i:i+len('while')] == 'while':
+              skip_next = parse_while_token(i, clean_program[i:], p) -1
             continue
         else:
-          if i+1 < len(input) and input[i+1] == '.':
+          if i+1 < len(clean_program) and clean_program[i+1] == '.':
               p.add_token(Token(TokenType.Identity, ch))
-              prop = peek(input, i+1)
+              prop = peek(clean_program, i+1)
               if prop != None:  
                 p.add_token(Token(TokenType.Dot, prop))
                 skip_next = 2

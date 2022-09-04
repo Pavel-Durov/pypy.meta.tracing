@@ -41,3 +41,32 @@ def test_program_expression_reference():
     assert p.objects['x'].props['a'] == 1
     assert p.objects['x'].props['b'] == 2
     assert p.objects['z'].props['a'] == 5
+
+
+
+def test_program_while_loop_false_cond():
+    p = parse("""
+      x = {}; 
+      x.a = 0; 
+      while (x.a < 0) {
+        x.a = x.a + 1;
+      }
+      """)
+    p.evaluate()
+    assert p.objects['x'].props['a'] == 0
+
+def test_program_while_loop():
+    p = parse("""
+      x = {}; 
+      x.a = 0;
+      x.z = 0 
+      while (x.a < 6) {
+        x.a = x.a + 1;
+        x.z = x.z + 2
+      }
+      x.b = 5; 
+      """)
+    p.evaluate()
+    assert p.objects['x'].props['a'] == 6
+    assert p.objects['x'].props['z'] == 2 * 6
+    assert p.objects['x'].props['b'] == 5
