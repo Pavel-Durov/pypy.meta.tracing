@@ -17,7 +17,8 @@ class Program():
     self.tokens.append(token)
 
   def add_tokens(self, tokens):
-    self.tokens = self.tokens + tokens
+    for tk in tokens:
+      self.add_token(tk)    
 
   def last_token(self):
     return self.tokens[-1]

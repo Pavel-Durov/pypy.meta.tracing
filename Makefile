@@ -29,6 +29,7 @@ setup:
 
 run-awk:
 	PYTHONPATH=${PWD} python ./src/awkward_vm/main.py ./programs/awkward/example.awk
+	PYTHONPATH=${PWD} python ./src/awkward_vm/main.py ./programs/awkward/loops.awk
 # builds 
 build-all: build-no-jit build-jit-not-optimised build-jit-purefunction build-jit-fixed-size-array build-jit-inlined-class
 
