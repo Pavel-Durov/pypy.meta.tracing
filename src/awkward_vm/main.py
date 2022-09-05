@@ -14,6 +14,9 @@ def run(fp):
     program_.evaluate()
 
 
+def target(*args):
+    return entry_point, None
+
 def entry_point(argv):
     import os
     try:
@@ -28,3 +31,5 @@ def entry_point(argv):
 
 if __name__ == "__main__":
     entry_point(argv)
+
+
