@@ -58,6 +58,6 @@ $ make bench # runs hyperfine benchmarking for all targets
 
 [Tutorial Issues](./docs/Issues.md)
 
-[RPython](https://doc.pypy.org/en/latest/coding-guide.html#our-runtime-interpreter-is-rpython)
+[RPython](https://doc.pypy.org/en/latest/coding-guide.html#restricted-python)
 
 [PypyTutorialKo](https://github.com/disjukr/pypy-tutorial-ko)

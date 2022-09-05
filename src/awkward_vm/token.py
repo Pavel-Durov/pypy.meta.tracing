@@ -1,8 +1,4 @@
-
-from enum import Enum
-
-
-class TokenType(Enum):
+class TokenType():
     NewObject = 'new'
     Equal = '='
     LessThan = '<'
@@ -24,4 +20,4 @@ class Token():
       self.value = value
       self.body = body
   def __str__(self):
-     return "Token: " + self.token.value + " Value: " + self.value
+     return "Token: " + self.token + " Value: " + self.value

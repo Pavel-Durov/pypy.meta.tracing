@@ -1,12 +1,6 @@
 import os
+from sys import argv
 from parser import parse
-
-src = """
-  x = {};
-  x.y = 0;
-  x.y = x.y + 1;
-  x.z = 2;
-"""
 
 
 def run(fp):
@@ -19,6 +13,7 @@ def run(fp):
     program_ = parse(program_contents)
     program_.evaluate()
 
+
 def entry_point(argv):
     import os
     try:
@@ -30,7 +25,6 @@ def entry_point(argv):
     run(os.open(filename, os.O_RDONLY, 777))
     return 0
 
-if __name__ == "__main__":
-    import sys
 
-    entry_point(sys.argv)
+if __name__ == "__main__":
+    entry_point(argv)

@@ -1,7 +1,10 @@
 SHELL := /bin/bash
 CWD := $(shell cd -P -- '$(shell dirname -- "$0")' && pwd -P)
 VENV := venv
-CONDA_ENV := bf-tracing
+CONDA_ENV := meta-tracing
+
+PYTHONPATH=${PWD}:${PWD}/.pypy/
+
 dev.setup.mac:
 	brew update
 	brew list hyperfine  || brew install hyperfine 
@@ -12,7 +15,7 @@ init: clone-pypy init-env
 
 init-env: 
 	conda env create -f environment.yml
-	conda init zsh && conda activate $(CONDA_ENV)
+	conda init zsh && conda activate meta-tracing
 	pip install -r requirements.txt
 
 clone-pypy:
@@ -21,23 +24,25 @@ clone-pypy:
 clear:
 	conda init zsh
 	conda deactivate
-	conda remove -n $(CONDA_ENV) --all
+	conda remove -n meta-tracing --all
 	rm ./*-c
 
 setup:
 	brew install hyperfine
 
 run-awk:
-	PYTHONPATH=${PWD} python ./src/awkward_vm/main.py ./programs/awkward/example.awk
-	PYTHONPATH=${PWD} python ./src/awkward_vm/main.py ./programs/awkward/loops.awk
+	PYTHONPATH=$(PYTHONPATH) python ./src/awkward_vm/main.py --opt=jit ./programs/awkward/loops.awk
+
+build-awkward-vm:
+	PYTHONPATH=$(PYTHONPATH) python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/awkward_vm/main.py
 # builds 
 build-all: build-no-jit build-jit-not-optimised build-jit-purefunction build-jit-fixed-size-array build-jit-inlined-class
 
 build-no-jit:
-	PYTHONPATH=${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py ${PWD}/src/no-jit.py
+	PYTHONPATH=$(PYTHONPATH) python ./.pypy/rpython/translator/goal/translate.py ${PWD}/src/no-jit.py
 
 build-jit-%:
-	PYTHONPATH=${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/jit-$*.py
+	PYTHONPATH=$(PYTHONPATH) python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/jit-$*.py
 
 # bench
 bench:

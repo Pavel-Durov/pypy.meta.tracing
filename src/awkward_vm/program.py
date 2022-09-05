@@ -29,7 +29,7 @@ class Program():
 
   def get_lfs(self, i, token):
     while i > 0:
-      if self.tokens[i].token.value == token.value:
+      if self.tokens[i].token == token.value:
         return self.tokens[i-1]
       i -= 1
       
@@ -61,16 +61,16 @@ def condition_eval(tokens, objects):
   comp = None
   for i, tk in enumerate(tokens):
     # TODO: add support for ==, !=, <=, >=
-    if tk.token.value == TokenType.LessThan.value or tk.token.value == TokenType.GreaterThan.value:
+    if tk.token == TokenType.LessThan or tk.token == TokenType.GreaterThan:
       comp = tk
       lhs = tokens[:i]
       rhs = tokens[i+1:]
   lhs_val = get_value(lhs, objects)
   rhs_val = get_value(rhs, objects)
   
-  if comp.token.value == TokenType.LessThan.value:
+  if comp.token == TokenType.LessThan:
       return lhs_val < rhs_val
-  if comp.token.value == TokenType.GreaterThan.value:
+  if comp.token == TokenType.GreaterThan:
       return lhs_val > rhs_val
 
 
@@ -80,32 +80,32 @@ def evaluate_program(tokens, objects):
     if skip_next != 0:
       skip_next -= 1
       continue
-    if tk.token.value == TokenType.NewObject.value:
+    if tk.token == TokenType.NewObject:
       identity_token = tokens[i -2]
       objects[identity_token.value] = Object()
 
-    if tk.token.value == TokenType.Plus.value:
+    if tk.token == TokenType.Plus:
       value = get_rhs_value(tokens, objects, i+1)
 
-    if tk.token.value == TokenType.Dot.value:
+    if tk.token == TokenType.Dot:
       next_token = tokens[i+1]
-      if next_token.token.value == TokenType.Equal.value:
+      if next_token.token == TokenType.Equal:
         value = get_rhs_value(tokens, objects, i+2)
         obj_key = tokens[i-1].value
         objects[obj_key].props[tk.value] = value
       
-    if tk.token.value == TokenType.While.value:
+    if tk.token == TokenType.While:
       condition_tokens = []
       cond_i = 0
       for cond_i, cond_tk in enumerate(tokens[i+1:]):
-          if cond_tk.token.value == TokenType.BodyStart.value:
+          if cond_tk.token == TokenType.BodyStart:
               break
           condition_tokens.append(cond_tk)
       body_i = 0
       body_tokens = []
       for body_i, body_tk in enumerate(tokens[i+cond_i+1:]):
         body_tokens.append(body_tk)
-        if body_tk.token.value == TokenType.BodyEnd.value:
+        if body_tk.token == TokenType.BodyEnd:
           break
       while condition_eval(condition_tokens, objects):
        
@@ -135,14 +135,14 @@ def get_rhs_value(tokens, objects, i):
   except Exception:
     pass
   if type(value) == int:
-    if next_tk.token.value == TokenType.Plus.value:
+    if next_tk.token == TokenType.Plus:
       value = value + get_rhs_value(tokens, objects, i+2)
   else:
-    if tk.token.value == TokenType.Identity.value:
-      if next_tk.token.value == TokenType.Dot.value:
+    if tk.token is TokenType.Identity:
+      if next_tk.token == TokenType.Dot:
         obj_ref = tk.value
         prop_ref = next_tk.value
         value = objects[obj_ref].props[prop_ref]
-  if (i + 2) < len(tokens) - 1 and tokens[i+2].token.value == TokenType.Plus.value:
+  if (i + 2) < len(tokens) - 1 and tokens[i+2].token == TokenType.Plus:
     value = value + get_rhs_value(tokens, objects, i+3)
   return value
