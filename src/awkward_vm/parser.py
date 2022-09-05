@@ -4,12 +4,18 @@ from src.awkward_vm.token import TokenType, Token
 
 def peek(str, i):
   if i >= len(str):
-    return None
+    return ""
   return str[i+1]
 
 
 def clean_input(str):
-  return str.replace('\n', '').replace(' ', '')
+  # TODO: pypy support for replace? return str.replace('\n', '').replace(' ', '')
+  result = ""
+  for char in str:
+    if char == '\n' or char == ' ':
+      continue
+    result = result + char
+  return result
 
 """
 Rule 1: object names can be only single letter
@@ -33,9 +39,7 @@ def parse(raw_program):
         if ch == '<':
             p.add_token(Token(TokenType.LessThan, ""))
             continue
-        # if ch == '.':
-        #     p.add_token(Token(TokenType.Dot, prop))
-        #     continue
+
         if ch == '+':
             p.add_token(Token(TokenType.Plus, ''))
             continue
@@ -55,7 +59,9 @@ def parse(raw_program):
           if i+1 < len(clean_program) and clean_program[i+1] == '.':
               p.add_token(Token(TokenType.Identity, ch))
               prop = peek(clean_program, i+1)
-              if prop != None:  
+              if prop == "":  
+                  continue
+              else:
                 p.add_token(Token(TokenType.Dot, prop))
                 skip_next = 2
           else:

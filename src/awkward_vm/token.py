@@ -14,10 +14,11 @@ class TokenType():
     Condition = 'cond'
 
 
-class Token():
-  def __init__(self, token, value, body=None):
+class Token():  
+  def __init__(self, token, value):
       self.token = token
       self.value = value
-      self.body = body
+
+
   def __str__(self):
      return "Token: " + self.token + " Value: " + self.value

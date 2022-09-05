@@ -1,4 +1,4 @@
-from src.awkward_vm.token import TokenType
+from src.awkward_vm.token import TokenType, Token
 
 class Object():
     def __init__(self):
@@ -37,34 +37,20 @@ class Program():
     return evaluate_program(self.tokens, self.objects)
 
 
-      
-def get_value(tokens, objects):
-  tk = tokens[0]
-  value = None
-  try:
-    value = int(tk.value, base=10)
-  except Exception:
-    pass
-    
-  if type(value) == int:
-    return value
-  else:
-    obj_ref = tk.value
-    next_tk = tokens[1]
-    value = objects[obj_ref].props[next_tk.value]
-  
-  return value
 
 def condition_eval(tokens, objects):
   lhs = []
   rhs = []
-  comp = None
+  comp = Token(None, None)
   for i, tk in enumerate(tokens):
     # TODO: add support for ==, !=, <=, >=
     if tk.token == TokenType.LessThan or tk.token == TokenType.GreaterThan:
       comp = tk
       lhs = tokens[:i]
       rhs = tokens[i+1:]
+
+  lhs_val = 0
+  rhs_val = 0
   lhs_val = get_value(lhs, objects)
   rhs_val = get_value(rhs, objects)
   
@@ -72,6 +58,7 @@ def condition_eval(tokens, objects):
       return lhs_val < rhs_val
   if comp.token == TokenType.GreaterThan:
       return lhs_val > rhs_val
+  return False
 
 
 def evaluate_program(tokens, objects):
@@ -108,41 +95,42 @@ def evaluate_program(tokens, objects):
         if body_tk.token == TokenType.BodyEnd:
           break
       while condition_eval(condition_tokens, objects):
-       
-          
         evaluate_program(body_tokens, objects)
-      
       skip_next = cond_i + body_i
       continue
   return objects
 
 
-
-def while_body_eval(self, tokens):
-  for i, tk in enumerate(tokens):
-    i = i
-
-  return tokens
-
+def get_value(tokens, objects):
+  tk = Token(None, None)
+  tk = tokens[0]
+  value = None
+  try:
+    value = int(tk.value)
+  except Exception:
+    obj_ref = tk.value
+    next_tk = tokens[1]
+    value = objects[obj_ref].props[next_tk.value]
+  return int(value)
 
 
 def get_rhs_value(tokens, objects, i):
-  value = None
+  value = 0
+  tk = Token(None, None)
   tk = tokens[i]
+  next_tk = Token(None, None)
   next_tk = tokens[i+1]
   try:
-    value = int(tk.value, base=10)
-  except Exception:
-    pass
-  if type(value) == int:
+    value = int(tk.value)
     if next_tk.token == TokenType.Plus:
-      value = value + get_rhs_value(tokens, objects, i+2)
-  else:
-    if tk.token is TokenType.Identity:
-      if next_tk.token == TokenType.Dot:
-        obj_ref = tk.value
-        prop_ref = next_tk.value
-        value = objects[obj_ref].props[prop_ref]
-  if (i + 2) < len(tokens) - 1 and tokens[i+2].token == TokenType.Plus:
-    value = value + get_rhs_value(tokens, objects, i+3)
+      rhs_value = get_rhs_value(tokens, objects, i+2)
+      return value + rhs_value
+  except Exception:
+    if next_tk.token == TokenType.Dot:
+      obj_ref = tk.value
+      prop_ref = next_tk.value
+      value = objects[obj_ref].props[prop_ref]
+    if tokens[i+2].token == TokenType.Plus:
+      rhs_value = get_rhs_value(tokens, objects, i+3)
+      return value + rhs_value
   return value

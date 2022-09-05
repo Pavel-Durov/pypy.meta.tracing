@@ -34,7 +34,7 @@ run-awk:
 	PYTHONPATH=$(PYTHONPATH) python ./src/awkward_vm/main.py --opt=jit ./programs/awkward/loops.awk
 
 build-awkward-vm:
-	PYTHONPATH=$(PYTHONPATH) python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/awkward_vm/main.py
+	PYTHONPATH=$(PYTHONPATH) python ./.pypy/rpython/translator/goal/translate.py  --source /Users/kimchi/git-repos/side-projects/bf.meta.tracing/src/awkward_vm/main.p
 # builds 
 build-all: build-no-jit build-jit-not-optimised build-jit-purefunction build-jit-fixed-size-array build-jit-inlined-class
 
