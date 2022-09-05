@@ -64,6 +64,7 @@ def condition_eval(tokens, objects):
 def evaluate_program(tokens, objects):
   skip_next = 0
   for i, tk in enumerate(tokens):
+    print("Evaluating token: ", tk.token, tk.value)
     if skip_next != 0:
       skip_next -= 1
       continue

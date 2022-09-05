@@ -2,6 +2,18 @@ import os
 from sys import argv
 from parser import parse
 
+# from rpython.rlib.jit import JitDriver
+# from rpython.jit.codewriter.policy import JitPolicy
+
+# def jitpolicy(driver):
+#     return JitPolicy()
+
+# def get_location(program):
+#     return "%s" % (program.pc)
+
+
+# jitdriver = JitDriver(greens=['program'], reds=[], get_printable_location=get_location)
+
 
 def run(fp):
     program_contents = ""
@@ -10,8 +22,9 @@ def run(fp):
         if len(read) == 0:
             break
         program_contents += read
-    program_ = parse(program_contents)
-    program_.evaluate()
+    program = parse(program_contents)
+    # jitdriver.jit_merge_point(program=program)
+    program.evaluate()
 
 
 def target(*args):

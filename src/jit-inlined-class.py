@@ -26,7 +26,7 @@ def mainloop(program, bracket_map):
 
     while pc < len(program):
         # jitdriver.jit_merge_point(pc=pc, position=position, program=program, bracket_map=bracket_map, tape=tape)
-        jitdriver.jit_merge_point(pc=pc, tape=tape, program=program, bracket_map=bracket_map, position=position)
+        # jitdriver.jit_merge_point(pc=pc, tape=tape, program=program, bracket_map=bracket_map, position=position)
         code = program[pc]
         if code == ">":
             position += 1
