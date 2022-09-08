@@ -57,5 +57,5 @@ jobs:
     - name: Download RPython
       run: |
         hg clone https://foss.heptapod.net/pypy/pypy .pypy
-    - name: Download RPython
+    - name: RPython Translate
       run: make translate-awk-vm
