@@ -58,4 +58,4 @@ jobs:
       run: |
         hg clone https://foss.heptapod.net/pypy/pypy .pypy
     - name: RPython Translate
-      run: make translate-awk-vm
+      run: make translate-awk-vm-no-jit
