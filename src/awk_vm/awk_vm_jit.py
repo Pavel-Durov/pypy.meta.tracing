@@ -2,6 +2,18 @@ import os
 from sys import argv
 from parser import parse
 from program import evaluate_program
+from rpython.rlib.jit import JitDriver
+
+
+def jitpolicy(driver):
+    from rpython.jit.codewriter.policy import JitPolicy
+    return JitPolicy()
+
+def get_location(heap):
+    return "@@@@@@@@@@@@@@@@: %s" % (len(heap))
+
+
+jitdriver = JitDriver(greens=['tokens'], reds=['heap'], get_printable_location=get_location)
 
 def print_heap(heap):
   os.write(1, bytes("Awkward heap:\n"))
@@ -20,6 +32,7 @@ def run(fp):
         program_contents += read
     tokens = parse(program_contents)
     heap = {}
+    jitdriver.jit_merge_point(tokens=tokens, heap=heap)
     evaluate_program(tokens, heap)
     print_heap(heap)
 
