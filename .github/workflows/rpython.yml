@@ -1,4 +1,4 @@
-name: Python Package using Conda
+name: RPython
 
 on: [push]
 
@@ -30,10 +30,7 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         # flake8 ./src/**/*.py --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Install Mercurial
-      run: |
-        sudo add-apt-repository ppa:mercurial-ppa/releases
-        sudo apt-get update
-        sudo apt-get install mercurial
+      run: sudo apt-get install mercurial
     - name: Download RPython
       run: |
         hg clone https://foss.heptapod.net/pypy/pypy .pypy
