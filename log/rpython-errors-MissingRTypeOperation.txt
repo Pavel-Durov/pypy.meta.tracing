@@ -1,0 +1,83 @@
+PYTHONPATH=/Users/kimchi/git-repos/side-projects/bf.meta.tracing:/Users/kimchi/git-repos/side-projects/bf.meta.tracing/.pypy/ python ./.pypy/rpython/translator/goal/translate.py --opt=jit /Users/kimchi/git-repos/side-projects/bf.meta.tracing/src/awk_vm/main.py
+[translation:info] 2.7.18 |Anaconda, Inc.| (default, Apr 23 2020, 17:44:47) 
+[GCC 4.2.1 Compatible Clang 4.0.1 (tags/RELEASE_401/final)]
+[platform:msg] Set platform with 'host' cc=None, using cc='clang', version='Unknown'
+[translation:info] Translating target as defined by /Users/kimchi/git-repos/side-projects/bf.meta.tracing/src/awk_vm/main
+[translation] translate.py configuration:
+[translation] [translate]
+    opt = jit
+    targetspec = /Users/kimchi/git-repos/side-projects/bf.meta.tracing/src/awk_vm/main
+[translation] translation configuration:
+[translation] [translation]
+    gc = incminimark
+    gcrootfinder = shadowstack
+    gctransformer = framework
+    jit = True
+    list_comprehension_operations = True
+    rpython_translate = True
+    withsmallfuncsets = 5
+[translation:info] Annotating&simplifying...
+[28] {translation-task
+starting annotate
+[translation:info] with policy: rpython.annotator.policy.AnnotatorPolicy
+[61] translation-task}
+[translation:info] RTyping...
+[61] {translation-task
+starting rtype_lltype
+[72] translation-task}
+[Timer] Timings:
+[Timer] annotate                       --- 4.2 s
+[Timer] rtype_lltype                   --- 0.2 s
+[Timer] ========================================
+[Timer] Total:                         --- 4.3 s
+[translation:info] Error:
+   File "./.pypy/rpython/translator/goal/translate.py", line 320, in main
+    drv.proceed(goals)
+   File "/Users/kimchi/git-repos/side-projects/bf.meta.tracing/.pypy/rpython/translator/driver.py", line 568, in proceed
+    result = self._execute(goals, task_skip = self._maybe_skip())
+   File "/Users/kimchi/git-repos/side-projects/bf.meta.tracing/.pypy/rpython/translator/tool/taskengine.py", line 114, in _execute
+    res = self._do(goal, taskcallable, *args, **kwds)
+   File "/Users/kimchi/git-repos/side-projects/bf.meta.tracing/.pypy/rpython/translator/driver.py", line 278, in _do
+    res = func()
+   File "/Users/kimchi/git-repos/side-projects/bf.meta.tracing/.pypy/rpython/translator/driver.py", line 345, in task_rtype_lltype
+    rtyper.specialize(dont_simplify_again=True)
+   File "/Users/kimchi/git-repos/side-projects/bf.meta.tracing/.pypy/rpython/rtyper/rtyper.py", line 187, in specialize
+    self.specialize_more_blocks()
+   File "/Users/kimchi/git-repos/side-projects/bf.meta.tracing/.pypy/rpython/rtyper/rtyper.py", line 224, in specialize_more_blocks
+    self.specialize_block(block)
+   File "/Users/kimchi/git-repos/side-projects/bf.meta.tracing/.pypy/rpython/rtyper/rtyper.py", line 310, in specialize_block
+    self.translate_hl_to_ll(hop, varmapping)
+   File "/Users/kimchi/git-repos/side-projects/bf.meta.tracing/.pypy/rpython/rtyper/rtyper.py", line 436, in translate_hl_to_ll
+    resultvar = hop.dispatch()
+   File "/Users/kimchi/git-repos/side-projects/bf.meta.tracing/.pypy/rpython/rtyper/rtyper.py", line 653, in dispatch
+    return translate_meth(self)
+   File "<261-codegen /Users/kimchi/git-repos/side-projects/bf.meta.tracing/.pypy/rpython/rtyper/rtyper.py:516>", line 5, in translate_op_eq
+    return pair(r_arg1, r_arg2).rtype_eq(hop)
+   File "/Users/kimchi/git-repos/side-projects/bf.meta.tracing/.pypy/rpython/rtyper/rmodel.py", line 336, in missing_rtype_operation
+    "'%s' on %r" % (opname, self))
+[translation:ERROR] MissingRTypeOperation: unimplemented operation: 'eq' on (<StringRepr * GcStruct rpy_string { hash, chars }>, <NoneRepr Void>)
+.. (parser:23)parse
+.. block@584[v6...] with 2 exits(v7)
+.. v8 = eq(value_0, (None))
+[translation] start debugger...
+> /Users/kimchi/git-repos/side-projects/bf.meta.tracing/.pypy/rpython/rtyper/rmodel.py(336)missing_rtype_operation()
+-> "'%s' on %r" % (opname, self))
+Traceback (most recent call last):
+  File "./.pypy/rpython/translator/goal/translate.py", line 336, in <module>
+    main()
+  File "./.pypy/rpython/translator/goal/translate.py", line 327, in main
+    debug(True)
+  File "./.pypy/rpython/translator/goal/translate.py", line 280, in debug
+    pdb_plus_show.start(tb)
+  File "/Users/kimchi/git-repos/side-projects/bf.meta.tracing/.pypy/rpython/translator/tool/pdbplus.py", line 442, in start
+    fn(*args)
+  File "/Users/kimchi/git-repos/side-projects/bf.meta.tracing/.pypy/rpython/translator/tool/pdbplus.py", line 25, in post_mortem
+    self.interaction(t.tb_frame, t)
+  File "/Users/kimchi/opt/anaconda3/envs/meta-tracing/lib/python2.7/pdb.py", line 210, in interaction
+    self.cmdloop()
+  File "/Users/kimchi/opt/anaconda3/envs/meta-tracing/lib/python2.7/cmd.py", line 109, in cmdloop
+    self.preloop()
+  File "/Users/kimchi/git-repos/side-projects/bf.meta.tracing/.pypy/rpython/translator/tool/pdbplus.py", line 29, in preloop
+    raise NoTTY("Cannot start the debugger when stdout is captured.")
+rpython.translator.tool.pdbplus.NoTTY: Cannot start the debugger when stdout is captured.
+make: *** [translate-awk-vm] Error 1

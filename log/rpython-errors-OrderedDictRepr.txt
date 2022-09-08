@@ -1,0 +1,3 @@
+PYTHONPATH=/Users/kimchi/git-repos/side-projects/bf.meta.tracing:/Users/kimchi/git-repos/side-projects/bf.meta.tracing/.pypy/ python ./.pypy/rpython/translator/goal/translate.py --opt=jit /Users/kimchi/git-repos/side-projects/bf.meta.tracing/src/awk_vm/awk_vm.py
+> /Users/kimchi/git-repos/side-projects/bf.meta.tracing/.pypy/rpython/rtyper/rmodel.py(107)__getattr__()
+-> self.__class__.__name__, name))
