@@ -1,5 +1,5 @@
-from src.awkward_vm.parser import parse
-from src.awkward_vm.program import evaluate_program
+from src.awk_vm.parser import parse
+from src.awk_vm.program import evaluate_program
 
 
 def test_program_init_object():

@@ -1,4 +1,4 @@
-from src.awkward_vm.program import TokenType, Token
+from src.awk_vm.program import TokenType, Token
 
 def peek(str, i):
   if i >= len(str):
@@ -7,7 +7,7 @@ def peek(str, i):
 
 
 def clean_input(str):
-  # TODO: pypy support for replace? return str.replace('\n', '').replace(' ', '')
+  # Q: Why not use srt.replace? Cause RPython doesn't support it...
   result = ""
   for char in str:
     if char == '\n' or char == ' ':
@@ -15,11 +15,6 @@ def clean_input(str):
     result = result + char
   return result
 
-"""
-Rule 1: object names can be only single letter
-Rule 1: object attributes can be only single letter
-Rule 2: for now we can only use single value integers
-"""
 def parse(raw_program):
     tokens = []
     prog_in = clean_input(raw_program)
@@ -64,34 +59,33 @@ def parse(raw_program):
                 skip_next = 2
           else:
             value = get_numeric_value(i, prog_in)
-            if value == None:
+            if value is None:
               tokens.append(Token(TokenType.Identity, ch))
             else:
-              # TODO: use literal tokens
               tokens.append(Token(TokenType.Identity, value))
               skip_next = len(value) - 1
+              
     return tokens
 
 
 def parseInt(s):
   try:
-    return int(s), True
+    int(s)
+    return True
   except Exception:
-    return 0, False
+    return False
 
 
 def get_numeric_value(prog_i, input):
   result = None
-  _, ok = parseInt(input[prog_i])
-  if ok:
+  # Q: Why not use str.isnumeric? Cause RPython doesn't support it...
+  if parseInt(input[prog_i]):
     result = ""
     for i in range(prog_i, len(input)):
-      _, ok = parseInt(input[i])
-      if ok:
+      if parseInt(input[i]):
         result += input[i]
       else:
         break
-        
   return result
   
 

@@ -1,4 +1,4 @@
-from src.awkward_vm.token import TokenType, Token
+from src.awk_vm.token import TokenType, Token
 
 def condition_eval(tokens, objects):
   lhs = []

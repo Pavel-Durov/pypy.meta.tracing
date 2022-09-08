@@ -1,5 +1,5 @@
-from src.awkward_vm.token import TokenType
-from src.awkward_vm.parser import clean_input, parse
+from src.awk_vm.token import TokenType
+from src.awk_vm.parser import clean_input, parse
 
 
 

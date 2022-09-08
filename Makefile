@@ -34,13 +34,13 @@ run-awk:
 	PYTHONPATH=$(PYTHONPATH) python ./src/awk_vm/awk_vm.py ./programs/awk/loops.awk
 
 translate-awk-vm:
-	PYTHONPATH=$(PYTHONPATH) python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/awkward_vm/main.py
+	PYTHONPATH=$(PYTHONPATH) python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/awk_vm/awk_vm.py
 
 translate-awk-vm-no-jit:
-	PYTHONPATH=$(PYTHONPATH) python ./.pypy/rpython/translator/goal/translate.py ${PWD}/src/awkward_vm/main.py
+	PYTHONPATH=$(PYTHONPATH) python ./.pypy/rpython/translator/goal/translate.py ${PWD}/src/awk_vm/awk_vm.py
 
 run-awk-c:
-	PYPYLOG=jit-log-opt:./log/awk_vm_loops.logfile ./main-c ./programs/awk/loops.awk
+	PYPYLOG=jit-log-opt:./log/awk_vm_loops.logfile2 ./awk_vm-c ./programs/awk/loops.awk
 
 
 # builds 
