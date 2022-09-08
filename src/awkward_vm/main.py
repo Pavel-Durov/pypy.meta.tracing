@@ -1,19 +1,24 @@
 import os
 from sys import argv
-from parser import parse
+# from parser import parse
+from program import evaluate_program
 
 # from rpython.rlib.jit import JitDriver
-# from rpython.jit.codewriter.policy import JitPolicy
+
 
 # def jitpolicy(driver):
+#     from rpython.jit.codewriter.policy import JitPolicy
 #     return JitPolicy()
 
-# def get_location(program):
-#     return "%s" % (program.pc)
+# def get_location(heap):
+#     return "heap: %s" % (len(heap))
 
 
-# jitdriver = JitDriver(greens=['program'], reds=[], get_printable_location=get_location)
+# jitdriver = JitDriver(greens=['tokens'], reds=['heap'], get_printable_location=get_location)
 
+# def print_heap(heap):
+#   for key,value in heap.items():
+#     print(key, ':', value)
 
 def run(fp):
     program_contents = ""
@@ -22,9 +27,16 @@ def run(fp):
         if len(read) == 0:
             break
         program_contents += read
-    program = parse(program_contents)
-    # jitdriver.jit_merge_point(program=program)
-    program.evaluate()
+    # tokens = parse(program_contents)
+    # heap = {}
+    # print(tokens)
+    # jitdriver.jit_merge_point(tokens=tokens, heap=heap)
+    # evaluate_program(tokens, heap)
+    evaluate_program([],{})
+    # RPython translation doesnt like re-assigned variables
+    #    File "/Users/kimchi/git-repos/side-projects/bf.meta.tracing/.pypy/rpython/rtyper/rmodel.py", line 107, in __getattr__
+    # AttributeError: TupleRepr instance has no attribute ll_str
+    # print_heap(heap)
 
 
 def target(*args):

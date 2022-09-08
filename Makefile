@@ -31,13 +31,16 @@ setup:
 	brew install hyperfine
 
 run-awk:
-	PYTHONPATH=$(PYTHONPATH) python ./src/awkward_vm/main.py ./programs/awkward/loops.awk
+	PYTHONPATH=$(PYTHONPATH) python ./src/awk_vm/awk_vm.py ./programs/awk/loops.awk
 
-build-awk-vm:
-	PYTHONPATH=$(PYTHONPATH) python ./.pypy/rpython/translator/goal/translate.py --opt=jit /Users/kimchi/git-repos/side-projects/bf.meta.tracing/src/awkward_vm/main.py
+translate-awk-vm:
+	PYTHONPATH=$(PYTHONPATH) python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/awkward_vm/main.py
 
-run-awk-vm:
-	PYPYLOG=jit-log-opt:./log/awk_vm_loops.logfile ./main-c ./programs/awkward/loops.awk
+translate-awk-vm-no-jit:
+	PYTHONPATH=$(PYTHONPATH) python ./.pypy/rpython/translator/goal/translate.py ${PWD}/src/awkward_vm/main.py
+
+run-awk-c:
+	PYPYLOG=jit-log-opt:./log/awk_vm_loops.logfile ./main-c ./programs/awk/loops.awk
 
 
 # builds 
