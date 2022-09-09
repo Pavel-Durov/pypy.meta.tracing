@@ -6,7 +6,7 @@ class TokenType():
     Plus = '+'
     Dot = '.'
     Identity = 'id'
-    Literal = 'literal' # TODO: use literal type
+    Literal = 'literal'
     End = ';'
     While = 'while'
     BodyStart = 'body-start'
@@ -15,10 +15,16 @@ class TokenType():
 
 
 class Token():  
-  def __init__(self, token, value):
+  token = ''
+  value = ''
+  numericValue = 0
+  prop = ''
+  def __init__(self, token, literalValue, prop = '', numericValue=0):
       self.token = token
-      self.value = value
+      self.value = literalValue
+      self.prop = prop
+      self.numericValue = numericValue
 
 
   def __str__(self):
-     return "Token: " + self.token + " Value: " + self.value
+     return 'Token: ' + self.token + ' Value: ' + self.value

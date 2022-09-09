@@ -2,13 +2,13 @@ from src.awk_vm.program import TokenType, Token
 
 def peek(str, i):
   if i >= len(str):
-    return ""
+    return ''
   return str[i+1]
 
 
 def clean_input(str):
   # Q: Why not use srt.replace? Cause RPython doesn't support it...
-  result = ""
+  result = ''
   for char in str:
     if char == '\n' or char == ' ':
       continue
@@ -24,24 +24,24 @@ def parse(raw_program):
             skip_next -= 1
             continue
         if ch == '=':
-            tokens.append(Token(TokenType.Equal, ""))
+            tokens.append(Token(TokenType.Equal, ''))
             continue
         if ch == '>':
-            tokens.append(Token(TokenType.GreaterThan, ""))
+            tokens.append(Token(TokenType.GreaterThan, ''))
             continue
         if ch == '<':
-            tokens.append(Token(TokenType.LessThan, ""))
+            tokens.append(Token(TokenType.LessThan, ''))
             continue
-
         if ch == '+':
             tokens.append(Token(TokenType.Plus, ''))
             continue
         if ch == ';':
-            tokens.append(Token(TokenType.End, ""))
+            tokens.append(Token(TokenType.End, ''))
             continue
         if ch == '{':
             if prog_in[i+1] == '}':
-              tokens.append(Token(TokenType.NewObject, ""))
+              id = prog_in[i-2]
+              tokens.append(Token(TokenType.NewObject, id))
               skip_next = 1
               continue
         if ch == 'w':
@@ -50,19 +50,18 @@ def parse(raw_program):
             continue
         else:
           if i+1 < len(prog_in) and prog_in[i+1] == '.':
-              tokens.append(Token(TokenType.Identity, ch))
               prop = peek(prog_in, i+1)
-              if prop == "":  
-                  continue
+              if prop is '':  
+                tokens.append(Token(TokenType.Identity, ch))
               else:
-                tokens.append(Token(TokenType.Dot, prop))
+                tokens.append(Token(TokenType.Dot, ch, prop))
                 skip_next = 2
           else:
             value = get_numeric_value(i, prog_in)
             if value is None:
               tokens.append(Token(TokenType.Identity, ch))
             else:
-              tokens.append(Token(TokenType.Identity, value))
+              tokens.append(Token(TokenType.Literal, value, numericValue=int(value)))
               skip_next = len(value) - 1
               
     return tokens
@@ -80,7 +79,7 @@ def get_numeric_value(prog_i, input):
   result = None
   # Q: Why not use str.isnumeric? Cause RPython doesn't support it...
   if parseInt(input[prog_i]):
-    result = ""
+    result = ''
     for i in range(prog_i, len(input)):
       if parseInt(input[i]):
         result += input[i]
@@ -91,7 +90,7 @@ def get_numeric_value(prog_i, input):
 
 def parse_while_token(input, tokens):
   
-  tokens.append(Token(TokenType.While, ""))
+  tokens.append(Token(TokenType.While, ''))
   condition_tokens, cond_i = parse_while_condition(input[len('while'):])
   
   for tk in condition_tokens:
@@ -104,14 +103,14 @@ def parse_while_token(input, tokens):
 
 def parse_while_body(input):
   tokens = []
-  body = ""
+  body = ''
   for body_i, ch in enumerate(input):
     if ch == '{':
-      tokens.append(Token(TokenType.BodyStart, ""))
+      tokens.append(Token(TokenType.BodyStart, ''))
       continue
     if ch == '}':
       tokens = tokens + parse(body)
-      tokens.append(Token(TokenType.BodyEnd, ""))
+      tokens.append(Token(TokenType.BodyEnd, ''))
       return tokens, body_i
     body = body + ch
   return tokens, 0
@@ -119,7 +118,7 @@ def parse_while_body(input):
 
 def parse_while_condition(input):
   tokens = None
-  condition = ""
+  condition = ''
   for cond_i, ch in enumerate(input):
     if ch == '(':
       continue
