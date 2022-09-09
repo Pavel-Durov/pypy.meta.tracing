@@ -80,42 +80,44 @@ def test_while_loop():
         x.y = x.y + 1; 
       }
     """)
-
-    assert tokens[0].token == TokenType.While
-    assert tokens[0].value == ''
+    while_tk =  tokens[0]
+    assert while_tk.token == TokenType.While
+    assert while_tk.value == ''
     
-    assert tokens[1].token == TokenType.Dot
-    assert tokens[1].value == 'x'
-    assert tokens[1].prop == 'y'
+    condition = while_tk.condition
+    assert condition[0].token == TokenType.Dot
+    assert condition[0].value == 'x'
+    assert condition[0].prop == 'y'
 
-    assert tokens[2].token == TokenType.LessThan
-    assert tokens[2].value == ''
+    assert condition[1].token == TokenType.LessThan
+    assert condition[1].value == ''
 
-    assert tokens[3].token == TokenType.Literal
-    assert tokens[3].value == '2'
+    assert condition[2].token == TokenType.Literal
+    assert condition[2].value == '2'
 
-    assert tokens[4].token == TokenType.BodyStart
-    assert tokens[4].value == ''
+    body = while_tk.body
+    assert body[0].token == TokenType.BodyStart
+    assert body[0].value == ''
 
-    assert tokens[5].token == TokenType.Dot
-    assert tokens[5].value == 'x'
-    assert tokens[5].prop == 'y'
+    assert body[1].token == TokenType.Dot
+    assert body[1].value == 'x'
+    assert body[1].prop == 'y'
 
-    assert tokens[6].token == TokenType.Equal
-    assert tokens[6].value == ''
+    assert body[2].token == TokenType.Equal
+    assert body[2].value == ''
 
-    assert tokens[7].token == TokenType.Dot
-    assert tokens[7].value == 'x'
-    assert tokens[7].prop == 'y'
+    assert body[3].token == TokenType.Dot
+    assert body[3].value == 'x'
+    assert body[3].prop == 'y'
 
-    assert tokens[8].token == TokenType.Plus
-    assert tokens[8].value == ''
+    assert body[4].token == TokenType.Plus
+    assert body[4].value == ''
 
-    assert tokens[9].token == TokenType.Literal
-    assert tokens[9].value == '1'
+    assert body[5].token == TokenType.Literal
+    assert body[5].value == '1'
 
-    assert tokens[10].token == TokenType.End
-    assert tokens[10].value == ''
+    assert body[6].token == TokenType.End
+    assert body[6].value == ''
 
-    assert tokens[11].token == TokenType.BodyEnd
-    assert tokens[11].value == ''
+    assert body[7].token == TokenType.BodyEnd
+    assert body[7].value == ''

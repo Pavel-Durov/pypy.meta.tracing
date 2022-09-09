@@ -51,7 +51,7 @@ def parse(raw_program):
         else:
           if i+1 < len(prog_in) and prog_in[i+1] == '.':
               prop = peek(prog_in, i+1)
-              if prop is '':  
+              if prop == '':  
                 tokens.append(Token(TokenType.Identity, ch))
               else:
                 tokens.append(Token(TokenType.Dot, ch, prop))
@@ -89,15 +89,9 @@ def get_numeric_value(prog_i, input):
   
 
 def parse_while_token(input, tokens):
-  
-  tokens.append(Token(TokenType.While, ''))
   condition_tokens, cond_i = parse_while_condition(input[len('while'):])
-  
-  for tk in condition_tokens:
-    tokens.append(tk)
   body_tokens, body_i = parse_while_body(input[len('while')+cond_i + 1:])
-  for tk in body_tokens:
-    tokens.append(tk)
+  tokens.append(Token(TokenType.While, '', condition=condition_tokens, body=body_tokens))
   skip_next = len('while') + cond_i + body_i + 2
   return skip_next
 

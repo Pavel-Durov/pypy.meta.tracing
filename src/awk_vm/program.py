@@ -12,7 +12,31 @@ if JIT:
     return "@@@@@@@@@@@@@@@@: %s" % (str(skip_next))
 
 
-  jitdriver = JitDriver(greens=['i', 'skip_next', 'tk', 'tokens', 'heap'], reds=[])#, get_printable_location=get_location)
+  jitdriver = JitDriver(greens=['skip_next', 'tokens'], reds=['heap'])#, get_printable_location=get_location)
+
+def evaluate_program(tokens, heap): 
+  skip_next = 0
+  for i, tk in enumerate(tokens):
+    if JIT:
+      jitdriver.jit_merge_point(skip_next=skip_next, tokens=tokens, heap=heap)
+    if skip_next > 0:
+      skip_next -= 1
+      continue
+
+    if tk.token == TokenType.NewObject:
+      heap[tk.value] = {}
+
+    elif tk.token == TokenType.Equal and tokens[i-1].token == TokenType.Dot:
+      value = get_token_literal_value(tokens, heap, i+1)
+      heap[tokens[i-1].value][tokens[i-1].prop] = value
+
+    elif tk.token == TokenType.While:
+      while condition_eval(tk.condition, heap):
+        evaluate_program(tk.body, heap)
+      # skip_next = len(tk.condition) + len(tk.body)
+      continue
+  return heap
+
 
 def condition_eval(tokens, heap):
   lhs = []
@@ -34,39 +58,6 @@ def condition_eval(tokens, heap):
   if comp_token == TokenType.GreaterThan:
     return lhs_val > rhs_val
   return False
-
-def evaluate_program(tokens, heap): 
-  skip_next = 0
-  for i, tk in enumerate(tokens):
-    if JIT:
-      jitdriver.jit_merge_point(i=i, skip_next=skip_next, tk=tk, tokens=tokens, heap=heap)
-    if skip_next > 0:
-      skip_next -= 1
-      continue
-    if tk.token == TokenType.NewObject:
-      heap[tk.value] = {}
-    if tk.token == TokenType.Equal and tokens[i-1].token == TokenType.Dot:
-      next = tokens[i+1]
-      value = get_token_literal_value(tokens, heap, i+1)
-      heap[tokens[i-1].value][tokens[i-1].prop] = value
-    if tk.token == TokenType.While:
-      condition_tokens = []
-      cond_i = 0
-      for cond_i, cond_tk in enumerate(tokens[i+1:]):
-          if cond_tk.token == TokenType.BodyStart:
-              break
-          condition_tokens.append(cond_tk)
-      body_i = 0
-      body_tokens = []
-      for body_i, body_tk in enumerate(tokens[i+cond_i+1:]):
-        body_tokens.append(body_tk)
-        if body_tk.token == TokenType.BodyEnd:
-          break
-      while condition_eval(condition_tokens, heap):
-        evaluate_program(body_tokens, heap)
-      skip_next = cond_i + body_i
-      continue
-  return heap
 
 def get_token_literal_value(tokens, heap, i):
   value = 0

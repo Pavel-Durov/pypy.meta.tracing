@@ -19,11 +19,16 @@ class Token():
   value = ''
   numericValue = 0
   prop = ''
-  def __init__(self, token, literalValue, prop = '', numericValue=0):
+  condition = []
+  body=[]
+  
+  def __init__(self, token, literalValue, prop = '', numericValue=0, condition = [], body=[]):
       self.token = token
       self.value = literalValue
       self.prop = prop
       self.numericValue = numericValue
+      self.condition = condition
+      self.body=body
 
 
   def __str__(self):
