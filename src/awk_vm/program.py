@@ -4,6 +4,7 @@ JIT = False
 
 if JIT:
   from rpython.rlib.jit import JitDriver
+
   def jitpolicy(driver):
       from rpython.jit.codewriter.policy import JitPolicy
       return JitPolicy()
@@ -12,51 +13,41 @@ if JIT:
     return "@@@@@@@@@@@@@@@@: %s" % (str(skip_next))
 
 
-  jitdriver = JitDriver(greens=['skip_next', 'tokens'], reds=['heap'])#, get_printable_location=get_location)
+  jitdriver = JitDriver(greens=['JIT', 'pc', 'tokens'], reds=['heap'])#, get_printable_location=get_location)
 
 def evaluate_program(tokens, heap): 
-  skip_next = 0
-  for i, tk in enumerate(tokens):
+  pc = 0
+  while pc < len(tokens):
     if JIT:
-      jitdriver.jit_merge_point(skip_next=skip_next, tokens=tokens, heap=heap)
-    if skip_next > 0:
-      skip_next -= 1
-      continue
+      jitdriver.jit_merge_point(JIT=JIT, pc=pc, tokens=tokens, heap=heap)
 
-    if tk.token == TokenType.NewObject:
-      heap[tk.value] = {}
+    if tokens[pc].token == TokenType.NewObject:
+      heap[tokens[pc].value] = {}
 
-    elif tk.token == TokenType.Equal and tokens[i-1].token == TokenType.Dot:
-      value = get_token_literal_value(tokens, heap, i+1)
-      heap[tokens[i-1].value][tokens[i-1].prop] = value
+    elif tokens[pc].token == TokenType.Equal and tokens[pc-1].token == TokenType.Dot:
+      heap[tokens[pc-1].value][tokens[pc-1].prop] = get_token_literal_value(tokens, heap, pc+1)
 
-    elif tk.token == TokenType.While:
-      while condition_eval(tk.condition, heap):
-        evaluate_program(tk.body, heap)
-      # skip_next = len(tk.condition) + len(tk.body)
-      continue
+    elif tokens[pc].token == TokenType.While:
+      while condition_eval(tokens[pc].condition, heap):
+        evaluate_program(tokens[pc].body, heap)
+
+    pc += 1
+
   return heap
 
-
 def condition_eval(tokens, heap):
-  lhs = []
-  rhs = []
-  # comp = Token(None, None)
-  comp_token = ''
   for i, tk in enumerate(tokens):
     # TODO: add support for ==, !=, <=, >=
     if tk.token == TokenType.LessThan or tk.token == TokenType.GreaterThan:
-      comp_token = str(tk.token)
-      lhs = tokens[:i]
-      rhs = tokens[i+1:]
+      lhs_val = get_token_literal_value(tokens[:i], heap, 0)
+      rhs_val = get_token_literal_value(tokens[i+1:], heap, 0)
 
-  lhs_val = get_token_literal_value(lhs, heap, 0)
-  rhs_val = get_token_literal_value(rhs, heap, 0)
-
-  if comp_token == TokenType.LessThan:
-    return lhs_val < rhs_val
-  if comp_token == TokenType.GreaterThan:
-    return lhs_val > rhs_val
+      if tk.token == TokenType.LessThan:
+        return lhs_val < rhs_val
+      if tk.token == TokenType.GreaterThan:
+        return lhs_val > rhs_val
+      else:
+        break
   return False
 
 def get_token_literal_value(tokens, heap, i):
