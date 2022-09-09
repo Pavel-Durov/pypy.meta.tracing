@@ -1,16 +1,24 @@
 import os
 from sys import argv
 from parser import parse
-from program import evaluate_program
+from program import eval
 
+# dict stringify might cause AttributeError: OrderedDictRepr instance has no attribute ll_str
 def print_heap(heap):
   os.write(1, bytes('Awkward heap:\n'))
   for key in heap:
     os.write(1, bytes(key))
-    # dict stringify might cause AttributeError: OrderedDictRepr instance has no attribute ll_str
-    # os.write(1, bytes(' : '))
-    # os.write(1, bytes(heap[key]))
-    # os.write(1, bytes('\n'))
+    os.write(1, bytes(' : '))
+    obj = heap[key]
+    os.write(1, bytes('{'))
+    for obj_key in obj:
+      os.write(1, bytes(' '))
+      os.write(1, bytes(obj_key))
+      os.write(1, bytes(' : '))
+      os.write(1, bytes(obj[obj_key]))
+      os.write(1, bytes(', '))
+    os.write(1, bytes('}'))
+    os.write(1, bytes('\n'))
 
 def run(fp):
     program_contents = ''
@@ -20,9 +28,9 @@ def run(fp):
             break
         program_contents += read
     tokens = parse(program_contents)
-  
-    heap = evaluate_program(tokens, {})
+    heap = eval(tokens, {})
     print_heap(heap)
+    
 
 
 def target(*args):

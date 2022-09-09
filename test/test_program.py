@@ -1,17 +1,17 @@
 from src.awk_vm.parser import parse
-from src.awk_vm.program import evaluate_program
+from src.awk_vm.program import eval
 
 
 def test_program_init_object():
     tokens = parse('x = {}; x.a = 123; x.b = 456789;')
-    heap = evaluate_program(tokens, {})
+    heap = eval(tokens, {})
     assert len(heap) == 1
     assert heap['x']['a'] == 123
     assert heap['x']['b'] == 456789
 
 def test_program_object_attribute_assign():
     tokens = parse('x = {}; x.a = 0; x.b = 1; x.c = 2;')
-    heap = evaluate_program(tokens, {})
+    heap = eval(tokens, {})
     assert len(heap) == 1
     assert heap['x']['a'] == 0
     assert heap['x']['b'] == 1
@@ -19,7 +19,7 @@ def test_program_object_attribute_assign():
 
 def test_program_reference_value():
     tokens = parse('x = {}; x.a = 1; y= {}; y.a = x.a;')
-    heap = evaluate_program(tokens, {})
+    heap = eval(tokens, {})
     assert len(heap) == 2
     assert heap['x']['a'] == 1
     assert heap['y']['a'] == 1
@@ -27,7 +27,7 @@ def test_program_reference_value():
 
 def test_program_expression():
     tokens = parse('x = {}; x.a = 1 + 1 + 2; x.b = 9 + 6;')
-    heap = evaluate_program(tokens, {})
+    heap = eval(tokens, {})
     assert heap['x']['a'] == 4
     assert heap['x']['b'] == 15
 
@@ -40,7 +40,7 @@ def test_program_expression_reference():
       z = {};
       z.a = x.a + x.b + 2;
       ''')
-    heap = evaluate_program(tokens, {})
+    heap = eval(tokens, {})
     assert heap['x']['a'] == 1
     assert heap['x']['b'] == 2
     assert heap['z']['a'] == 5
@@ -54,7 +54,7 @@ def test_program_while_loop_false_cond():
         x.a = x.a + 1;
       }
       ''')
-    heap = evaluate_program(tokens, {})
+    heap = eval(tokens, {})
     assert heap['x']['a'] == 0
 
 
@@ -73,7 +73,7 @@ def test_program_multi_while_loop():
         y.a = y.a + 2;
       }
       ''')
-    heap = evaluate_program(tokens, {})
+    heap = eval(tokens, {})
     assert heap['x']['a'] == 22
     assert heap['x']['b'] == 8
     assert heap['y']['a'] == 12
@@ -94,7 +94,7 @@ def test_program_existing_heap():
         y.a = y.a + 2;
       }
       ''')
-    heap = evaluate_program(tokens, heap)
+    heap = eval(tokens, heap)
     assert heap['x']['a'] == 22
     assert heap['x']['b'] == 8
     assert heap['y']['a'] == 12

@@ -2,8 +2,8 @@ SHELL := /bin/bash
 CWD := $(shell cd -P -- '$(shell dirname -- "$0")' && pwd -P)
 VENV := venv
 CONDA_ENV := meta-tracing
-
 PYTHONPATH=${PWD}:${PWD}/.pypy/
+.PHONY: test src
 
 dev.setup.mac:
 	brew update
@@ -21,6 +21,9 @@ init-env:
 clone-pypy:
 	hg clone https://foss.heptapod.net/pypy/pypy .pypy	
 
+test:
+	pytest ./test
+
 clear:
 	conda init zsh
 	conda deactivate
@@ -29,7 +32,12 @@ clear:
 
 setup:
 	brew install hyperfine
-
+		
+conda-info:
+	echo CONDA_PREFIX=${CONDA_PREFIX}
+	conda info --envs
+	
+# AWK
 run-awk:
 	PYTHONPATH=$(PYTHONPATH) python ./src/awk_vm/awk_vm.py ./programs/awk/loops.awk
 
@@ -40,29 +48,24 @@ translate-awk-vm-no-jit:
 	PYTHONPATH=$(PYTHONPATH) python ./.pypy/rpython/translator/goal/translate.py ${PWD}/src/awk_vm/awk_vm.py
 
 run-awk-c:
-	PYPYLOG=jit-log-opt:./log/awk_vm_loops.logfile2 ./awk_vm-c ./programs/awk/loops.awk
+	PYPYLOG=jit-log-opt:./log/awk_vm_loops.logfile ./awk_vm-c ./programs/awk/loops.awk
 
+# BF
 
-# builds 
 build-all: build-no-jit build-jit-not-optimised build-jit-purefunction build-jit-fixed-size-array build-jit-inlined-class
 
 build-no-jit:
-	PYTHONPATH=$(PYTHONPATH) python ./.pypy/rpython/translator/goal/translate.py ${PWD}/src/no-jit.py
+	PYTHONPATH=$(PYTHONPATH) python ./.pypy/rpython/translator/goal/translate.py ${PWD}/src/bf/no-jit.py
 
 build-jit-%:
-	PYTHONPATH=$(PYTHONPATH) python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/jit-$*.py
+	PYTHONPATH=$(PYTHONPATH) python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/bf/jit-$*.py
 
-# bench
+# BF BENCH
 bench:
 	hyperfine './jit-fixed-size-array-c ./program/bf/bench.bf'
 	hyperfine './jit-inlined-class-c ./program/bf/bench.bf'
 	hyperfine './jit-not-optimised-c ./program/bf/bench.bf'
 	hyperfine './jit-purefunction-c ./program/bf/bench.bf'
 	hyperfine './no-jit-c ./program/bf/bench.bf'
-	
-conda-info:
-	echo CONDA_PREFIX=${CONDA_PREFIX}
-	conda info --envs
 
-test:
-	pytest ./src
+
