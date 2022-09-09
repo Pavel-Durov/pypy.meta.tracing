@@ -32,7 +32,7 @@ jobs:
     - name: Test with pytest
       run: |
         conda install pytest
-        make test
+        source .envrc && make test
   
   rpython:
     runs-on: ubuntu-latest
