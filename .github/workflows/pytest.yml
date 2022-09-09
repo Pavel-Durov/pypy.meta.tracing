@@ -3,21 +3,22 @@ name: PyTest
 on: [push]
 
 jobs:
-  pypy:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash -l {0}
-    steps:
-      - name: Install Mercurial
-        run: sudo apt-get install mercurial
-      - name: Download RPython
-        run: hg clone https://foss.heptapod.net/pypy/pypy .pypy
-      - name: Upload .pypy
-        uses: actions/upload-artifact@v3
-        with:
-          name: .pypy
-          path: .pypy
+  # TODO: upload artifact never terminates
+  # pypy:
+  #   runs-on: ubuntu-latest
+  #   defaults:
+  #     run:
+  #       shell: bash -l {0}
+  #   steps:
+  #     - name: Install Mercurial
+  #       run: sudo apt-get install mercurial
+  #     - name: Download RPython
+  #       run: hg clone https://foss.heptapod.net/pypy/pypy .pypy
+  #     - name: Upload .pypy
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: .pypy
+  #         path: .pypy
 
   pytest:
     runs-on: ubuntu-latest
@@ -56,7 +57,7 @@ jobs:
   
   rpython-no-jit:
     name: PYPY translate (no jit)
-    needs: pypy
+    # needs: pypy
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -75,16 +76,20 @@ jobs:
       run: |
         # $CONDA is an environment variable pointing to the root of the miniconda directory
         echo $CONDA/bin >> $GITHUB_PATH
-    - name: Download .pypy
-      uses: actions/download-artifact@v3
-      with:
-        name: .pypy
+    # - name: Download .pypy
+    #   uses: actions/download-artifact@v3
+    #   with:
+    #     name: .pypy
+    - name: Install Mercurial
+      run: sudo apt-get install mercurial
+    - name: Download RPython
+      run: hg clone https://foss.heptapod.net/pypy/pypy .pypy
     - name: RPython Translate
       run: make translate-awk-vm-no-jit
 
   rpython-jit:
     name: PYPY translate (jit)
-    needs: pypy
+    # needs: pypy
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -103,10 +108,14 @@ jobs:
       run: |
         # $CONDA is an environment variable pointing to the root of the miniconda directory
         echo $CONDA/bin >> $GITHUB_PATH
-    - name: Download .pypy
-      uses: actions/download-artifact@v3
-      with:
-        name: .pypy
+    # - name: Download .pypy
+    #   uses: actions/download-artifact@v3
+    #   with:
+    #     name: .pypy
+    - name: Install Mercurial
+      run: sudo apt-get install mercurial
+    - name: Download RPython
+      run: hg clone https://foss.heptapod.net/pypy/pypy .pypy    
     - name: RPython Translate
       run: make translate-awk-vm
       
