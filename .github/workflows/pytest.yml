@@ -3,23 +3,6 @@ name: PyTest
 on: [push]
 
 jobs:
-  # TODO: fix upload-artifact - never terminates
-  # pypy:
-  #   runs-on: ubuntu-latest
-  #   defaults:
-  #     run:
-  #       shell: bash -l {0}
-  #   steps:
-  #     - name: Install Mercurial
-  #       run: sudo apt-get install mercurial
-  #     - name: Download RPython
-  #       run: hg clone https://foss.heptapod.net/pypy/pypy .pypy
-  #     - name: Upload .pypy
-  #       uses: actions/upload-artifact@v3
-  #       with:
-  #         name: .pypy
-  #         path: .pypy
-
   pytest:
     runs-on: ubuntu-latest
     defaults:
@@ -85,36 +68,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: awk_vm-c-no-jit
-        path: ./awk_vm-c
-
-  rpython-jit:
-    name: PYPY translate (jit)
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash -l {0}
-    strategy:
-      max-parallel: 5
-    steps:
-    - uses: actions/checkout@v3
-    - uses: conda-incubator/setup-miniconda@v2
-      with:
-        activate-environment: meta-tracing
-        environment-file: environment.yml
-        python-version: 2.7.18
-        auto-activate-base: false
-    - name: Add conda to system path
-      run: |
-        # $CONDA is an environment variable pointing to the root of the miniconda directory
-        echo $CONDA/bin >> $GITHUB_PATH
-    - name: Install Mercurial
-      run: sudo apt-get install mercurial
-    - name: Download RPython
-      run: hg clone https://foss.heptapod.net/pypy/pypy .pypy    
-    - name: RPython Translate
-      run: make translate-awk-vm
-    - name: Upload artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: awk_vm-c-jit
         path: ./awk_vm-c
