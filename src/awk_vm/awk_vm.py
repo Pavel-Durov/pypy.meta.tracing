@@ -21,7 +21,7 @@ def run(fp):
         program_contents += read
     tokens = parse(program_contents)
   
-    heap = evaluate_program(tokens)
+    heap = evaluate_program(tokens, {})
     print_heap(heap)
 
 

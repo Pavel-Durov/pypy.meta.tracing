@@ -1,6 +1,7 @@
 from src.awk_vm.token import TokenType, Token
 
 JIT = False
+
 if JIT:
   from rpython.rlib.jit import JitDriver
   def jitpolicy(driver):
@@ -25,24 +26,17 @@ def condition_eval(tokens, heap):
       lhs = tokens[:i]
       rhs = tokens[i+1:]
 
-  lhs_val = get_token_literal_value(lhs[0].token, lhs[0].value, lhs[0].prop,  lhs, heap, 0)
-  rhs_val = get_token_literal_value(rhs[0].token, rhs[0].value, rhs[0].prop,  rhs, heap, 0)
-  # lhs_val = get_value(lhs, heap)
-  # rhs_val = get_value(rhs, heap)
-  
+  lhs_val = get_token_literal_value(lhs, heap, 0)
+  rhs_val = get_token_literal_value(rhs, heap, 0)
+
   if comp_token == TokenType.LessThan:
     return lhs_val < rhs_val
   if comp_token == TokenType.GreaterThan:
     return lhs_val > rhs_val
   return False
 
-# heap={}
-# tokens=[]
-
-def evaluate_program(tokens, heap=None): 
+def evaluate_program(tokens, heap): 
   skip_next = 0
-  if heap == None:
-    heap = {}
   for i, tk in enumerate(tokens):
     if JIT:
       jitdriver.jit_merge_point(i=i, skip_next=skip_next, tk=tk, tokens=tokens, heap=heap)
@@ -53,7 +47,7 @@ def evaluate_program(tokens, heap=None):
       heap[tk.value] = {}
     if tk.token == TokenType.Equal and tokens[i-1].token == TokenType.Dot:
       next = tokens[i+1]
-      value = get_token_literal_value(next.token, next.value, next.prop,  tokens, heap, i+1)
+      value = get_token_literal_value(tokens, heap, i+1)
       heap[tokens[i-1].value][tokens[i-1].prop] = value
     if tk.token == TokenType.While:
       condition_tokens = []
@@ -74,7 +68,7 @@ def evaluate_program(tokens, heap=None):
       continue
   return heap
 
-def get_token_literal_value(tk_token, tk_value, tk_prop, tokens, heap, i):
+def get_token_literal_value(tokens, heap, i):
   value = 0
   rhs_value = 0
 
@@ -86,43 +80,6 @@ def get_token_literal_value(tk_token, tk_value, tk_prop, tokens, heap, i):
 
   if i+1 < len(tokens)-1:
     if tokens[i+1].token == TokenType.Plus:
-      next = tokens[i+2]
-      rhs_value = get_token_literal_value(next.token, next.value, next.prop, tokens, heap, i+2)
+      rhs_value = get_token_literal_value(tokens, heap, i+2)
 
   return int(value) + int(rhs_value)
-
-def get_value(tokens, objects):
-  tk = Token(None, None)
-  tk = tokens[0]
-  value = None
-  try:
-    value = int(tk.value)
-  except Exception:
-    obj_ref = tk.value
-    next_tk = tokens[1]
-    value = objects[obj_ref][next_tk.value]
-  return int(value)
-
-# def condition_eval(tokens, objects):
-#   lhs = []
-#   rhs = []
-#   comp_token = ''
-#   for i, tk in enumerate(tokens):
-#     # TODO: add support for ==, !=, <=, >=
-#     if tk.token == TokenType.LessThan or tk.token == TokenType.GreaterThan:
-#       comp_token = tk.token
-#       lhs = tokens[:i]
-#       rhs = tokens[i+1:]
-
-#   # lhs_val = 0
-#   # rhs_val = 0
-#   # lhs_val = get_value(lhs, objects)
-#   # rhs_val = get_value(rhs, objects)
-  
-#   # if comp_token == '<':#TokenType.LessThan:
-#   #     # return lhs_val < rhs_val
-#   #     return True
-#   # if comp_token == '>': #TokenType.GreaterThan:
-#   #     return False
-#       # return lhs_val > rhs_val
-#   return 0 == 0
