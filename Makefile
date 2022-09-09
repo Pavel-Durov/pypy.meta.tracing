@@ -1,9 +1,13 @@
+VERSION := '0.0.1'
 SHELL := /bin/bash
 CWD := $(shell cd -P -- '$(shell dirname -- "$0")' && pwd -P)
 VENV := venv
 CONDA_ENV := meta-tracing
 PYTHONPATH=${PWD}:${PWD}/.pypy/
 .PHONY: test src
+
+version:
+	@echo $(VERSION)
 
 dev.setup.mac:
 	brew update

@@ -1,0 +1,55 @@
+name: release
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build_release:
+    name: Create github release
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    strategy:
+      max-parallel: 5
+    steps:
+      - uses: actions/checkout@v3
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: meta-tracing
+          environment-file: environment.yml
+          python-version: 2.7.18
+          auto-activate-base: false
+      - name: Add conda to system path
+        run: |
+          # $CONDA is an environment variable pointing to the root of the miniconda directory
+          echo $CONDA/bin >> $GITHUB_PATH
+      - name: Install Mercurial
+        run: sudo apt-get install mercurial
+      - name: Download RPython
+        run: hg clone https://foss.heptapod.net/pypy/pypy .pypy    
+      - name: RPython Translate
+        run: make translate-awk-vm
+      - name: version
+        run: echo "::set-output name=version::$(make version)"
+        id: version  
+      - name: release
+        uses: actions/create-release@v1
+        id: create_release
+        with:
+          draft: false
+          prerelease: false
+          release_name: ${{ steps.version.outputs.version }}
+          tag_name: ${{ github.ref }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: upload artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./awk_vm-c
+          asset_name: awk_vm-c
