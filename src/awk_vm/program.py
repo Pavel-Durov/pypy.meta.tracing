@@ -1,4 +1,5 @@
 from src.awk_vm.token import TokenType, Token
+from src.awk_vm.awk_log import trace, print_dict
 
 from rpython.rlib.jit import JitDriver
 from rpython.jit.codewriter.policy import JitPolicy
@@ -8,13 +9,17 @@ def get_location(pc, tokens):
   tk = tokens[pc]
   return "%s_%s" % (tk.token, tk.value)
 
+def jitpolicy(driver):
+    return JitPolicy()
+
 jitdriver = JitDriver(greens=['pc', 'tokens'], reds=['heap'], get_printable_location=get_location)
 
 def eval(program, heap): 
   pc = 0
   while pc < len(program):
     jitdriver.jit_merge_point(pc=pc, tokens=program, heap=heap)
-
+    trace('pc: %s' % pc)
+    print_dict('loop heap', heap)
     if program[pc].token == TokenType.NewObject:
       heap[program[pc].value] = {}
 

@@ -5,7 +5,6 @@ def peek(str, i):
     return ''
   return str[i+1]
 
-
 def clean_input(str):
   # Q: Why not use srt.replace? Cause RPython doesn't support it...
   result = ''
