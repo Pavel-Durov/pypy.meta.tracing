@@ -32,4 +32,4 @@ class Token():
 
 
   def __str__(self):
-     return 'Token: ' + self.token + ' Value: ' + self.value
+     return '(Token:[' + self.token + '], Value:[' + self.value +'], Prop:[' + self.prop +'], NumericValue:[' + str(self.numericValue) +'])'

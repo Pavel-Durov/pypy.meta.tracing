@@ -1,4 +1,4 @@
-VERSION := '0.0.2'
+VERSION := 0.0.3
 SHELL := /bin/bash
 CWD := $(shell cd -P -- '$(shell dirname -- "$0")' && pwd -P)
 VENV := venv
@@ -63,6 +63,10 @@ build-no-jit:
 
 build-jit-%:
 	PYTHONPATH=$(PYTHONPATH) python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/bf/jit-$*.py
+
+# BF Not Optimised
+jit-not-optimised: build-jit-not-optimised
+	PYPYLOG=jit-log-opt:./log/bf_not_optimised.logfile ./jit-not-optimised-c ./programs/bf/99bottles.b
 
 # BF BENCH
 bench:
