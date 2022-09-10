@@ -1,4 +1,4 @@
-from src.awk_vm.program import TokenType, Token
+from src.awk_vm.token import TokenType, Token
 
 def peek(str, i):
   if i >= len(str):

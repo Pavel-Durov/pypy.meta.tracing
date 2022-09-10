@@ -13,6 +13,7 @@ def run(fp):
       if len(read) == 0:
           break
       program_contents += read
+  os.close(fp)
   tokens = parse(program_contents)
   print_list('program', tokens)
   heap = eval(tokens, {})
