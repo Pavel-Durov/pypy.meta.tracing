@@ -1,4 +1,4 @@
-[![Python Package using Conda](https://github.com/Pavel-Durov/bf.meta.tracing/actions/workflows/conda.yml/badge.svg)](https://github.com/Pavel-Durov/bf.meta.tracing/actions/workflows/conda.yml)
+[![Python Package using Conda](https://github.com/Pavel-Durov/bf.meta.tracing/actions/workflows/pytest.yml/badge.svg)](https://github.com/Pavel-Durov/bf.meta.tracing/actions/workflows/conda.yml)
 
 # bf.meta.tracing
 Bf metatracing code following [pypy](https://www.pypy.org/) tutorials.
