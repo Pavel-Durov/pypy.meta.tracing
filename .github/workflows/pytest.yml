@@ -5,7 +5,7 @@ on: [push]
 jobs:
   pytest:
     runs-on: ubuntu-latest
-    container: iamkimchi/pypy-trace:latest
+    container: iamkimchi/pypy-trace:0.0.3
     defaults:
       run:
         shell: bash -l {0}

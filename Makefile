@@ -72,16 +72,14 @@ bench:
 	hyperfine './jit-purefunction-c ./program/bf/bench.bf'
 	hyperfine './no-jit-c ./program/bf/bench.bf'
 
-
-
 docker-login:
 	docker login --username iamkimchi
 
 docker-build:
-	docker build -f Dockerfile.build  -t pypy-trace .
+	docker build -f ./docker/build.Dockerfile  -t pypy-trace --platform linux/amd64 .
 
 docker-run:
-	docker run -t pypy-trace
+	docker run -t pypy-trace 
 
 docker-upload:
 	docker tag pypy-trace iamkimchi/pypy-trace:$(VERSION)
