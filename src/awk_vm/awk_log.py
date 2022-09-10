@@ -33,4 +33,3 @@ def print_list(msg, list):
     os.write(1, bytes(str(item)))
     os.write(1, bytes(','))
   os.write(1, bytes(']'))
-  
