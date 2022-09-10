@@ -1,4 +1,4 @@
-VERSION := 0.0.2
+VERSION := 0.0.3
 SHELL := /bin/bash
 CWD := $(shell cd -P -- '$(shell dirname -- "$0")' && pwd -P)
 VENV := venv
@@ -78,7 +78,7 @@ docker-login:
 	docker login --username iamkimchi
 
 docker-build:
-	docker build -t pypy-trace .
+	docker build -f Dockerfile.build  -t pypy-trace .
 
 docker-run:
 	docker run -t pypy-trace
