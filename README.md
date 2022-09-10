@@ -1,13 +1,8 @@
 [![Python Package using Conda](https://github.com/Pavel-Durov/bf.meta.tracing/actions/workflows/conda.yml/badge.svg)](https://github.com/Pavel-Durov/bf.meta.tracing/actions/workflows/conda.yml)
 
 # bf.meta.tracing
-Bf metatracing code following [pypy](https://www.pypy.org/) tutorials.
+Meta tracing code following [pypy](https://www.pypy.org/) tutorials.
 
-## Tutorials
-
-- [Tutorial Part 1](https://morepypy.blogspot.com/2011/04/tutorial-writing-interpreter-with-pypy.html)
-- [Tutorial Part 2](https://morepypy.blogspot.com/2011/04/tutorial-part-2-adding-jit.html)
-- [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck)
 
 ## Getting Started
 
@@ -61,3 +56,9 @@ $ make bench # runs hyperfine benchmarking for all targets
 [RPython](https://doc.pypy.org/en/latest/coding-guide.html#restricted-python)
 
 [PypyTutorialKo](https://github.com/disjukr/pypy-tutorial-ko)
+
+[Tutorial Part 1](https://morepypy.blogspot.com/2011/04/tutorial-writing-interpreter-with-pypy.html)
+
+[Tutorial Part 2](https://morepypy.blogspot.com/2011/04/tutorial-part-2-adding-jit.html)
+
+[Brainfuck](https://en.wikipedia.org/wiki/Brainfuck)

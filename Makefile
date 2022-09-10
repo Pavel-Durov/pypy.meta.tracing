@@ -1,4 +1,4 @@
-VERSION := '0.0.2'
+VERSION := 0.0.2
 SHELL := /bin/bash
 CWD := $(shell cd -P -- '$(shell dirname -- "$0")' && pwd -P)
 VENV := venv
@@ -73,3 +73,18 @@ bench:
 	hyperfine './no-jit-c ./program/bf/bench.bf'
 
 
+
+docker-login:
+	docker login --username iamkimchi
+
+docker-build:
+	docker build -t pypy-trace .
+
+docker-run:
+	docker run -t pypy-trace
+
+docker-upload:
+	docker tag pypy-trace iamkimchi/pypy-trace:$(VERSION)
+	docker tag pypy-trace iamkimchi/pypy-trace:latest
+	docker push iamkimchi/pypy-trace:$(VERSION)
+	docker push iamkimchi/pypy-trace:latest
