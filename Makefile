@@ -1,4 +1,4 @@
-VERSION := 0.0.4
+VERSION := 0.0.5
 SHELL := /bin/bash
 CWD := $(shell cd -P -- '$(shell dirname -- "$0")' && pwd -P)
 VENV := venv
