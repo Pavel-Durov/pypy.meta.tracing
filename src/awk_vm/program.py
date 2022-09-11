@@ -13,40 +13,57 @@ def jitpolicy(driver):
 
 jitdriver = JitDriver(greens=['pc', 'tokens'], reds=['awk_heap'], get_printable_location=get_location)
 
+class AWKObject(object):
+  def __init__(self, name):
+    self.name = name
+    # Initializing fields dict so that RPython can infer types...
+    self.fields = { '__init__': 1}
+
+  def get_field(self, name):
+    # Q: For some reason the following code is not passing RPython type inference...
+    # if name in self.fields:
+    #   return self.fields.get(name)
+    # raise AttributeError(name)
+    return self.fields[name]
+
+  def set_field(self, name, value):
+    self.fields[name] = value
+  
+  def __str__(self):
+    result = 'AWKObject(%s) fields\n' % self.name
+    for key in self.fields:
+      result += '  %s: %s' % (key, self.get_field(key))
+    result += '\n'
+    return result
+      
+
 class AWKHeap():
   def __init__(self, heap):
-      self.objects = heap
+    self.heap = heap
 
   def new_obj(self, name):
-      self.objects[name] = {}
-  
-  def set(self, key, value):
-      self.objects[key] = value
-  
-  def set(self, obj_name, obj_prop, value):
-      self.objects[obj_name][obj_prop] = value
-  
-  def get(self, obj_name, obj_prop):
-      return self.objects[obj_name][obj_prop]
-    
+    self.heap[name] = AWKObject(name)
 
+  def get_obj(self, name):
+    return self.heap.get(name)
+
+    
 def eval(program, awk_heap): 
   pc = 0
   while pc < len(program):
     jitdriver.jit_merge_point(pc=pc, tokens=program, awk_heap=awk_heap)
     if program[pc].token == TokenType.NewObject:
       awk_heap.new_obj(program[pc].value)
-
     elif program[pc].token == TokenType.Equal and program[pc-1].token == TokenType.Dot:
-      obj_name = program[pc-1].value
-      obj_prop = program[pc-1].prop
-      value = get_token_literal_value(program, awk_heap, pc+1)
-      awk_heap.set(obj_name, obj_prop, value)
-
+      name = program[pc-1].value
+      obj = awk_heap.get_obj(name)
+      if obj is not None:
+        value = get_token_literal_value(program, awk_heap, pc+1)
+        field = program[pc-1].prop
+        obj.set_field(str(field), int(value))
     elif program[pc].token == TokenType.While:
       while condition_eval(program[pc].condition, awk_heap):
         eval(program[pc].body, awk_heap)
-
     pc += 1
   return awk_heap
 
@@ -56,7 +73,6 @@ def condition_eval(tokens, awk_heap):
     if tk.token == TokenType.LessThan or tk.token == TokenType.GreaterThan:
       lhs_val = get_token_literal_value(tokens[:i], awk_heap, 0)
       rhs_val = get_token_literal_value(tokens[i+1:], awk_heap, 0)
-
       if tk.token == TokenType.LessThan:
         return lhs_val < rhs_val
       if tk.token == TokenType.GreaterThan:
@@ -73,9 +89,12 @@ def get_token_literal_value(tokens, awk_heap, i):
     value = tokens[i].numericValue
 
   if tokens[i].token == TokenType.Dot:
-    value = awk_heap.get(tokens[i].value, tokens[i].prop)
+    name = tokens[i].value
+    obj = awk_heap.get_obj(name)
+    field = tokens[i].prop
+    value = obj.get_field(field)
 
   if i+1 < len(tokens)-1 and tokens[i+1].token == TokenType.Plus:
       rhs_value = get_token_literal_value(tokens, awk_heap, i+2)
 
-  return value + rhs_value
+  return int(value) + int(rhs_value)

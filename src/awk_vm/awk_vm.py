@@ -15,7 +15,7 @@ def run(fp):
   os.close(fp)
   tokens = parse(program_contents)
   awk_heap = eval(tokens, AWKHeap({}))
-  print_dict('awk heap', awk_heap.objects)
+  print_dict('awk heap', awk_heap.heap)
 
 
 def target(*args):
