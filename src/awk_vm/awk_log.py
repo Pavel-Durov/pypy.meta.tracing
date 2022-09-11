@@ -9,7 +9,7 @@ def print_dict(msg, dict):
   # TODO: dict stringify might cause AttributeError: OrderedDictRepr instance has no attribute ll_str
   os.write(1, bytes('\n'))
   os.write(1, bytes(msg))
-  os.write(1, bytes(': '))
+  os.write(1, bytes(': \n'))
   for key in dict:
     os.write(1, bytes(key))
     os.write(1, bytes(' : '))
@@ -21,7 +21,7 @@ def print_dict(msg, dict):
       os.write(1, bytes(' : '))
       os.write(1, bytes(obj[obj_key]))
       os.write(1, bytes(', '))
-    os.write(1, bytes('}, '))
+    os.write(1, bytes('},\n'))
   os.write(1, bytes('\n'))
     
 

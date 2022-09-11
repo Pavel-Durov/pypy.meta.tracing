@@ -1,12 +1,11 @@
 import os
 from sys import argv
-from awk_log import trace, print_dict, print_list
-from parser import parse
-from program import eval
+from src.awk_vm.awk_log import print_dict
+from src.awk_vm.parser import parse
+from src.awk_vm.program import eval, AWKHeap
 
 
 def run(fp):
-  trace('run(fp)')
   program_contents = ''
   while True:
       read = os.read(fp, 4096)
@@ -15,13 +14,11 @@ def run(fp):
       program_contents += read
   os.close(fp)
   tokens = parse(program_contents)
-  print_list('program', tokens)
-  heap = eval(tokens, {})
-  print_dict('final heap', heap)
+  awk_heap = eval(tokens, AWKHeap({}))
+  print_dict('awk heap', awk_heap.objects)
 
 
 def target(*args):
-    trace('target')
     """
     "target" returns the entry point. 
     The translation process imports your module and looks for that name,
@@ -30,7 +27,6 @@ def target(*args):
     return entry_point, None
 
 def entry_point(argv):
-  trace('entry_point(argv)')
   import os
   try:
       filename = argv[1]
@@ -42,7 +38,6 @@ def entry_point(argv):
 
 
 if __name__ == '__main__':
-  trace('__main__)')
   entry_point(argv)
 
 
