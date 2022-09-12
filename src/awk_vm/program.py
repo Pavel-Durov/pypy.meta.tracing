@@ -1,6 +1,6 @@
 from src.awk_vm.token import TokenType
 
-from rpython.rlib.jit import JitDriver
+from rpython.rlib.jit import JitDriver, purefunction, hint
 from rpython.jit.codewriter.policy import JitPolicy
 
 
@@ -13,21 +13,48 @@ def jitpolicy(driver):
 
 jitdriver = JitDriver(greens=['pc', 'tokens'], reds=['awk_heap'], get_printable_location=get_location)
 
+class Map(object):
+  def __init__(self):
+    self.attribute_indexes = {}
+    self.other_maps = {}
+
+  @purefunction
+  def getindex(self, name):
+    return self.attribute_indexes.get(name, -1)
+
+  @purefunction
+  def new_map_with_additional_attribute(self, name):
+    if name not in self.other_maps:
+      newmap = Map()
+      newmap.attribute_indexes.update(self.attribute_indexes)
+      newmap.attribute_indexes[name] = len(self.attribute_indexes)
+      self.other_maps[name] = newmap
+    return self.other_maps[name]
+
+
+EMPTY_MAP = Map()
+
 class AWKObject(object):
   def __init__(self, name):
     self.name = name
-    # Initializing fields dict so that RPython can infer types...
-    self.fields = { '__init__': 1}
+    self.map = EMPTY_MAP
+    self.storage = []
 
   def get_field(self, name):
-    # Q: For some reason the following code is not passing RPython type inference...
-    # if name in self.fields:
-    #   return self.fields.get(name)
-    # raise AttributeError(name)
-    return self.fields[name]
+    map = hint(self.map, promote=True)
+    index = map.getindex(name)
+    if index != -1:
+      return self.storage[index]
+    raise AttributeError(name)
 
   def set_field(self, name, value):
-    self.fields[name] = value
+    map = hint(self.map, promote=True)
+    index = map.getindex(name)
+    if index != -1:
+        self.storage[index] = value
+        return
+    self.map = map.new_map_with_additional_attribute(name)
+    self.storage.append(value)
   
   def __str__(self):
     result = 'AWKObject(%s) fields\n' % self.name
