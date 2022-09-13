@@ -33,9 +33,6 @@ clear:
 	conda deactivate
 	conda remove -n meta-tracing --all
 	rm ./*-c
-
-setup:
-	brew install hyperfine
 		
 conda-info:
 	echo CONDA_PREFIX=${CONDA_PREFIX}
