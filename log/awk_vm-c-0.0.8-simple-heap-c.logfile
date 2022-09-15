@@ -1,0 +1,148 @@
+[ae85c52ee92b] {jit-log-opt-loop
+# Loop 1 (@@@@@@_awk_loc_10_) : entry bridge with 143 ops
+[p0]
+debug_merge_point(0, 0, '@@@@@@_awk_loc_10_')
++530: p2 = getfield_gc_r(ConstPtr(ptr1), descr=<FieldP list.items 16>)
++534: p4 = getarrayitem_gc_r(p2, 0, descr=<ArrayP 8>)
++538: i5 = getfield_gc_i(p4, descr=<FieldS src.awk_vm.token.Token.inst_token 40>)
++542: i6 = int_is_zero(i5)
++545: guard_false(i6, descr=<Guard0x7ff1c0010078>) [i5, p0]
++551: i8 = int_eq(i5, 1)
++555: guard_false(i8, descr=<Guard0x7ff1c0014020>) [i5, p0]
++561: i10 = int_eq(i5, 9)
++565: guard_false(i10, descr=<Guard0x7ff1c0014060>) [i5, p0]
++571: i12 = getfield_gc_i(ConstPtr(ptr11), descr=<FieldS list.length 8>)
++575: i14 = int_lt(1, i12)
++579: guard_true(i14, descr=<Guard0x7ff1c00140a0>) [i5, p0]
+debug_merge_point(0, 0, '@@@@@@_awk_loc_5_x')
++585: p16 = getarrayitem_gc_r(p2, 1, descr=<ArrayP 8>)
++589: i17 = getfield_gc_i(p16, descr=<FieldS src.awk_vm.token.Token.inst_token 40>)
++593: i18 = int_is_zero(i17)
++596: guard_false(i18, descr=<Guard0x7ff1c00140e0>) [i5, p0]
++602: i20 = int_eq(i17, 1)
++606: guard_false(i20, descr=<Guard0x7ff1c0014120>) [i5, p0]
++612: i22 = int_eq(i17, 9)
++616: guard_false(i22, descr=<Guard0x7ff1c0014160>) [i5, p0]
++622: i24 = int_lt(2, i12)
++626: guard_true(i24, descr=<Guard0x7ff1c00141a0>) [i5, p0]
+debug_merge_point(0, 0, '@@@@@@_awk_loc_1_')
++632: p26 = getarrayitem_gc_r(p2, 2, descr=<ArrayP 8>)
++636: i27 = getfield_gc_i(p26, descr=<FieldS src.awk_vm.token.Token.inst_token 40>)
++640: i28 = int_is_zero(i27)
++643: guard_false(i28, descr=<Guard0x7ff1c00141e0>) [i5, p0]
++649: i30 = int_eq(i27, 1)
++653: guard_true(i30, descr=<Guard0x7ff1c0014220>) [i5, p0]
++659: i32 = int_eq(i17, 5)
++663: guard_true(i32, descr=<Guard0x7ff1c0014260>) [i5, p0]
++669: p33 = getfield_gc_r(p16, descr=<FieldP src.awk_vm.token.Token.inst_value 48>)
++673: p34 = getfield_gc_r(p0, descr=<FieldP src.awk_vm.awk_heap.AwkSimpleHeap.inst_heap 8>)
++684: guard_nonnull(p33, descr=<Guard0x7ff1c00142a0>) [i5, p0]
++693: i35 = strhash(p33)
++697: i37 = cond_call_value_i(i35, ConstClass(_ll_strhash__rpy_stringPtr), p33, descr=<Calli 8 r EF=2>)
++706: i40 = call_i(ConstClass(ll_call_lookup_function_trampoline__v107___simple_call__function_l), p34, p33, i37, 0, descr=<Calli 8 rrii EF=5 OS=4>)
++799: guard_no_exception(descr=<Guard0x7ff1c00100d0>) [p0, i40, p34]
++813: i42 = int_lt(i40, 0)
++817: guard_false(i42, descr=<Guard0x7ff1c00142e0>) [p0, i40, p34]
++823: p43 = getfield_gc_r(p34, descr=<FieldP dicttable.entries 48>)
++841: p44 = getinteriorfield_gc_r(p43, i40, descr=<InteriorFieldDescr <FieldP odictentry.value 8>>)
++846: guard_nonnull(p44, descr=<Guard0x7ff1c0014320>) [p0, i40, p34]
++855: p46 = getarrayitem_gc_r(p2, 3, descr=<ArrayP 8>)
++866: i47 = getfield_gc_i(p46, descr=<FieldS src.awk_vm.token.Token.inst_token 40>)
++870: i49 = int_eq(i47, 7)
++874: guard_false(i49, descr=<Guard0x7ff1c0014360>) [p0, i40, p34]
++880: i51 = int_eq(i47, 5)
++884: guard_true(i51, descr=<Guard0x7ff1c00143a0>) [p0, i40, p34]
++890: p52 = getfield_gc_r(p46, descr=<FieldP src.awk_vm.token.Token.inst_value 48>)
++894: guard_nonnull(p52, descr=<Guard0x7ff1c00143e0>) [p0, i40, p34]
++903: i53 = strhash(p52)
++907: i55 = cond_call_value_i(i53, ConstClass(_ll_strhash__rpy_stringPtr), p52, descr=<Calli 8 r EF=2>)
++916: i58 = call_i(ConstClass(ll_call_lookup_function_trampoline__v107___simple_call__function_l), p34, p52, i55, 0, descr=<Calli 8 rrii EF=5 OS=4>)
++1007: guard_no_exception(descr=<Guard0x7ff1c0010128>) [p0, p44, i58, p34]
++1021: i60 = int_lt(i58, 0)
++1025: guard_false(i60, descr=<Guard0x7ff1c0014420>) [p0, p44, i58, p34]
++1038: p61 = getinteriorfield_gc_r(p43, i58, descr=<InteriorFieldDescr <FieldP odictentry.value 8>>)
++1050: p62 = getfield_gc_r(p46, descr=<FieldP src.awk_vm.token.Token.inst_prop 32>)
++1061: p63 = getfield_gc_r(p61, descr=<FieldP src.awk_vm.awk_object.AWKSimpleObj.inst_fields 8>)
++1065: guard_nonnull(p62, descr=<Guard0x7ff1c0014460>) [p0, p44, i58, p34]
++1074: i64 = strhash(p62)
++1078: i66 = cond_call_value_i(i64, ConstClass(_ll_strhash__rpy_stringPtr), p62, descr=<Calli 8 r EF=2>)
++1087: i69 = call_i(ConstClass(ll_call_lookup_function_trampoline__v33___simple_call__function_ll), p63, p62, i66, 0, descr=<Calli 8 rrii EF=5 OS=4>)
++1163: guard_no_exception(descr=<Guard0x7ff1c0010180>) [p0, p44, i69, p63]
++1177: i71 = int_ge(i69, 0)
++1181: guard_true(i71, descr=<Guard0x7ff1c00144a0>) [p0, p44, i69, p63]
++1187: p72 = getfield_gc_r(p63, descr=<FieldP dicttable.entries 48>)
++1205: i73 = getinteriorfield_gc_i(p72, i69, descr=<InteriorFieldDescr <FieldS odictentry.value 8>>)
++1210: i75 = int_sub(i12, 1)
++1215: i77 = int_lt(4, i75)
++1219: guard_true(i77, descr=<Guard0x7ff1c00144e0>) [p0, p44, i69, p63]
++1225: p79 = getarrayitem_gc_r(p2, 4, descr=<ArrayP 8>)
++1236: i80 = getfield_gc_i(p79, descr=<FieldS src.awk_vm.token.Token.inst_token 40>)
++1240: i82 = int_eq(i80, 4)
++1244: guard_true(i82, descr=<Guard0x7ff1c0014520>) [p0, p44, i69, p63]
++1250: p84 = getarrayitem_gc_r(p2, 5, descr=<ArrayP 8>)
++1254: i85 = getfield_gc_i(p84, descr=<FieldS src.awk_vm.token.Token.inst_token 40>)
++1258: i87 = int_eq(i85, 7)
++1262: guard_false(i87, descr=<Guard0x7ff1c0014560>) [p0, p44, i69, p63]
++1268: i89 = int_eq(i85, 5)
++1272: guard_true(i89, descr=<Guard0x7ff1c00145a0>) [p0, p44, i69, p63]
++1278: p90 = getfield_gc_r(p84, descr=<FieldP src.awk_vm.token.Token.inst_value 48>)
++1282: guard_nonnull(p90, descr=<Guard0x7ff1c00145e0>) [p0, p44, i69, p63]
++1291: i91 = strhash(p90)
++1295: i93 = cond_call_value_i(i91, ConstClass(_ll_strhash__rpy_stringPtr), p90, descr=<Calli 8 r EF=2>)
++1304: i96 = call_i(ConstClass(ll_call_lookup_function_trampoline__v107___simple_call__function_l), p34, p90, i93, 0, descr=<Calli 8 rrii EF=5 OS=4>)
++1388: guard_no_exception(descr=<Guard0x7ff1c00101d8>) [p0, p44, i73, i96, p34]
++1402: i98 = int_lt(i96, 0)
++1406: guard_false(i98, descr=<Guard0x7ff1c0014620>) [p0, p44, i73, i96, p34]
++1419: p99 = getinteriorfield_gc_r(p43, i96, descr=<InteriorFieldDescr <FieldP odictentry.value 8>>)
++1431: p100 = getfield_gc_r(p84, descr=<FieldP src.awk_vm.token.Token.inst_prop 32>)
++1442: p101 = getfield_gc_r(p99, descr=<FieldP src.awk_vm.awk_object.AWKSimpleObj.inst_fields 8>)
++1446: guard_nonnull(p100, descr=<Guard0x7ff1c0014660>) [p0, p44, i73, i96, p34]
++1455: i102 = strhash(p100)
++1459: i104 = cond_call_value_i(i102, ConstClass(_ll_strhash__rpy_stringPtr), p100, descr=<Calli 8 r EF=2>)
++1468: i107 = call_i(ConstClass(ll_call_lookup_function_trampoline__v33___simple_call__function_ll), p101, p100, i104, 0, descr=<Calli 8 rrii EF=5 OS=4>)
++1539: guard_no_exception(descr=<Guard0x7ff1c0010230>) [p0, p44, i73, i107, p101]
++1553: i109 = int_ge(i107, 0)
++1557: guard_true(i109, descr=<Guard0x7ff1c00146a0>) [p0, p44, i73, i107, p101]
++1563: p110 = getfield_gc_r(p101, descr=<FieldP dicttable.entries 48>)
++1581: i111 = getinteriorfield_gc_i(p110, i107, descr=<InteriorFieldDescr <FieldS odictentry.value 8>>)
++1586: i113 = int_lt(6, i75)
++1590: guard_true(i113, descr=<Guard0x7ff1c00146e0>) [p0, p44, i73, i107, p101]
++1596: p115 = getarrayitem_gc_r(p2, 6, descr=<ArrayP 8>)
++1607: i116 = getfield_gc_i(p115, descr=<FieldS src.awk_vm.token.Token.inst_token 40>)
++1611: i118 = int_eq(i116, 4)
++1615: guard_false(i118, descr=<Guard0x7ff1c0014720>) [p0, p44, i73, i107, p101]
++1621: i119 = int_add(i73, i111)
++1627: p120 = getfield_gc_r(p16, descr=<FieldP src.awk_vm.token.Token.inst_prop 32>)
++1638: guard_nonnull(p120, descr=<Guard0x7ff1c0014760>) [p0, p44, i73, i107, p101]
++1647: p121 = getfield_gc_r(p44, descr=<FieldP src.awk_vm.awk_object.AWKSimpleObj.inst_fields 8>)
++1658: i122 = strhash(p120)
++1662: i124 = cond_call_value_i(i122, ConstClass(_ll_strhash__rpy_stringPtr), p120, descr=<Calli 8 r EF=2>)
++1671: i127 = call_i(ConstClass(ll_call_lookup_function_trampoline__v33___simple_call__function_ll), p121, p120, i124, 1, descr=<Calli 8 rrii EF=5 OS=4>)
++1752: guard_no_exception(descr=<Guard0x7ff1c0010288>) [i127, i124, i119, p0, p120, p121]
++1766: call_n(ConstClass(_ll_dict_setitem_lookup_done_trampoline__v52___simple_call__function__l), p121, p120, i119, i124, i127, descr=<Callv 0 rriii EF=5>)
++1845: guard_no_exception(descr=<Guard0x7ff1c00102e0>) [p0]
+debug_merge_point(0, 0, '@@@@@@_awk_loc_5_x')
+debug_merge_point(0, 0, '@@@@@@_awk_loc_4_')
+debug_merge_point(0, 0, '@@@@@@_awk_loc_5_x')
+debug_merge_point(0, 0, '@@@@@@_awk_loc_7_')
++1859: i129 = int_is_zero(i116)
++1862: guard_false(i129, descr=<Guard0x7ff1c00147a0>) [p0]
++1868: i131 = int_eq(i116, 1)
++1872: guard_false(i131, descr=<Guard0x7ff1c00147e0>) [p0]
++1878: i133 = int_eq(i116, 9)
++1882: guard_false(i133, descr=<Guard0x7ff1c0014820>) [p0]
+debug_merge_point(0, 0, '@@@@@@_awk_loc_11_')
++1888: p135 = getarrayitem_gc_r(p2, 7, descr=<ArrayP 8>)
++1899: i136 = getfield_gc_i(p135, descr=<FieldS src.awk_vm.token.Token.inst_token 40>)
++1903: i137 = int_is_zero(i136)
++1906: guard_false(i137, descr=<Guard0x7ff1c0014860>) [p0]
++1912: i139 = int_eq(i136, 1)
++1916: guard_false(i139, descr=<Guard0x7ff1c00148a0>) [p0]
++1922: i141 = int_eq(i136, 9)
++1926: guard_false(i141, descr=<Guard0x7ff1c00148e0>) [p0]
++1932: i143 = int_lt(8, i12)
++1936: guard_false(i143, descr=<Guard0x7ff1c0014920>) [p0]
++1942: leave_portal_frame(0)
++1942: finish(p0, descr=<DoneWithThisFrameDescrRef object at 0x104f9bb50>)
++2064: --end of the loop--
+[ae85c532d349] jit-log-opt-loop}

@@ -1,0 +1,22 @@
+SELF-Like map:
+
+
+λ hyperfine './awk_vm-c-0.0.8-self-like-heap-c ./programs/awk/loops.awk' 
+Benchmark 1: ./awk_vm-c-0.0.8-self-like-heap-c ./programs/awk/loops.awk
+  Time (mean ± σ):      3.834 s ±  0.112 s    [User: 3.688 s, System: 0.027 s]
+  Range (min … max):    3.672 s …  4.029 s    10 runs
+ 
+ 
+not optimized map: 
+
+λ hyperfine './awk_vm-c-0.0.8-simple-heap-c ./programs/awk/loops.awk'
+Benchmark 1: ./awk_vm-c-0.0.8-simple-heap-c ./programs/awk/loops.awk
+  Time (mean ± σ):      3.738 s ±  1.124 s    [User: 3.614 s, System: 0.021 s]
+  Range (min … max):    3.244 s …  6.901 s    10 runs
+
+
+
+λ hyperfine './awk_vm-c-0.0.8-get_opcode-purefunction-c ./programs/awk/loops.awk' 
+Benchmark 1: ./awk_vm-c-0.0.8-get_opcode-purefunction-c ./programs/awk/loops.awk
+  Time (mean ± σ):      3.824 s ±  0.166 s    [User: 3.639 s, System: 0.028 s]
+  Range (min … max):    3.665 s …  4.064 s    10 runs

@@ -1,21 +1,21 @@
 class TokenType():
-    NewObject = 'new'
-    Equal = '='
-    LessThan = '<'
-    GreaterThan = '>'
-    Plus = '+'
-    Dot = '.'
-    Identity = 'id'
-    Literal = 'literal'
-    End = ';'
-    While = 'while'
-    BodyStart = 'body-start'
-    BodyEnd = 'body-end'
-    Condition = 'cond'
+    NewObject = 0
+    Equal = 1
+    LessThan = 2
+    GreaterThan = 3
+    Plus = 4
+    Dot = 5
+    Identity = 6
+    Literal = 7
+    End = 7
+    While = 9
+    BodyStart = 10
+    BodyEnd = 11
+    Condition = 12
 
 
 class Token():  
-  token = ''
+  token = -1
   value = ''
   numericValue = 0
   prop = ''
