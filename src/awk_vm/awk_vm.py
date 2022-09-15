@@ -1,9 +1,11 @@
 import os
 from sys import argv
-from src.awk_vm.awk_log import print_dict
+from src.awk_vm.awk_log import print_dict, trace
 from src.awk_vm.parser import parse
-from src.awk_vm.program import eval, AWKHeap
+from src.awk_vm.program import eval
+from src.awk_vm.awk_heap import AwkSelfLikeHeap, AwkSimpleHeap
 
+SELF_LIKE_MAPS_OPT = True
 
 def run(fp):
   program_contents = ''
@@ -14,7 +16,12 @@ def run(fp):
       program_contents += read
   os.close(fp)
   tokens = parse(program_contents)
-  awk_heap = eval(tokens, AWKHeap({}))
+  if SELF_LIKE_MAPS_OPT:
+    trace('evaluating with self-like heap')
+    awk_heap = eval(tokens, AwkSelfLikeHeap({}))
+  else:
+    trace('evaluating with simple heap')
+    awk_heap = eval(tokens, AwkSimpleHeap({}))
   print_dict('awk heap', awk_heap.heap)
 
 
