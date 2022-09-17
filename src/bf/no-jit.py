@@ -59,12 +59,12 @@ def parse(program):
     leftstack = []
     pc = 0
     for char in program:
-        if char in ('[', ']', '<', '>', '+', '-', ',', '.'):
+        if char in ("[", "]", "<", ">", "+", "-", ",", "."):
             parsed.append(char)
 
-            if char == '[':
+            if char == "[":
                 leftstack.append(pc)
-            elif char == ']':
+            elif char == "]":
                 left = leftstack.pop()
                 right = pc
                 bracket_map[left] = right
@@ -93,10 +93,11 @@ def run(fp):
 
 def entry_point(argv):
     import os
+
     try:
         filename = argv[1]
     except IndexError:
-        print ("You must supply a filename")
+        print("You must supply a filename")
         return 1
 
     run(os.open(filename, os.O_RDONLY, 777))

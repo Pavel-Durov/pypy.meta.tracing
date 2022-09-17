@@ -6,6 +6,11 @@ CONDA_ENV := meta-tracing
 PYTHONPATH=${PWD}:${PWD}/.pypy/
 .PHONY: test src
 
+lint-check:
+	black ./src/**/*.py --check
+lint:
+	black ./src/**/*.py
+
 version:
 	@echo $(VERSION)
 

@@ -19,24 +19,15 @@ jobs:
         python-version: 2.7.18
         auto-activate-base: false
     - name: Add conda to system path
-      run: |
-        # $CONDA is an environment variable pointing to the root of the miniconda directory
-        echo $CONDA/bin >> $GITHUB_PATH
-    - name: Lint with flake8
-      run: |
-        conda install flake8
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 ./src/**/*.py --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        # flake8 ./src/**/*.py --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      run: echo $CONDA/bin >> $GITHUB_PATH
+    - name: Lint
+      run: make lint-check
     - name: Install Mercurial
       run: sudo apt-get install mercurial
     - name: Download RPython
       run: hg clone https://foss.heptapod.net/pypy/pypy .pypy
     - name: Test with pytest
-      run: |
-        conda install pytest
-        source .envrc && make test
+      run: source .envrc && make test
   
   rpython-no-jit:
     name: PYPY translate (no jit)

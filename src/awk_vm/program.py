@@ -3,11 +3,12 @@ from src.awk_vm.token import TokenType
 from rpython.rlib.jit import JitDriver, purefunction, hint
 from rpython.jit.codewriter.policy import JitPolicy
 
+
 def jitpolicy(driver):
     return JitPolicy()
 
 
-jitdriver = JitDriver(greens=['pc', 'tokens'], reds=['awk_heap'])
+jitdriver = JitDriver(greens=["pc", "tokens"], reds=["awk_heap"])
 
 
 @purefunction
@@ -28,14 +29,14 @@ def get_opcode_token(program, pc):
 def get_opcode_value(program, pc):
     if pc < len(program):
         return program[pc].value
-    return ''
+    return ""
 
 
 @purefunction
 def get_opcode_prop(program, pc):
     if pc < len(program):
         return program[pc].prop
-    return ''
+    return ""
 
 
 @purefunction
@@ -60,11 +61,14 @@ def eval(program, awk_heap):
 
         if get_opcode_token(program, pc) == TokenType.NewObject:
             awk_heap.new_obj(get_opcode_value(program, pc))
-        elif get_opcode_token(program, pc) == TokenType.Equal and get_opcode_token(program, pc - 1) == TokenType.Dot:
+        elif (
+            get_opcode_token(program, pc) == TokenType.Equal
+            and get_opcode_token(program, pc - 1) == TokenType.Dot
+        ):
             name = get_opcode_value(program, pc - 1)
             obj = awk_heap.get_obj(name)
             if obj is not None:
-                value = get_token_literal_value(program, awk_heap, pc+1)
+                value = get_token_literal_value(program, awk_heap, pc + 1)
                 field = get_opcode_prop(program, pc - 1)
                 obj.set_field(str(field), int(value))
         elif get_opcode_token(program, pc) == TokenType.While:
@@ -79,7 +83,7 @@ def condition_eval(tokens, awk_heap):
         # TODO: add support for ==, !=, <=, >=
         if tk.token == TokenType.LessThan or tk.token == TokenType.GreaterThan:
             lhs_val = get_token_literal_value(tokens[:i], awk_heap, 0)
-            rhs_val = get_token_literal_value(tokens[i+1:], awk_heap, 0)
+            rhs_val = get_token_literal_value(tokens[i + 1 :], awk_heap, 0)
             if tk.token == TokenType.LessThan:
                 return lhs_val < rhs_val
             if tk.token == TokenType.GreaterThan:
@@ -102,9 +106,9 @@ def get_token_literal_value(program, awk_heap, i):
         field = get_opcode_prop(program, i)
         value = obj.get_field(field)
 
-    token = get_opcode_token(program, i+1)
+    token = get_opcode_token(program, i + 1)
 
     if token == TokenType.Plus:
-        rhs_value = get_token_literal_value(program, awk_heap, i+2)
+        rhs_value = get_token_literal_value(program, awk_heap, i + 2)
 
     return int(value) + int(rhs_value)
