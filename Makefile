@@ -78,4 +78,7 @@ bench:
 	hyperfine './jit-purefunction-c ./program/bf/bench.bf'
 	hyperfine './no-jit-c ./program/bf/bench.bf'
 
-
+bench-awk-vm:
+	hyperfine --warmup 1 './awk_vm-c-0.0.9-get_opcode-purefunction-c ./programs/awk/loops.awk' './awk_vm-c-0.0.8-simple-heap-c ./programs/awk/loops.awk'
+	hyperfine --export-json ${PWD}/log/hyperfine/hyperfine-$(git rev-parse HEAD)-$(date +%s).json -m 15 -M 15 './awk_vm-c-0.0.9-get_opcode-purefunction-c ./programs/awk/loops.awk' './awk_vm-c-0.0.8-simple-heap-c ./programs/awk/loops.awk'
+	
