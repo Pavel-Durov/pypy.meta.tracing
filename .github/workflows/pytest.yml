@@ -20,6 +20,8 @@ jobs:
         auto-activate-base: false
     - name: Add conda to system path
       run: echo $CONDA/bin >> $GITHUB_PATH
+    - name: Install dependencies
+      run: pip install -r ./requirements.txt
     - name: Lint
       run: make lint-check
     - name: Install Mercurial
