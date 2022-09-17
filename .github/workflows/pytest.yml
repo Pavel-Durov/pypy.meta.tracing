@@ -19,17 +19,22 @@ jobs:
         python-version: 2.7.18
         auto-activate-base: false
     - name: Add conda to system path
-      run: echo $CONDA/bin >> $GITHUB_PATH
-    - name: Install dependencies
-      run: pip install -r ./requirements.txt
-    - name: Lint
-      run: make lint-check
+      run: |
+        # $CONDA is an environment variable pointing to the root of the miniconda directory
+        echo $CONDA/bin >> $GITHUB_PATH
+    - name: Lint with flake8
+      run: |
+        conda install flake8
+        # TODO: update to black
+        flake8 ./src/**/*.py --count --select=E9,F63,F7,F82 --show-source --statistics
     - name: Install Mercurial
       run: sudo apt-get install mercurial
     - name: Download RPython
       run: hg clone https://foss.heptapod.net/pypy/pypy .pypy
     - name: Test with pytest
-      run: source .envrc && make test
+      run: |
+        conda install pytest
+        source .envrc && make test
   
   rpython-no-jit:
     name: PYPY translate (no jit)
