@@ -130,6 +130,8 @@ dmypy.json
 
 # Pypy source code
 .pypy
+pypy*/**
+pypy*.tar.*
 .direnv
 
 # IDE stuff
