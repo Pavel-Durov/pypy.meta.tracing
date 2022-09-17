@@ -1,10 +1,15 @@
-VERSION := 0.0.8
+VERSION := 0.0.9
 SHELL := /bin/bash
 CWD := $(shell cd -P -- '$(shell dirname -- "$0")' && pwd -P)
 VENV := venv
 CONDA_ENV := meta-tracing
 PYTHONPATH=${PWD}:${PWD}/.pypy/
 .PHONY: test src
+
+lint-check:
+	black ./src/**/*.py --check
+lint:
+	black ./src/**/*.py
 
 version:
 	@echo $(VERSION)
