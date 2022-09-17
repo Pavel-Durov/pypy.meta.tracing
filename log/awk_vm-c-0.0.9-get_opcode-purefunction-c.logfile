@@ -1,0 +1,55 @@
+[7cba231ebe6] {jit-log-opt-loop
+# Loop 1 ((jitdriver: no get_printable_location)) : entry bridge with 50 ops
+[p0]
+debug_merge_point(0, 0, '(jitdriver: no get_printable_location)')
++322: i2 = getfield_gc_i(ConstPtr(ptr1), descr=<FieldS list.length 8>)
++326: i4 = int_lt(1, i2)
++330: guard_true(i4, descr=<Guard0x7fc470014078>) [i2, p0]
+debug_merge_point(0, 0, '(jitdriver: no get_printable_location)')
++336: i6 = int_lt(2, i2)
++340: guard_true(i6, descr=<Guard0x7fc470016020>) [i2, p0]
+debug_merge_point(0, 0, '(jitdriver: no get_printable_location)')
++353: p9 = call_r(ConstClass(AwkSelfLikeHeap.get_obj), p0, ConstPtr(ptr8), descr=<Callr 8 rr EF=4>)
++419: guard_no_exception(descr=<Guard0x7fc4700140d0>) [p0, p9]
++433: guard_nonnull(p9, descr=<Guard0x7fc470016060>) [p0, p9]
++449: p12 = call_r(ConstClass(AwkSelfLikeHeap.get_obj), p0, ConstPtr(ptr11), descr=<Callr 8 rr EF=4>)
++519: guard_no_exception(descr=<Guard0x7fc470014128>) [p0, p9, p12]
++533: p13 = getfield_gc_r(p12, descr=<FieldP src.awk_vm.awk_object.AWKSelfLikeObj.inst_map 8>)
++544: guard_value(p13, ConstPtr(ptr14), descr=<Guard0x7fc4700160a0>) [p0, p9, p12]
++553: p15 = getfield_gc_r(p12, descr=<FieldP src.awk_vm.awk_object.AWKSelfLikeObj.inst_storage 24>)
++557: p16 = getfield_gc_r(p15, descr=<FieldP list.items 16>)
++561: i18 = getarrayitem_gc_i(p16, 0, descr=<ArrayS 8>)
++572: p21 = call_r(ConstClass(AwkSelfLikeHeap.get_obj), p0, ConstPtr(ptr20), descr=<Callr 8 rr EF=4>)
++642: guard_no_exception(descr=<Guard0x7fc470014180>) [p0, p9, i18, p21]
++656: p22 = getfield_gc_r(p21, descr=<FieldP src.awk_vm.awk_object.AWKSelfLikeObj.inst_map 8>)
++660: guard_value(p22, ConstPtr(ptr23), descr=<Guard0x7fc4700160e0>) [p0, p9, i18, p21]
++673: p24 = getfield_gc_r(p21, descr=<FieldP src.awk_vm.awk_object.AWKSelfLikeObj.inst_storage 24>)
++677: p25 = getfield_gc_r(p24, descr=<FieldP list.items 16>)
++682: i27 = getarrayitem_gc_i(p25, 1, descr=<ArrayS 8>)
++686: i28 = int_add(i18, i27)
++692: p29 = getfield_gc_r(p9, descr=<FieldP src.awk_vm.awk_object.AWKSelfLikeObj.inst_map 8>)
++704: guard_value(p29, ConstPtr(ptr30), descr=<Guard0x7fc470016120>) [p0, p9, i18, p21]
++717: p31 = getfield_gc_r(p9, descr=<FieldP src.awk_vm.awk_object.AWKSelfLikeObj.inst_storage 24>)
++722: p32 = getfield_gc_r(p31, descr=<FieldP list.items 16>)
++726: setarrayitem_gc(p32, 0, i28, descr=<ArrayS 8>)
++731: i35 = int_lt(3, i2)
++735: guard_true(i35, descr=<Guard0x7fc4700141d8>) [i2, p0]
+debug_merge_point(0, 0, '(jitdriver: no get_printable_location)')
++741: i37 = int_lt(4, i2)
++745: guard_true(i37, descr=<Guard0x7fc470016160>) [i2, p0]
+debug_merge_point(0, 0, '(jitdriver: no get_printable_location)')
++751: i39 = int_lt(5, i2)
++755: guard_true(i39, descr=<Guard0x7fc4700161a0>) [i2, p0]
+debug_merge_point(0, 0, '(jitdriver: no get_printable_location)')
++761: i41 = int_lt(6, i2)
++765: guard_true(i41, descr=<Guard0x7fc4700161e0>) [i2, p0]
+debug_merge_point(0, 0, '(jitdriver: no get_printable_location)')
++771: i43 = int_lt(7, i2)
++775: guard_true(i43, descr=<Guard0x7fc470016220>) [i2, p0]
+debug_merge_point(0, 0, '(jitdriver: no get_printable_location)')
++781: i45 = int_lt(8, i2)
++785: guard_false(i45, descr=<Guard0x7fc470016260>) [i2, p0]
++791: leave_portal_frame(0)
++791: finish(p0, descr=<DoneWithThisFrameDescrRef object at 0x104a79ff8>)
++912: --end of the loop--
+[7cba2337d6e] jit-log-opt-loop}
