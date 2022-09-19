@@ -19,21 +19,16 @@ jobs:
         python-version: 2.7.18
         auto-activate-base: false
     - name: Add conda to system path
-      run: |
-        # $CONDA is an environment variable pointing to the root of the miniconda directory
-        echo $CONDA/bin >> $GITHUB_PATH
+      run: echo $CONDA/bin >> $GITHUB_PATH
     - name: Lint with flake8
       run: |
         conda install flake8
-        # TODO: update to black
         flake8 ./src/**/*.py --count --select=E9,F63,F7,F82 --show-source --statistics
-    - name: Install Mercurial
-      run: sudo apt-get install mercurial
-    - name: Download RPython
-      run: hg clone https://foss.heptapod.net/pypy/pypy .pypy
+    - name: Download Pypy
+      run: make get-pypy
     - name: Test with pytest
       run: |
-        conda install pytest
+        pip install -r requirements
         source .envrc && make test
   
   rpython-no-jit:
@@ -53,13 +48,9 @@ jobs:
         python-version: 2.7.18
         auto-activate-base: false
     - name: Add conda to system path
-      run: |
-        # $CONDA is an environment variable pointing to the root of the miniconda directory
-        echo $CONDA/bin >> $GITHUB_PATH
-    - name: Install Mercurial
-      run: sudo apt-get install mercurial
-    - name: Download RPython
-      run: hg clone https://foss.heptapod.net/pypy/pypy .pypy
+      run: echo $CONDA/bin >> $GITHUB_PATH
+    - name: Download PyPy
+      run: make get-pypy
     - name: RPython Translate
       run: make translate-awk-vm-no-jit
     - name: Upload artifact
