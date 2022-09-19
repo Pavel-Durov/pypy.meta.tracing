@@ -7,11 +7,6 @@ PYTHONPATH=${PWD}:${PWD}/.pypy/
 PYPY_VERSION_ARTIFACT := pypy2.7-v7.3.9-src
 .PHONY: test src
 
-lint-check:
-	black ./src/**/*.py --check
-lint:
-	black ./src/**/*.py
-
 version:
 	@echo $(VERSION)
 

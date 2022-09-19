@@ -1,9 +1,10 @@
-name: PyTest 
+name: RPython 
 
 on: [push]
 
 jobs:
-  pytest:
+  rpython-no-jit:
+    name: PYPY translate (no jit)
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -20,13 +21,12 @@ jobs:
         auto-activate-base: false
     - name: Add conda to system path
       run: echo $CONDA/bin >> $GITHUB_PATH
-    - name: Lint with flake8
-      run: |
-        conda install flake8
-        flake8 ./src/**/*.py --count --select=E9,F63,F7,F82 --show-source --statistics
-    - name: Download Pypy
+    - name: Download PyPy
       run: make get-pypy
-    - name: Test with pytest
-      run: |
-        conda install pytest
-        source .envrc && make test
+    - name: RPython Translate
+      run: make translate-awk-vm-no-jit
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: awk_vm-c-no-jit
+        path: ./awk_vm-c
