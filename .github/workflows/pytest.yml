@@ -28,7 +28,7 @@ jobs:
       run: make get-pypy
     - name: Test with pytest
       run: |
-        pip install -r requirements
+        pip install -r requirements.txt
         source .envrc && make test
   
   rpython-no-jit:
