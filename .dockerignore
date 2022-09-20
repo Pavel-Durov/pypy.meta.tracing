@@ -1,0 +1,9 @@
+.pypy
+.vscode
+.git
+.github
+.direnv
+.pytest_cache
+.cache
+**/__pycache__
+*.pyc

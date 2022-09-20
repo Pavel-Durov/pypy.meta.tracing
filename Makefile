@@ -79,3 +79,26 @@ bench-awk-vm:
 	hyperfine --warmup 1 './awk_vm-c-0.0.9-get_opcode-purefunction-c ./programs/awk/loops.awk' './awk_vm-c-0.0.8-simple-heap-c ./programs/awk/loops.awk'
 	hyperfine --export-json ${PWD}/log/hyperfine/hyperfine-$(git rev-parse HEAD)-$(date +%s).json -m 15 -M 15 './awk_vm-c-0.0.9-get_opcode-purefunction-c ./programs/awk/loops.awk' './awk_vm-c-0.0.8-simple-heap-c ./programs/awk/loops.awk'
 	
+# Docker
+
+
+docker-build-ci: docker-login
+	docker build -f docker/ci.Dockerfile -t meta-tracing:build-ci --platform=linux/amd64 .	
+	docker tag meta-tracing:build-ci iamkimchi/pypy-trace:latest
+	docker push iamkimchi/pypy-trace:latest
+
+docker-build-%:	
+	docker build -f docker/$*.Dockerfile -t meta-tracing:build-$* . #-platform=linux/amd64 .	
+
+docker-entrypoint-override-%:
+	docker run --entrypoint /bin/sh -t meta-tracing:build-$*
+
+docker-run-%:
+	docker run -t meta-tracing:build-$*
+
+doccker-build-run-%: 
+	make docker-build-$* 
+	make docker-run-$*
+
+docker-login:
+	docker login --username iamkimchi

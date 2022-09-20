@@ -2,13 +2,7 @@
 [![RPython Translate](https://github.com/Pavel-Durov/bf.meta.tracing/actions/workflows/rpython.yml/badge.svg)](https://github.com/Pavel-Durov/bf.meta.tracing/actions/workflows/rpython.yml)
 
 # bf.meta.tracing
-Bf metatracing code following [pypy](https://www.pypy.org/) tutorials.
-
-## Tutorials
-
-- [Tutorial Part 1](https://morepypy.blogspot.com/2011/04/tutorial-writing-interpreter-with-pypy.html)
-- [Tutorial Part 2](https://morepypy.blogspot.com/2011/04/tutorial-part-2-adding-jit.html)
-- [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck)
+Meta tracing exploration using PYPY.
 
 ## Getting Started
 
@@ -33,14 +27,19 @@ Its call "Awkward" cause its what it is, clunky and awkward vm implementation.
 
 [Awkward Program example](./programs/awkward/example.awk)
 
+## Docker
+This project uses docker containers for the sake of having consistent environment for running test and ci/cd jobs.
+
+```shell
+$ make docker-build-test # builds docker container
+$ make docker-build-run-test # builds & runs test docker container
+$ make docker-entrypoint-override-test # runs test docker with shell entrypoint
+```
 
 ## Benchmarking
 ```shell
 $ make bench # runs hyperfine benchmarking for all targets
 ```
-
-![Hyperlane benchmark example](assets/bench_screenshot.png?raw=true "Title")
-
 
 ## Tools
 
@@ -62,3 +61,9 @@ $ make bench # runs hyperfine benchmarking for all targets
 [RPython](https://doc.pypy.org/en/latest/coding-guide.html#restricted-python)
 
 [PypyTutorialKo](https://github.com/disjukr/pypy-tutorial-ko)
+
+[Tutorial Part 1](https://morepypy.blogspot.com/2011/04/tutorial-writing-interpreter-with-pypy.html)
+
+[Tutorial Part 2](https://morepypy.blogspot.com/2011/04/tutorial-part-2-adding-jit.html)
+
+[Brainfuck](https://en.wikipedia.org/wiki/Brainfuck)
