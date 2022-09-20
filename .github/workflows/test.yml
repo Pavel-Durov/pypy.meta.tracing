@@ -12,4 +12,4 @@ jobs:
     - name: Download Pypy
       run: make get-pypy
     - name: Test with pytest
-      run: source .envrc && pytest ./test
+      run: PYTHONPATH=${PWD}:${PWD}/.pypy/ && pytest ./test
