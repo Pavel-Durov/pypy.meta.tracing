@@ -12,6 +12,4 @@ jobs:
     - name: Download Pypy
       run: make get-pypy
     - name: Test with pytest
-      run: |
-        conda install pytest
-        source .envrc && make test
+      run: pytest ./test
