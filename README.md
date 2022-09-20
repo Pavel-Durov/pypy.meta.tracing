@@ -2,8 +2,7 @@
 [![RPython Translate](https://github.com/Pavel-Durov/bf.meta.tracing/actions/workflows/rpython.yml/badge.svg)](https://github.com/Pavel-Durov/bf.meta.tracing/actions/workflows/rpython.yml)
 
 # bf.meta.tracing
-Meta tracing code following [pypy](https://www.pypy.org/) tutorials.
-
+Meta tracing exploration using PYPY.
 
 ## Getting Started
 
@@ -28,14 +27,19 @@ Its call "Awkward" cause its what it is, clunky and awkward vm implementation.
 
 [Awkward Program example](./programs/awkward/example.awk)
 
+## Docker
+This project uses docker containers for the sake of having consistent environment for running test and ci/cd jobs.
+
+```shell
+$ make docker-build-test # builds docker container
+$ make docker-build-run-test # builds & runs test docker container
+$ make docker-entrypoint-override-test # runs test docker with shell entrypoint
+```
 
 ## Benchmarking
 ```shell
 $ make bench # runs hyperfine benchmarking for all targets
 ```
-
-![Hyperlane benchmark example](assets/bench_screenshot.png?raw=true "Title")
-
 
 ## Tools
 
