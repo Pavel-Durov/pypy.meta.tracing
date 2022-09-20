@@ -12,4 +12,4 @@ jobs:
     - name: Download Pypy
       run: make get-pypy
     - name: Test with pytest
-      run: pytest ./test
+      run: source .envrc && pytest ./test
