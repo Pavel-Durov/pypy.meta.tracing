@@ -1,9 +1,10 @@
-VERSION := 0.0.4
+VERSION := 0.0.9
 SHELL := /bin/bash
 CWD := $(shell cd -P -- '$(shell dirname -- "$0")' && pwd -P)
 VENV := venv
 CONDA_ENV := meta-tracing
 PYTHONPATH=${PWD}:${PWD}/.pypy/
+PYPY_VERSION_ARTIFACT := pypy2.7-v7.3.9-src
 .PHONY: test src
 
 version:
@@ -22,8 +23,9 @@ init-env:
 	conda init zsh && conda activate meta-tracing
 	pip install -r requirements.txt
 
-clone-pypy:
-	hg clone https://foss.heptapod.net/pypy/pypy .pypy	
+get-pypy:
+	wget https://downloads.python.org/pypy/$(PYPY_VERSION_ARTIFACT).tar.bz2
+	tar -xvf $(PYPY_VERSION_ARTIFACT).tar.bz2 && mv ./$(PYPY_VERSION_ARTIFACT) .pypy && rm $(PYPY_VERSION_ARTIFACT).tar.bz2
 
 test:
 	pytest ./test
@@ -33,9 +35,6 @@ clear:
 	conda deactivate
 	conda remove -n meta-tracing --all
 	rm ./*-c
-
-setup:
-	brew install hyperfine
 		
 conda-info:
 	echo CONDA_PREFIX=${CONDA_PREFIX}
@@ -64,6 +63,10 @@ build-no-jit:
 build-jit-%:
 	PYTHONPATH=$(PYTHONPATH) python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/bf/jit-$*.py
 
+# BF Not Optimised
+jit-not-optimised: build-jit-not-optimised
+	PYPYLOG=jit-log-opt:./log/bf_not_optimised.logfile ./jit-not-optimised-c ./programs/bf/99bottles.b
+
 # BF BENCH
 bench:
 	hyperfine './jit-fixed-size-array-c ./program/bf/bench.bf'
@@ -72,17 +75,7 @@ bench:
 	hyperfine './jit-purefunction-c ./program/bf/bench.bf'
 	hyperfine './no-jit-c ./program/bf/bench.bf'
 
-docker-login:
-	docker login --username iamkimchi
-
-docker-build:
-	docker build -f ./docker/build.Dockerfile  -t pypy-trace --platform linux/amd64 .
-
-docker-run:
-	docker run -t pypy-trace 
-
-docker-upload:
-	docker tag pypy-trace iamkimchi/pypy-trace:$(VERSION)
-	docker tag pypy-trace iamkimchi/pypy-trace:latest
-	docker push iamkimchi/pypy-trace:$(VERSION)
-	docker push iamkimchi/pypy-trace:latest
+bench-awk-vm:
+	hyperfine --warmup 1 './awk_vm-c-0.0.9-get_opcode-purefunction-c ./programs/awk/loops.awk' './awk_vm-c-0.0.8-simple-heap-c ./programs/awk/loops.awk'
+	hyperfine --export-json ${PWD}/log/hyperfine/hyperfine-$(git rev-parse HEAD)-$(date +%s).json -m 15 -M 15 './awk_vm-c-0.0.9-get_opcode-purefunction-c ./programs/awk/loops.awk' './awk_vm-c-0.0.8-simple-heap-c ./programs/awk/loops.awk'
+	

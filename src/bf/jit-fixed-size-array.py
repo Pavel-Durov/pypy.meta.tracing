@@ -3,22 +3,27 @@ import os
 from rpython.rlib.jit import JitDriver, purefunction
 from rpython.jit.codewriter.policy import JitPolicy
 
+
 def jitpolicy(driver):
     return JitPolicy()
 
 
 def get_location(pc, position, program, bracket_map):
-    return "%s_%s_%s" % (program[:pc], program[pc], program[pc + 1:])
+    return "%s_%s_%s" % (program[:pc], program[pc], program[pc + 1 :])
 
 
-jitdriver = JitDriver(greens=['pc', 'position', 'program', 'bracket_map'], reds=['tape'],
-                      get_printable_location=get_location)
-OPTIMIZED_BRACKET_MAP=True
+jitdriver = JitDriver(
+    greens=["pc", "position", "program", "bracket_map"],
+    reds=["tape"],
+    get_printable_location=get_location,
+)
+OPTIMIZED_BRACKET_MAP = True
 
 
 @purefunction
 def get_matching_bracket(bracket_map, pc):
     return bracket_map[pc]
+
 
 def mainloop(program, bracket_map):
     tape = [0] * 65536
@@ -27,7 +32,13 @@ def mainloop(program, bracket_map):
 
     while pc < len(program):
         # jitdriver.jit_merge_point(pc=pc, position=position, program=program, bracket_map=bracket_map, tape=tape)
-        jitdriver.jit_merge_point(pc=pc, tape=tape, program=program, bracket_map=bracket_map, position=position)
+        jitdriver.jit_merge_point(
+            pc=pc,
+            tape=tape,
+            program=program,
+            bracket_map=bracket_map,
+            position=position,
+        )
         code = program[pc]
         if code == ">":
             position += 1
@@ -45,10 +56,11 @@ def mainloop(program, bracket_map):
             tape[position] = ord(os.read(0, 1)[0])
         elif code == "[" and tape[position] == 0:
             pc = get_matching_bracket(bracket_map, pc)
-        elif code == "]" and tape[position]!= 0:
+        elif code == "]" and tape[position] != 0:
             pc = get_matching_bracket(bracket_map, pc)
 
         pc += 1
+
 
 def parse(program):
     parsed = []
@@ -57,12 +69,12 @@ def parse(program):
 
     pc = 0
     for char in program:
-        if char in ('[', ']', '<', '>', '+', '-', ',', '.'):
+        if char in ("[", "]", "<", ">", "+", "-", ",", "."):
             parsed.append(char)
 
-            if char == '[':
+            if char == "[":
                 leftstack.append(pc)
-            elif char == ']':
+            elif char == "]":
                 left = leftstack.pop()
                 right = pc
                 bracket_map[left] = right
@@ -70,7 +82,6 @@ def parse(program):
             pc += 1
 
     return "".join(parsed), bracket_map
-
 
 
 def run(input):
@@ -92,10 +103,11 @@ def run(fp):
 
 def entry_point(argv):
     import os
+
     try:
         filename = argv[1]
     except IndexError:
-        print ("You must supply a filename")
+        print("You must supply a filename")
         return 1
 
     run(os.open(filename, os.O_RDONLY, 777))
@@ -104,10 +116,10 @@ def entry_point(argv):
 
 def target(*args):
     """
-  "target" returns the entry point. 
-  The translation process imports your module and looks for that name,
-  calls it, and the function object returned is where it starts the translation.
-  """
+    "target" returns the entry point.
+    The translation process imports your module and looks for that name,
+    calls it, and the function object returned is where it starts the translation.
+    """
     return entry_point, None
 
 

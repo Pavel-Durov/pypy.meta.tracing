@@ -1,0 +1,913 @@
+[4e3f05057258] {jit-log-opt-loop
+# Loop 1 (._x) : entry bridge with 427 ops
+[p0]
+debug_merge_point(0, 0, '._x')
++1474: p3 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr2), descr=<Callr 8 r EF=5>)
++1540: guard_no_exception(descr=<Guard0x7fa4403f60d0>) [p0, p3]
++1554: i4 = getfield_gc_i(p3, descr=<FieldU tuple3.item0 8 pure>)
++1558: p5 = getfield_gc_r(p3, descr=<FieldP tuple3.item1 16 pure>)
++1562: i6 = getfield_gc_i(p3, descr=<FieldU tuple3.item2 24 pure>)
++1567: i11 = call_release_gil_i(1, 140703468959572, 1, i4, 7, descr=<Calli 8 iii EF=7>)
++1752: guard_not_forced(descr=<Guard0x7fa4403f6128>) [p0, i4, i6, p5, i11]
++1763: guard_no_exception(descr=<Guard0x7fa440404020>) [p0, i4, i6, p5, i11]
++1777: i13 = int_lt(i11, 0)
++1781: guard_false(i13, descr=<Guard0x7fa440404060>) [p0, i4, i6, p5, i11]
++1787: call_n(ConstClass(free_nonmovingbuffer_ll), i4, p5, i6, descr=<Callv 0 iri EF=2>)
++1825: p17 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr16), descr=<Callr 8 r EF=5>)
++1884: guard_no_exception(descr=<Guard0x7fa4403f6180>) [p0, p17]
++1898: i18 = getfield_gc_i(p17, descr=<FieldU tuple3.item0 8 pure>)
++1902: p19 = getfield_gc_r(p17, descr=<FieldP tuple3.item1 16 pure>)
++1906: i20 = getfield_gc_i(p17, descr=<FieldU tuple3.item2 24 pure>)
++1911: i25 = call_release_gil_i(1, 140703468959572, 1, i18, 5, descr=<Calli 8 iii EF=7>)
++2096: guard_not_forced(descr=<Guard0x7fa4403f61d8>) [p0, i18, i20, p19, i25]
++2107: guard_no_exception(descr=<Guard0x7fa4404040a0>) [p0, i18, i20, p19, i25]
++2121: i27 = int_lt(i25, 0)
++2125: guard_false(i27, descr=<Guard0x7fa4404040e0>) [p0, i18, i20, p19, i25]
++2131: call_n(ConstClass(free_nonmovingbuffer_ll), i18, p19, i20, descr=<Callv 0 iri EF=2>)
++2169: p31 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr30), descr=<Callr 8 r EF=5>)
++2235: guard_no_exception(descr=<Guard0x7fa4403f6230>) [p0, p31]
++2249: i32 = getfield_gc_i(p31, descr=<FieldU tuple3.item0 8 pure>)
++2253: p33 = getfield_gc_r(p31, descr=<FieldP tuple3.item1 16 pure>)
++2257: i34 = getfield_gc_i(p31, descr=<FieldU tuple3.item2 24 pure>)
++2262: i39 = call_release_gil_i(1, 140703468959572, 1, i32, 1, descr=<Calli 8 iii EF=7>)
++2447: guard_not_forced(descr=<Guard0x7fa4403f6288>) [p0, i32, i34, p33, i39]
++2458: guard_no_exception(descr=<Guard0x7fa440404120>) [p0, i32, i34, p33, i39]
++2472: i41 = int_lt(i39, 0)
++2476: guard_false(i41, descr=<Guard0x7fa440404160>) [p0, i32, i34, p33, i39]
++2482: call_n(ConstClass(free_nonmovingbuffer_ll), i32, p33, i34, descr=<Callv 0 iri EF=2>)
++2520: call_may_force_n(ConstClass(print_dict), ConstPtr(ptr44), p0, descr=<Callv 0 rr EF=7>)
++2604: guard_not_forced(descr=<Guard0x7fa4403f62e0>) [p0]
++2615: guard_no_exception(descr=<Guard0x7fa4404041a0>) [p0]
++2636: p46 = getfield_gc_r(ConstPtr(ptr45), descr=<FieldP list.items 16>)
++2640: p48 = getarrayitem_gc_r(p46, 1, descr=<ArrayP 8>)
++2644: p49 = getfield_gc_r(p48, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++2655: i52 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p49, ConstPtr(ptr51), descr=<Calli 1 rr EF=0 OS=24>)
++2678: guard_false(i52, descr=<Guard0x7fa4403f6338>) [i52, p0]
++2687: i55 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p49, 61, descr=<Calli 8 ri EF=0 OS=30>)
++2708: guard_false(i55, descr=<Guard0x7fa4403f6390>) [i55, p0]
++2724: i58 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p49, ConstPtr(ptr57), descr=<Calli 1 rr EF=0 OS=24>)
++2747: guard_false(i58, descr=<Guard0x7fa4403f63e8>) [i58, p0]
++2756: i60 = getfield_gc_i(ConstPtr(ptr59), descr=<FieldS list.length 8>)
++2760: i62 = int_lt(2, i60)
++2764: guard_true(i62, descr=<Guard0x7fa4404041e0>) [i58, p0]
+debug_merge_point(0, 0, '=_')
++2770: p65 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr64), descr=<Callr 8 r EF=5>)
++2857: guard_no_exception(descr=<Guard0x7fa4403f6440>) [p0, p65]
++2871: i66 = getfield_gc_i(p65, descr=<FieldU tuple3.item0 8 pure>)
++2875: p67 = getfield_gc_r(p65, descr=<FieldP tuple3.item1 16 pure>)
++2879: i68 = getfield_gc_i(p65, descr=<FieldU tuple3.item2 24 pure>)
++2884: i73 = call_release_gil_i(1, 140703468959572, 1, i66, 7, descr=<Calli 8 iii EF=7>)
++3069: guard_not_forced(descr=<Guard0x7fa4403f6498>) [p0, i66, i68, p67, i73]
++3080: guard_no_exception(descr=<Guard0x7fa440404220>) [p0, i66, i68, p67, i73]
++3094: i75 = int_lt(i73, 0)
++3098: guard_false(i75, descr=<Guard0x7fa440404260>) [p0, i66, i68, p67, i73]
++3104: call_n(ConstClass(free_nonmovingbuffer_ll), i66, p67, i68, descr=<Callv 0 iri EF=2>)
++3142: p79 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr78), descr=<Callr 8 r EF=5>)
++3201: guard_no_exception(descr=<Guard0x7fa4403f64f0>) [p0, p79]
++3215: i80 = getfield_gc_i(p79, descr=<FieldU tuple3.item0 8 pure>)
++3219: p81 = getfield_gc_r(p79, descr=<FieldP tuple3.item1 16 pure>)
++3223: i82 = getfield_gc_i(p79, descr=<FieldU tuple3.item2 24 pure>)
++3228: i87 = call_release_gil_i(1, 140703468959572, 1, i80, 5, descr=<Calli 8 iii EF=7>)
++3413: guard_not_forced(descr=<Guard0x7fa4403f6548>) [p0, i80, i82, p81, i87]
++3424: guard_no_exception(descr=<Guard0x7fa4404042a0>) [p0, i80, i82, p81, i87]
++3438: i89 = int_lt(i87, 0)
++3442: guard_false(i89, descr=<Guard0x7fa4404042e0>) [p0, i80, i82, p81, i87]
++3448: call_n(ConstClass(free_nonmovingbuffer_ll), i80, p81, i82, descr=<Callv 0 iri EF=2>)
++3479: p93 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr92), descr=<Callr 8 r EF=5>)
++3545: guard_no_exception(descr=<Guard0x7fa4403f65a0>) [p0, p93]
++3559: i94 = getfield_gc_i(p93, descr=<FieldU tuple3.item0 8 pure>)
++3563: p95 = getfield_gc_r(p93, descr=<FieldP tuple3.item1 16 pure>)
++3567: i96 = getfield_gc_i(p93, descr=<FieldU tuple3.item2 24 pure>)
++3572: i101 = call_release_gil_i(1, 140703468959572, 1, i94, 1, descr=<Calli 8 iii EF=7>)
++3757: guard_not_forced(descr=<Guard0x7fa4403f65f8>) [p0, i94, i96, p95, i101]
++3768: guard_no_exception(descr=<Guard0x7fa440404320>) [p0, i94, i96, p95, i101]
++3782: i103 = int_lt(i101, 0)
++3786: guard_false(i103, descr=<Guard0x7fa440404360>) [p0, i94, i96, p95, i101]
++3792: call_n(ConstClass(free_nonmovingbuffer_ll), i94, p95, i96, descr=<Callv 0 iri EF=2>)
++3823: call_may_force_n(ConstClass(print_dict), ConstPtr(ptr106), p0, descr=<Callv 0 rr EF=7>)
++3907: guard_not_forced(descr=<Guard0x7fa4403f6650>) [p0]
++3918: guard_no_exception(descr=<Guard0x7fa4404043a0>) [p0]
++3932: p108 = getfield_gc_r(ConstPtr(ptr107), descr=<FieldP list.items 16>)
++3943: p110 = getarrayitem_gc_r(p108, 2, descr=<ArrayP 8>)
++3947: p111 = getfield_gc_r(p110, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++3951: i114 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p111, ConstPtr(ptr113), descr=<Calli 1 rr EF=0 OS=24>)
++3981: guard_false(i114, descr=<Guard0x7fa4403f66a8>) [i114, p0]
++3990: i117 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p111, 61, descr=<Calli 8 ri EF=0 OS=30>)
++4011: guard_true(i117, descr=<Guard0x7fa4403f6700>) [i117, p0]
++4020: p119 = getarrayitem_gc_r(p108, 1, descr=<ArrayP 8>)
++4025: p120 = getfield_gc_r(p119, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++4029: i123 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p120, 46, descr=<Calli 8 ri EF=0 OS=30>)
++4053: guard_true(i123, descr=<Guard0x7fa4403f6758>) [i123, p0]
++4062: p125 = getarrayitem_gc_r(p108, 3, descr=<ArrayP 8>)
++4067: p126 = getfield_gc_r(p125, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++4078: i129 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p126, ConstPtr(ptr128), descr=<Calli 1 rr EF=0 OS=24>)
++4108: guard_false(i129, descr=<Guard0x7fa4403f67b0>) [p0, i129]
++4117: i132 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p126, 46, descr=<Calli 8 ri EF=0 OS=30>)
++4138: guard_true(i132, descr=<Guard0x7fa4403f6808>) [p0, i132]
++4147: p133 = getfield_gc_r(p125, descr=<FieldP src.awk_vm.token.Token.inst_value 48>)
++4151: guard_nonnull(p133, descr=<Guard0x7fa4404043e0>) [p0, i132]
++4160: i134 = strhash(p133)
++4164: i136 = cond_call_value_i(i134, ConstClass(_ll_strhash__rpy_stringPtr), p133, descr=<Calli 8 r EF=2>)
++4173: i139 = call_i(ConstClass(ll_call_lookup_function_trampoline__v75___simple_call__function_ll), p0, p133, i136, 0, descr=<Calli 8 rrii EF=5 OS=4>)
++4271: guard_no_exception(descr=<Guard0x7fa4403f6860>) [p0, i139]
++4285: i141 = int_ge(i139, 0)
++4289: guard_true(i141, descr=<Guard0x7fa440404420>) [p0, i139]
++4295: p142 = getfield_gc_r(p0, descr=<FieldP dicttable.entries 48>)
++4313: p143 = getinteriorfield_gc_r(p142, i139, descr=<InteriorFieldDescr <FieldP odictentry.value 8>>)
++4318: p144 = getfield_gc_r(p125, descr=<FieldP src.awk_vm.token.Token.inst_prop 32>)
++4329: guard_nonnull(p144, descr=<Guard0x7fa440404460>) [p0, i139]
++4338: i145 = strhash(p144)
++4342: i147 = cond_call_value_i(i145, ConstClass(_ll_strhash__rpy_stringPtr), p144, descr=<Calli 8 r EF=2>)
++4351: i150 = call_i(ConstClass(ll_call_lookup_function_trampoline__v102___simple_call__function_l), p143, p144, i147, 0, descr=<Calli 8 rrii EF=5 OS=4>)
++4429: guard_no_exception(descr=<Guard0x7fa4403f68b8>) [p0, i150, p143]
++4443: i152 = int_ge(i150, 0)
++4447: guard_true(i152, descr=<Guard0x7fa4404044a0>) [p0, i150, p143]
++4453: p153 = getfield_gc_r(p143, descr=<FieldP dicttable.entries 48>)
++4471: i154 = getinteriorfield_gc_i(p153, i150, descr=<InteriorFieldDescr <FieldS odictentry.value 8>>)
++4476: i156 = getfield_gc_i(ConstPtr(ptr155), descr=<FieldS list.length 8>)
++4487: i158 = int_sub(i156, 1)
++4491: i160 = int_lt(4, i158)
++4495: guard_true(i160, descr=<Guard0x7fa4404044e0>) [p0, i150, p143]
++4501: p162 = getarrayitem_gc_r(p108, 4, descr=<ArrayP 8>)
++4512: p163 = getfield_gc_r(p162, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++4516: i166 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p163, 43, descr=<Calli 8 ri EF=0 OS=30>)
++4543: guard_true(i166, descr=<Guard0x7fa4403f6910>) [p0, i166, i154]
++4552: p168 = getarrayitem_gc_r(p108, 5, descr=<ArrayP 8>)
++4556: p169 = getfield_gc_r(p168, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++4560: i172 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p169, ConstPtr(ptr171), descr=<Calli 1 rr EF=0 OS=24>)
++4594: guard_false(i172, descr=<Guard0x7fa4403f6968>) [p0, i154, i172]
++4603: i175 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p169, 46, descr=<Calli 8 ri EF=0 OS=30>)
++4624: guard_true(i175, descr=<Guard0x7fa4403f69c0>) [p0, i154, i175]
++4633: p176 = getfield_gc_r(p168, descr=<FieldP src.awk_vm.token.Token.inst_value 48>)
++4644: guard_nonnull(p176, descr=<Guard0x7fa440404520>) [p0, i154, i175]
++4653: i177 = strhash(p176)
++4657: i179 = cond_call_value_i(i177, ConstClass(_ll_strhash__rpy_stringPtr), p176, descr=<Calli 8 r EF=2>)
++4666: i182 = call_i(ConstClass(ll_call_lookup_function_trampoline__v75___simple_call__function_ll), p0, p176, i179, 0, descr=<Calli 8 rrii EF=5 OS=4>)
++4743: guard_no_exception(descr=<Guard0x7fa4403f6a18>) [p0, i154, i182]
++4757: i184 = int_ge(i182, 0)
++4761: guard_true(i184, descr=<Guard0x7fa440404560>) [p0, i154, i182]
++4774: p185 = getinteriorfield_gc_r(p142, i182, descr=<InteriorFieldDescr <FieldP odictentry.value 8>>)
++4786: p186 = getfield_gc_r(p168, descr=<FieldP src.awk_vm.token.Token.inst_prop 32>)
++4797: guard_nonnull(p186, descr=<Guard0x7fa4404045a0>) [p0, i154, i182]
++4806: i187 = strhash(p186)
++4810: i189 = cond_call_value_i(i187, ConstClass(_ll_strhash__rpy_stringPtr), p186, descr=<Calli 8 r EF=2>)
++4819: i192 = call_i(ConstClass(ll_call_lookup_function_trampoline__v102___simple_call__function_l), p185, p186, i189, 0, descr=<Calli 8 rrii EF=5 OS=4>)
++4890: guard_no_exception(descr=<Guard0x7fa4403f6a70>) [p0, i154, i192, p185]
++4904: i194 = int_ge(i192, 0)
++4908: guard_true(i194, descr=<Guard0x7fa4404045e0>) [p0, i154, i192, p185]
++4914: p195 = getfield_gc_r(p185, descr=<FieldP dicttable.entries 48>)
++4932: i196 = getinteriorfield_gc_i(p195, i192, descr=<InteriorFieldDescr <FieldS odictentry.value 8>>)
++4937: i198 = int_lt(6, i158)
++4941: guard_true(i198, descr=<Guard0x7fa440404620>) [p0, i154, i192, p185]
++4947: p200 = getarrayitem_gc_r(p108, 6, descr=<ArrayP 8>)
++4958: p201 = getfield_gc_r(p200, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++4962: i204 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p201, 43, descr=<Calli 8 ri EF=0 OS=30>)
++4983: guard_false(i204, descr=<Guard0x7fa4403f6ac8>) [p0, i154, i204, i196]
++4992: i205 = int_add(i154, i196)
++4998: p206 = getfield_gc_r(p119, descr=<FieldP src.awk_vm.token.Token.inst_value 48>)
++5009: guard_nonnull(p206, descr=<Guard0x7fa440404660>) [p0, i154, i204, i196]
++5018: i207 = strhash(p206)
++5022: i209 = cond_call_value_i(i207, ConstClass(_ll_strhash__rpy_stringPtr), p206, descr=<Calli 8 r EF=2>)
++5031: i212 = call_i(ConstClass(ll_call_lookup_function_trampoline__v75___simple_call__function_ll), p0, p206, i209, 0, descr=<Calli 8 rrii EF=5 OS=4>)
++5111: guard_no_exception(descr=<Guard0x7fa4403f6b20>) [i212, i205, p0]
++5125: i214 = int_ge(i212, 0)
++5129: guard_true(i214, descr=<Guard0x7fa4404046a0>) [i212, i205, p0]
++5142: p215 = getinteriorfield_gc_r(p142, i212, descr=<InteriorFieldDescr <FieldP odictentry.value 8>>)
++5154: p216 = getfield_gc_r(p119, descr=<FieldP src.awk_vm.token.Token.inst_prop 32>)
++5165: guard_nonnull(p216, descr=<Guard0x7fa4404046e0>) [i212, i205, p0]
++5174: i217 = strhash(p216)
++5178: i219 = cond_call_value_i(i217, ConstClass(_ll_strhash__rpy_stringPtr), p216, descr=<Calli 8 r EF=2>)
++5187: i222 = call_i(ConstClass(ll_call_lookup_function_trampoline__v102___simple_call__function_l), p215, p216, i219, 1, descr=<Calli 8 rrii EF=5 OS=4>)
++5268: guard_no_exception(descr=<Guard0x7fa4403f6b78>) [i222, i219, i205, p0, p215, p216]
++5282: call_n(ConstClass(_ll_dict_setitem_lookup_done_trampoline__v155___simple_call__function__), p215, p216, i205, i219, i222, descr=<Callv 0 rriii EF=5>)
++5361: guard_no_exception(descr=<Guard0x7fa4403f6bd0>) [p0]
+debug_merge_point(0, 0, '._x')
++5375: p226 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr225), descr=<Callr 8 r EF=5>)
++5438: guard_no_exception(descr=<Guard0x7fa4403f6c28>) [p0, p226]
++5452: i227 = getfield_gc_i(p226, descr=<FieldU tuple3.item0 8 pure>)
++5456: p228 = getfield_gc_r(p226, descr=<FieldP tuple3.item1 16 pure>)
++5460: i229 = getfield_gc_i(p226, descr=<FieldU tuple3.item2 24 pure>)
++5465: i234 = call_release_gil_i(1, 140703468959572, 1, i227, 7, descr=<Calli 8 iii EF=7>)
++5650: guard_not_forced(descr=<Guard0x7fa4403f6c80>) [p0, i227, i229, p228, i234]
++5661: guard_no_exception(descr=<Guard0x7fa440404720>) [p0, i227, i229, p228, i234]
++5675: i236 = int_lt(i234, 0)
++5679: guard_false(i236, descr=<Guard0x7fa440404760>) [p0, i227, i229, p228, i234]
++5685: call_n(ConstClass(free_nonmovingbuffer_ll), i227, p228, i229, descr=<Callv 0 iri EF=2>)
++5723: p240 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr239), descr=<Callr 8 r EF=5>)
++5782: guard_no_exception(descr=<Guard0x7fa4403f6cd8>) [p0, p240]
++5796: i241 = getfield_gc_i(p240, descr=<FieldU tuple3.item0 8 pure>)
++5800: p242 = getfield_gc_r(p240, descr=<FieldP tuple3.item1 16 pure>)
++5804: i243 = getfield_gc_i(p240, descr=<FieldU tuple3.item2 24 pure>)
++5809: i248 = call_release_gil_i(1, 140703468959572, 1, i241, 5, descr=<Calli 8 iii EF=7>)
++5994: guard_not_forced(descr=<Guard0x7fa4403f6d30>) [p0, i241, i243, p242, i248]
++6005: guard_no_exception(descr=<Guard0x7fa4404047a0>) [p0, i241, i243, p242, i248]
++6019: i250 = int_lt(i248, 0)
++6023: guard_false(i250, descr=<Guard0x7fa4404047e0>) [p0, i241, i243, p242, i248]
++6029: call_n(ConstClass(free_nonmovingbuffer_ll), i241, p242, i243, descr=<Callv 0 iri EF=2>)
++6060: p254 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr253), descr=<Callr 8 r EF=5>)
++6126: guard_no_exception(descr=<Guard0x7fa4403f6d88>) [p0, p254]
++6140: i255 = getfield_gc_i(p254, descr=<FieldU tuple3.item0 8 pure>)
++6144: p256 = getfield_gc_r(p254, descr=<FieldP tuple3.item1 16 pure>)
++6148: i257 = getfield_gc_i(p254, descr=<FieldU tuple3.item2 24 pure>)
++6153: i262 = call_release_gil_i(1, 140703468959572, 1, i255, 1, descr=<Calli 8 iii EF=7>)
++6338: guard_not_forced(descr=<Guard0x7fa4403f6de0>) [p0, i255, i257, p256, i262]
++6349: guard_no_exception(descr=<Guard0x7fa440404820>) [p0, i255, i257, p256, i262]
++6363: i264 = int_lt(i262, 0)
++6367: guard_false(i264, descr=<Guard0x7fa440404860>) [p0, i255, i257, p256, i262]
++6373: call_n(ConstClass(free_nonmovingbuffer_ll), i255, p256, i257, descr=<Callv 0 iri EF=2>)
++6404: call_may_force_n(ConstClass(print_dict), ConstPtr(ptr267), p0, descr=<Callv 0 rr EF=7>)
++6488: guard_not_forced(descr=<Guard0x7fa4403f6e38>) [p0]
++6499: guard_no_exception(descr=<Guard0x7fa4404048a0>) [p0]
++6513: p269 = getfield_gc_r(ConstPtr(ptr268), descr=<FieldP list.items 16>)
++6524: p271 = getarrayitem_gc_r(p269, 3, descr=<ArrayP 8>)
++6528: p272 = getfield_gc_r(p271, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++6532: i275 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p272, ConstPtr(ptr274), descr=<Calli 1 rr EF=0 OS=24>)
++6559: guard_false(i275, descr=<Guard0x7fa4403f6e90>) [i275, p0]
++6568: i278 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p272, 61, descr=<Calli 8 ri EF=0 OS=30>)
++6589: guard_false(i278, descr=<Guard0x7fa4403f6ee8>) [i278, p0]
++6598: i281 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p272, ConstPtr(ptr280), descr=<Calli 1 rr EF=0 OS=24>)
++6625: guard_false(i281, descr=<Guard0x7fa4403f6f40>) [i281, p0]
++6634: i283 = getfield_gc_i(ConstPtr(ptr282), descr=<FieldS list.length 8>)
++6638: i285 = int_lt(4, i283)
++6642: guard_true(i285, descr=<Guard0x7fa4404048e0>) [i281, p0]
+debug_merge_point(0, 0, '+_')
++6648: p288 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr287), descr=<Callr 8 r EF=5>)
++6714: guard_no_exception(descr=<Guard0x7fa4403f6f98>) [p0, p288]
++6728: i289 = getfield_gc_i(p288, descr=<FieldU tuple3.item0 8 pure>)
++6732: p290 = getfield_gc_r(p288, descr=<FieldP tuple3.item1 16 pure>)
++6736: i291 = getfield_gc_i(p288, descr=<FieldU tuple3.item2 24 pure>)
++6741: i296 = call_release_gil_i(1, 140703468959572, 1, i289, 7, descr=<Calli 8 iii EF=7>)
++6926: guard_not_forced(descr=<Guard0x7fa4403f6ff0>) [p0, i289, i291, p290, i296]
++6937: guard_no_exception(descr=<Guard0x7fa440404920>) [p0, i289, i291, p290, i296]
++6951: i298 = int_lt(i296, 0)
++6955: guard_false(i298, descr=<Guard0x7fa440404960>) [p0, i289, i291, p290, i296]
++6961: call_n(ConstClass(free_nonmovingbuffer_ll), i289, p290, i291, descr=<Callv 0 iri EF=2>)
++6999: p302 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr301), descr=<Callr 8 r EF=5>)
++7058: guard_no_exception(descr=<Guard0x7fa4403f7048>) [p0, p302]
++7072: i303 = getfield_gc_i(p302, descr=<FieldU tuple3.item0 8 pure>)
++7076: p304 = getfield_gc_r(p302, descr=<FieldP tuple3.item1 16 pure>)
++7080: i305 = getfield_gc_i(p302, descr=<FieldU tuple3.item2 24 pure>)
++7085: i310 = call_release_gil_i(1, 140703468959572, 1, i303, 5, descr=<Calli 8 iii EF=7>)
++7270: guard_not_forced(descr=<Guard0x7fa4403f70a0>) [p0, i303, i305, p304, i310]
++7281: guard_no_exception(descr=<Guard0x7fa4404049a0>) [p0, i303, i305, p304, i310]
++7295: i312 = int_lt(i310, 0)
++7299: guard_false(i312, descr=<Guard0x7fa4404049e0>) [p0, i303, i305, p304, i310]
++7305: call_n(ConstClass(free_nonmovingbuffer_ll), i303, p304, i305, descr=<Callv 0 iri EF=2>)
++7336: p316 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr315), descr=<Callr 8 r EF=5>)
++7402: guard_no_exception(descr=<Guard0x7fa4403f70f8>) [p0, p316]
++7416: i317 = getfield_gc_i(p316, descr=<FieldU tuple3.item0 8 pure>)
++7420: p318 = getfield_gc_r(p316, descr=<FieldP tuple3.item1 16 pure>)
++7424: i319 = getfield_gc_i(p316, descr=<FieldU tuple3.item2 24 pure>)
++7429: i324 = call_release_gil_i(1, 140703468959572, 1, i317, 1, descr=<Calli 8 iii EF=7>)
++7614: guard_not_forced(descr=<Guard0x7fa4403f7150>) [p0, i317, i319, p318, i324]
++7625: guard_no_exception(descr=<Guard0x7fa440404a20>) [p0, i317, i319, p318, i324]
++7639: i326 = int_lt(i324, 0)
++7643: guard_false(i326, descr=<Guard0x7fa440404a60>) [p0, i317, i319, p318, i324]
++7649: call_n(ConstClass(free_nonmovingbuffer_ll), i317, p318, i319, descr=<Callv 0 iri EF=2>)
++7680: call_may_force_n(ConstClass(print_dict), ConstPtr(ptr329), p0, descr=<Callv 0 rr EF=7>)
++7764: guard_not_forced(descr=<Guard0x7fa4403f71a8>) [p0]
++7775: guard_no_exception(descr=<Guard0x7fa440404aa0>) [p0]
++7789: p331 = getfield_gc_r(ConstPtr(ptr330), descr=<FieldP list.items 16>)
++7800: p333 = getarrayitem_gc_r(p331, 4, descr=<ArrayP 8>)
++7804: p334 = getfield_gc_r(p333, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++7808: i337 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p334, ConstPtr(ptr336), descr=<Calli 1 rr EF=0 OS=24>)
++7835: guard_false(i337, descr=<Guard0x7fa4403f7200>) [i337, p0]
++7844: i340 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p334, 61, descr=<Calli 8 ri EF=0 OS=30>)
++7865: guard_false(i340, descr=<Guard0x7fa4403f7258>) [i340, p0]
++7874: i343 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p334, ConstPtr(ptr342), descr=<Calli 1 rr EF=0 OS=24>)
++7901: guard_false(i343, descr=<Guard0x7fa4403f72b0>) [i343, p0]
++7910: i345 = getfield_gc_i(ConstPtr(ptr344), descr=<FieldS list.length 8>)
++7914: i347 = int_lt(5, i345)
++7918: guard_true(i347, descr=<Guard0x7fa440404ae0>) [i343, p0]
+debug_merge_point(0, 0, '._x')
++7924: p350 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr349), descr=<Callr 8 r EF=5>)
++7990: guard_no_exception(descr=<Guard0x7fa4403f7308>) [p0, p350]
++8004: i351 = getfield_gc_i(p350, descr=<FieldU tuple3.item0 8 pure>)
++8008: p352 = getfield_gc_r(p350, descr=<FieldP tuple3.item1 16 pure>)
++8012: i353 = getfield_gc_i(p350, descr=<FieldU tuple3.item2 24 pure>)
++8017: i358 = call_release_gil_i(1, 140703468959572, 1, i351, 7, descr=<Calli 8 iii EF=7>)
++8202: guard_not_forced(descr=<Guard0x7fa4403f7360>) [p0, i351, i353, p352, i358]
++8213: guard_no_exception(descr=<Guard0x7fa440404b20>) [p0, i351, i353, p352, i358]
++8227: i360 = int_lt(i358, 0)
++8231: guard_false(i360, descr=<Guard0x7fa440404b60>) [p0, i351, i353, p352, i358]
++8237: call_n(ConstClass(free_nonmovingbuffer_ll), i351, p352, i353, descr=<Callv 0 iri EF=2>)
++8275: p364 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr363), descr=<Callr 8 r EF=5>)
++8334: guard_no_exception(descr=<Guard0x7fa4403f73b8>) [p0, p364]
++8348: i365 = getfield_gc_i(p364, descr=<FieldU tuple3.item0 8 pure>)
++8352: p366 = getfield_gc_r(p364, descr=<FieldP tuple3.item1 16 pure>)
++8356: i367 = getfield_gc_i(p364, descr=<FieldU tuple3.item2 24 pure>)
++8361: i372 = call_release_gil_i(1, 140703468959572, 1, i365, 5, descr=<Calli 8 iii EF=7>)
++8546: guard_not_forced(descr=<Guard0x7fa4403f7410>) [p0, i365, i367, p366, i372]
++8557: guard_no_exception(descr=<Guard0x7fa440404ba0>) [p0, i365, i367, p366, i372]
++8571: i374 = int_lt(i372, 0)
++8575: guard_false(i374, descr=<Guard0x7fa440404be0>) [p0, i365, i367, p366, i372]
++8581: call_n(ConstClass(free_nonmovingbuffer_ll), i365, p366, i367, descr=<Callv 0 iri EF=2>)
++8612: p378 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr377), descr=<Callr 8 r EF=5>)
++8678: guard_no_exception(descr=<Guard0x7fa4403f7468>) [p0, p378]
++8692: i379 = getfield_gc_i(p378, descr=<FieldU tuple3.item0 8 pure>)
++8696: p380 = getfield_gc_r(p378, descr=<FieldP tuple3.item1 16 pure>)
++8700: i381 = getfield_gc_i(p378, descr=<FieldU tuple3.item2 24 pure>)
++8705: i386 = call_release_gil_i(1, 140703468959572, 1, i379, 1, descr=<Calli 8 iii EF=7>)
++8890: guard_not_forced(descr=<Guard0x7fa4403f74c0>) [p0, i379, i381, p380, i386]
++8901: guard_no_exception(descr=<Guard0x7fa440404c20>) [p0, i379, i381, p380, i386]
++8915: i388 = int_lt(i386, 0)
++8919: guard_false(i388, descr=<Guard0x7fa440404c60>) [p0, i379, i381, p380, i386]
++8925: call_n(ConstClass(free_nonmovingbuffer_ll), i379, p380, i381, descr=<Callv 0 iri EF=2>)
++8956: call_may_force_n(ConstClass(print_dict), ConstPtr(ptr391), p0, descr=<Callv 0 rr EF=7>)
++9040: guard_not_forced(descr=<Guard0x7fa4403f7518>) [p0]
++9051: guard_no_exception(descr=<Guard0x7fa440404ca0>) [p0]
++9065: p393 = getfield_gc_r(ConstPtr(ptr392), descr=<FieldP list.items 16>)
++9076: p395 = getarrayitem_gc_r(p393, 5, descr=<ArrayP 8>)
++9080: p396 = getfield_gc_r(p395, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++9084: i399 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p396, ConstPtr(ptr398), descr=<Calli 1 rr EF=0 OS=24>)
++9111: guard_false(i399, descr=<Guard0x7fa4403f7570>) [i399, p0]
++9120: i402 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p396, 61, descr=<Calli 8 ri EF=0 OS=30>)
++9141: guard_false(i402, descr=<Guard0x7fa4403f75c8>) [i402, p0]
++9150: i405 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p396, ConstPtr(ptr404), descr=<Calli 1 rr EF=0 OS=24>)
++9177: guard_false(i405, descr=<Guard0x7fa4403f7620>) [i405, p0]
++9186: i407 = getfield_gc_i(ConstPtr(ptr406), descr=<FieldS list.length 8>)
++9190: i409 = int_lt(6, i407)
++9194: guard_true(i409, descr=<Guard0x7fa440404ce0>) [i405, p0]
+debug_merge_point(0, 0, ';_')
++9200: p412 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr411), descr=<Callr 8 r EF=5>)
++9266: guard_no_exception(descr=<Guard0x7fa4403f7678>) [p0, p412]
++9280: i413 = getfield_gc_i(p412, descr=<FieldU tuple3.item0 8 pure>)
++9284: p414 = getfield_gc_r(p412, descr=<FieldP tuple3.item1 16 pure>)
++9288: i415 = getfield_gc_i(p412, descr=<FieldU tuple3.item2 24 pure>)
++9293: i420 = call_release_gil_i(1, 140703468959572, 1, i413, 7, descr=<Calli 8 iii EF=7>)
++9478: guard_not_forced(descr=<Guard0x7fa4403f76d0>) [p0, i413, i415, p414, i420]
++9489: guard_no_exception(descr=<Guard0x7fa440404d20>) [p0, i413, i415, p414, i420]
++9503: i422 = int_lt(i420, 0)
++9507: guard_false(i422, descr=<Guard0x7fa440404d60>) [p0, i413, i415, p414, i420]
++9513: call_n(ConstClass(free_nonmovingbuffer_ll), i413, p414, i415, descr=<Callv 0 iri EF=2>)
++9551: p426 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr425), descr=<Callr 8 r EF=5>)
++9610: guard_no_exception(descr=<Guard0x7fa4403f7728>) [p0, p426]
++9624: i427 = getfield_gc_i(p426, descr=<FieldU tuple3.item0 8 pure>)
++9628: p428 = getfield_gc_r(p426, descr=<FieldP tuple3.item1 16 pure>)
++9632: i429 = getfield_gc_i(p426, descr=<FieldU tuple3.item2 24 pure>)
++9637: i434 = call_release_gil_i(1, 140703468959572, 1, i427, 5, descr=<Calli 8 iii EF=7>)
++9822: guard_not_forced(descr=<Guard0x7fa4403f7780>) [p0, i427, i429, p428, i434]
++9833: guard_no_exception(descr=<Guard0x7fa440404da0>) [p0, i427, i429, p428, i434]
++9847: i436 = int_lt(i434, 0)
++9851: guard_false(i436, descr=<Guard0x7fa440404de0>) [p0, i427, i429, p428, i434]
++9857: call_n(ConstClass(free_nonmovingbuffer_ll), i427, p428, i429, descr=<Callv 0 iri EF=2>)
++9888: p440 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr439), descr=<Callr 8 r EF=5>)
++9954: guard_no_exception(descr=<Guard0x7fa4403f77d8>) [p0, p440]
++9968: i441 = getfield_gc_i(p440, descr=<FieldU tuple3.item0 8 pure>)
++9972: p442 = getfield_gc_r(p440, descr=<FieldP tuple3.item1 16 pure>)
++9976: i443 = getfield_gc_i(p440, descr=<FieldU tuple3.item2 24 pure>)
++9981: i448 = call_release_gil_i(1, 140703468959572, 1, i441, 1, descr=<Calli 8 iii EF=7>)
++10166: guard_not_forced(descr=<Guard0x7fa4403f7830>) [p0, i441, i443, p442, i448]
++10177: guard_no_exception(descr=<Guard0x7fa440404e20>) [p0, i441, i443, p442, i448]
++10191: i450 = int_lt(i448, 0)
++10195: guard_false(i450, descr=<Guard0x7fa440404e60>) [p0, i441, i443, p442, i448]
++10201: call_n(ConstClass(free_nonmovingbuffer_ll), i441, p442, i443, descr=<Callv 0 iri EF=2>)
++10232: call_may_force_n(ConstClass(print_dict), ConstPtr(ptr453), p0, descr=<Callv 0 rr EF=7>)
++10316: guard_not_forced(descr=<Guard0x7fa4403f7888>) [p0]
++10327: guard_no_exception(descr=<Guard0x7fa440404ea0>) [p0]
++10341: p455 = getfield_gc_r(ConstPtr(ptr454), descr=<FieldP list.items 16>)
++10352: p457 = getarrayitem_gc_r(p455, 6, descr=<ArrayP 8>)
++10356: p458 = getfield_gc_r(p457, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++10360: i461 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p458, ConstPtr(ptr460), descr=<Calli 1 rr EF=0 OS=24>)
++10387: guard_false(i461, descr=<Guard0x7fa4403f78e0>) [i461, p0]
++10396: i464 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p458, 61, descr=<Calli 8 ri EF=0 OS=30>)
++10417: guard_false(i464, descr=<Guard0x7fa4403f7938>) [i464, p0]
++10426: i467 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p458, ConstPtr(ptr466), descr=<Calli 1 rr EF=0 OS=24>)
++10453: guard_false(i467, descr=<Guard0x7fa4403f7990>) [i467, p0]
++10462: i469 = getfield_gc_i(ConstPtr(ptr468), descr=<FieldS list.length 8>)
++10466: i471 = int_lt(7, i469)
++10470: guard_true(i471, descr=<Guard0x7fa440404ee0>) [i467, p0]
+debug_merge_point(0, 0, 'body-end_')
++10476: p474 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr473), descr=<Callr 8 r EF=5>)
++10542: guard_no_exception(descr=<Guard0x7fa4403f79e8>) [p0, p474]
++10556: i475 = getfield_gc_i(p474, descr=<FieldU tuple3.item0 8 pure>)
++10560: p476 = getfield_gc_r(p474, descr=<FieldP tuple3.item1 16 pure>)
++10564: i477 = getfield_gc_i(p474, descr=<FieldU tuple3.item2 24 pure>)
++10569: i482 = call_release_gil_i(1, 140703468959572, 1, i475, 7, descr=<Calli 8 iii EF=7>)
++10754: guard_not_forced(descr=<Guard0x7fa4403f7a40>) [p0, i475, i477, p476, i482]
++10765: guard_no_exception(descr=<Guard0x7fa440404f20>) [p0, i475, i477, p476, i482]
++10779: i484 = int_lt(i482, 0)
++10783: guard_false(i484, descr=<Guard0x7fa440404f60>) [p0, i475, i477, p476, i482]
++10789: call_n(ConstClass(free_nonmovingbuffer_ll), i475, p476, i477, descr=<Callv 0 iri EF=2>)
++10827: p488 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr487), descr=<Callr 8 r EF=5>)
++10886: guard_no_exception(descr=<Guard0x7fa4403f7a98>) [p0, p488]
++10900: i489 = getfield_gc_i(p488, descr=<FieldU tuple3.item0 8 pure>)
++10904: p490 = getfield_gc_r(p488, descr=<FieldP tuple3.item1 16 pure>)
++10908: i491 = getfield_gc_i(p488, descr=<FieldU tuple3.item2 24 pure>)
++10913: i496 = call_release_gil_i(1, 140703468959572, 1, i489, 5, descr=<Calli 8 iii EF=7>)
++11098: guard_not_forced(descr=<Guard0x7fa4403f7af0>) [p0, i489, i491, p490, i496]
++11109: guard_no_exception(descr=<Guard0x7fa440404fa0>) [p0, i489, i491, p490, i496]
++11123: i498 = int_lt(i496, 0)
++11127: guard_false(i498, descr=<Guard0x7fa440404fe0>) [p0, i489, i491, p490, i496]
++11133: call_n(ConstClass(free_nonmovingbuffer_ll), i489, p490, i491, descr=<Callv 0 iri EF=2>)
++11164: p502 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr501), descr=<Callr 8 r EF=5>)
++11230: guard_no_exception(descr=<Guard0x7fa4403f7b48>) [p0, p502]
++11244: i503 = getfield_gc_i(p502, descr=<FieldU tuple3.item0 8 pure>)
++11248: p504 = getfield_gc_r(p502, descr=<FieldP tuple3.item1 16 pure>)
++11252: i505 = getfield_gc_i(p502, descr=<FieldU tuple3.item2 24 pure>)
++11257: i510 = call_release_gil_i(1, 140703468959572, 1, i503, 1, descr=<Calli 8 iii EF=7>)
++11442: guard_not_forced(descr=<Guard0x7fa4403f7ba0>) [p0, i503, i505, p504, i510]
++11453: guard_no_exception(descr=<Guard0x7fa440405020>) [p0, i503, i505, p504, i510]
++11467: i512 = int_lt(i510, 0)
++11471: guard_false(i512, descr=<Guard0x7fa440405060>) [p0, i503, i505, p504, i510]
++11477: call_n(ConstClass(free_nonmovingbuffer_ll), i503, p504, i505, descr=<Callv 0 iri EF=2>)
++11508: call_may_force_n(ConstClass(print_dict), ConstPtr(ptr515), p0, descr=<Callv 0 rr EF=7>)
++11592: guard_not_forced(descr=<Guard0x7fa4403f7bf8>) [p0]
++11603: guard_no_exception(descr=<Guard0x7fa4404050a0>) [p0]
++11617: p517 = getfield_gc_r(ConstPtr(ptr516), descr=<FieldP list.items 16>)
++11628: p519 = getarrayitem_gc_r(p517, 7, descr=<ArrayP 8>)
++11632: p520 = getfield_gc_r(p519, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++11636: i523 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p520, ConstPtr(ptr522), descr=<Calli 1 rr EF=0 OS=24>)
++11666: guard_false(i523, descr=<Guard0x7fa4403f7c50>) [i523, p0]
++11675: i526 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p520, 61, descr=<Calli 8 ri EF=0 OS=30>)
++11696: guard_false(i526, descr=<Guard0x7fa4403f7ca8>) [i526, p0]
++11705: i529 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p520, ConstPtr(ptr528), descr=<Calli 1 rr EF=0 OS=24>)
++11732: guard_false(i529, descr=<Guard0x7fa4403f7d00>) [i529, p0]
++11741: i531 = getfield_gc_i(ConstPtr(ptr530), descr=<FieldS list.length 8>)
++11745: i533 = int_lt(8, i531)
++11749: guard_false(i533, descr=<Guard0x7fa4404050e0>) [i529, p0]
++11755: leave_portal_frame(0)
++11755: finish(p0, descr=<DoneWithThisFrameDescrRef object at 0x100b4cca0>)
++11872: --end of the loop--
+[4e3f050d7cc6] jit-log-opt-loop}
+[4e3f1d288930] {jit-log-opt-loop
+# Loop 2 (body-start_) : entry bridge with 476 ops
+[p0]
+debug_merge_point(0, 0, 'body-start_')
++1634: p3 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr2), descr=<Callr 8 r EF=5>)
++1700: guard_no_exception(descr=<Guard0x7fa4403f7e08>) [p0, p3]
++1714: i4 = getfield_gc_i(p3, descr=<FieldU tuple3.item0 8 pure>)
++1718: p5 = getfield_gc_r(p3, descr=<FieldP tuple3.item1 16 pure>)
++1722: i6 = getfield_gc_i(p3, descr=<FieldU tuple3.item2 24 pure>)
++1727: i11 = call_release_gil_i(1, 140703468959572, 1, i4, 7, descr=<Calli 8 iii EF=7>)
++1912: guard_not_forced(descr=<Guard0x7fa4403f7e60>) [p0, i4, i6, p5, i11]
++1923: guard_no_exception(descr=<Guard0x7fa440405120>) [p0, i4, i6, p5, i11]
++1937: i13 = int_lt(i11, 0)
++1941: guard_false(i13, descr=<Guard0x7fa440405160>) [p0, i4, i6, p5, i11]
++1947: call_n(ConstClass(free_nonmovingbuffer_ll), i4, p5, i6, descr=<Callv 0 iri EF=2>)
++1985: p17 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr16), descr=<Callr 8 r EF=5>)
++2044: guard_no_exception(descr=<Guard0x7fa4403f7eb8>) [p0, p17]
++2058: i18 = getfield_gc_i(p17, descr=<FieldU tuple3.item0 8 pure>)
++2062: p19 = getfield_gc_r(p17, descr=<FieldP tuple3.item1 16 pure>)
++2066: i20 = getfield_gc_i(p17, descr=<FieldU tuple3.item2 24 pure>)
++2071: i25 = call_release_gil_i(1, 140703468959572, 1, i18, 5, descr=<Calli 8 iii EF=7>)
++2256: guard_not_forced(descr=<Guard0x7fa4403f7f10>) [p0, i18, i20, p19, i25]
++2267: guard_no_exception(descr=<Guard0x7fa4404051a0>) [p0, i18, i20, p19, i25]
++2281: i27 = int_lt(i25, 0)
++2285: guard_false(i27, descr=<Guard0x7fa4404051e0>) [p0, i18, i20, p19, i25]
++2291: call_n(ConstClass(free_nonmovingbuffer_ll), i18, p19, i20, descr=<Callv 0 iri EF=2>)
++2329: p31 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr30), descr=<Callr 8 r EF=5>)
++2395: guard_no_exception(descr=<Guard0x7fa4403f7f68>) [p0, p31]
++2409: i32 = getfield_gc_i(p31, descr=<FieldU tuple3.item0 8 pure>)
++2413: p33 = getfield_gc_r(p31, descr=<FieldP tuple3.item1 16 pure>)
++2417: i34 = getfield_gc_i(p31, descr=<FieldU tuple3.item2 24 pure>)
++2422: i39 = call_release_gil_i(1, 140703468959572, 1, i32, 1, descr=<Calli 8 iii EF=7>)
++2607: guard_not_forced(descr=<Guard0x7fa44041e020>) [p0, i32, i34, p33, i39]
++2618: guard_no_exception(descr=<Guard0x7fa440405220>) [p0, i32, i34, p33, i39]
++2632: i41 = int_lt(i39, 0)
++2636: guard_false(i41, descr=<Guard0x7fa440405260>) [p0, i32, i34, p33, i39]
++2642: call_n(ConstClass(free_nonmovingbuffer_ll), i32, p33, i34, descr=<Callv 0 iri EF=2>)
++2680: call_may_force_n(ConstClass(print_dict), ConstPtr(ptr44), p0, descr=<Callv 0 rr EF=7>)
++2764: guard_not_forced(descr=<Guard0x7fa44041e078>) [p0]
++2775: guard_no_exception(descr=<Guard0x7fa4404052a0>) [p0]
++2796: p46 = getfield_gc_r(ConstPtr(ptr45), descr=<FieldP list.items 16>)
++2800: p48 = getarrayitem_gc_r(p46, 0, descr=<ArrayP 8>)
++2804: p49 = getfield_gc_r(p48, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++2815: i52 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p49, ConstPtr(ptr51), descr=<Calli 1 rr EF=0 OS=24>)
++2838: guard_false(i52, descr=<Guard0x7fa44041e0d0>) [i52, p0]
++2847: i55 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p49, 61, descr=<Calli 8 ri EF=0 OS=30>)
++2868: guard_false(i55, descr=<Guard0x7fa44041e128>) [i55, p0]
++2884: i58 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p49, ConstPtr(ptr57), descr=<Calli 1 rr EF=0 OS=24>)
++2907: guard_false(i58, descr=<Guard0x7fa44041e180>) [i58, p0]
++2916: i60 = getfield_gc_i(ConstPtr(ptr59), descr=<FieldS list.length 8>)
++2920: i62 = int_lt(1, i60)
++2924: guard_true(i62, descr=<Guard0x7fa4404052e0>) [i58, p0]
+debug_merge_point(0, 0, '._x')
++2930: p65 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr64), descr=<Callr 8 r EF=5>)
++3017: guard_no_exception(descr=<Guard0x7fa44041e1d8>) [p0, p65]
++3031: i66 = getfield_gc_i(p65, descr=<FieldU tuple3.item0 8 pure>)
++3035: p67 = getfield_gc_r(p65, descr=<FieldP tuple3.item1 16 pure>)
++3039: i68 = getfield_gc_i(p65, descr=<FieldU tuple3.item2 24 pure>)
++3044: i73 = call_release_gil_i(1, 140703468959572, 1, i66, 7, descr=<Calli 8 iii EF=7>)
++3229: guard_not_forced(descr=<Guard0x7fa44041e230>) [p0, i66, i68, p67, i73]
++3240: guard_no_exception(descr=<Guard0x7fa440405320>) [p0, i66, i68, p67, i73]
++3254: i75 = int_lt(i73, 0)
++3258: guard_false(i75, descr=<Guard0x7fa440405360>) [p0, i66, i68, p67, i73]
++3264: call_n(ConstClass(free_nonmovingbuffer_ll), i66, p67, i68, descr=<Callv 0 iri EF=2>)
++3302: p79 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr78), descr=<Callr 8 r EF=5>)
++3361: guard_no_exception(descr=<Guard0x7fa44041e288>) [p0, p79]
++3375: i80 = getfield_gc_i(p79, descr=<FieldU tuple3.item0 8 pure>)
++3379: p81 = getfield_gc_r(p79, descr=<FieldP tuple3.item1 16 pure>)
++3383: i82 = getfield_gc_i(p79, descr=<FieldU tuple3.item2 24 pure>)
++3388: i87 = call_release_gil_i(1, 140703468959572, 1, i80, 5, descr=<Calli 8 iii EF=7>)
++3573: guard_not_forced(descr=<Guard0x7fa44041e2e0>) [p0, i80, i82, p81, i87]
++3584: guard_no_exception(descr=<Guard0x7fa4404053a0>) [p0, i80, i82, p81, i87]
++3598: i89 = int_lt(i87, 0)
++3602: guard_false(i89, descr=<Guard0x7fa4404053e0>) [p0, i80, i82, p81, i87]
++3608: call_n(ConstClass(free_nonmovingbuffer_ll), i80, p81, i82, descr=<Callv 0 iri EF=2>)
++3639: p93 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr92), descr=<Callr 8 r EF=5>)
++3705: guard_no_exception(descr=<Guard0x7fa44041e338>) [p0, p93]
++3719: i94 = getfield_gc_i(p93, descr=<FieldU tuple3.item0 8 pure>)
++3723: p95 = getfield_gc_r(p93, descr=<FieldP tuple3.item1 16 pure>)
++3727: i96 = getfield_gc_i(p93, descr=<FieldU tuple3.item2 24 pure>)
++3732: i101 = call_release_gil_i(1, 140703468959572, 1, i94, 1, descr=<Calli 8 iii EF=7>)
++3917: guard_not_forced(descr=<Guard0x7fa44041e390>) [p0, i94, i96, p95, i101]
++3928: guard_no_exception(descr=<Guard0x7fa440405420>) [p0, i94, i96, p95, i101]
++3942: i103 = int_lt(i101, 0)
++3946: guard_false(i103, descr=<Guard0x7fa440405460>) [p0, i94, i96, p95, i101]
++3952: call_n(ConstClass(free_nonmovingbuffer_ll), i94, p95, i96, descr=<Callv 0 iri EF=2>)
++3983: call_may_force_n(ConstClass(print_dict), ConstPtr(ptr106), p0, descr=<Callv 0 rr EF=7>)
++4067: guard_not_forced(descr=<Guard0x7fa44041e3e8>) [p0]
++4078: guard_no_exception(descr=<Guard0x7fa4404054a0>) [p0]
++4092: p108 = getfield_gc_r(ConstPtr(ptr107), descr=<FieldP list.items 16>)
++4103: p110 = getarrayitem_gc_r(p108, 1, descr=<ArrayP 8>)
++4107: p111 = getfield_gc_r(p110, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++4111: i114 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p111, ConstPtr(ptr113), descr=<Calli 1 rr EF=0 OS=24>)
++4138: guard_false(i114, descr=<Guard0x7fa44041e440>) [i114, p0]
++4147: i117 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p111, 61, descr=<Calli 8 ri EF=0 OS=30>)
++4168: guard_false(i117, descr=<Guard0x7fa44041e498>) [i117, p0]
++4177: i120 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p111, ConstPtr(ptr119), descr=<Calli 1 rr EF=0 OS=24>)
++4204: guard_false(i120, descr=<Guard0x7fa44041e4f0>) [i120, p0]
++4213: i122 = getfield_gc_i(ConstPtr(ptr121), descr=<FieldS list.length 8>)
++4217: i124 = int_lt(2, i122)
++4221: guard_true(i124, descr=<Guard0x7fa4404054e0>) [i120, p0]
+debug_merge_point(0, 0, '=_')
++4227: p127 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr126), descr=<Callr 8 r EF=5>)
++4293: guard_no_exception(descr=<Guard0x7fa44041e548>) [p0, p127]
++4307: i128 = getfield_gc_i(p127, descr=<FieldU tuple3.item0 8 pure>)
++4311: p129 = getfield_gc_r(p127, descr=<FieldP tuple3.item1 16 pure>)
++4315: i130 = getfield_gc_i(p127, descr=<FieldU tuple3.item2 24 pure>)
++4320: i135 = call_release_gil_i(1, 140703468959572, 1, i128, 7, descr=<Calli 8 iii EF=7>)
++4505: guard_not_forced(descr=<Guard0x7fa44041e5a0>) [p0, i128, i130, p129, i135]
++4516: guard_no_exception(descr=<Guard0x7fa440405520>) [p0, i128, i130, p129, i135]
++4530: i137 = int_lt(i135, 0)
++4534: guard_false(i137, descr=<Guard0x7fa440405560>) [p0, i128, i130, p129, i135]
++4540: call_n(ConstClass(free_nonmovingbuffer_ll), i128, p129, i130, descr=<Callv 0 iri EF=2>)
++4578: p141 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr140), descr=<Callr 8 r EF=5>)
++4637: guard_no_exception(descr=<Guard0x7fa44041e5f8>) [p0, p141]
++4651: i142 = getfield_gc_i(p141, descr=<FieldU tuple3.item0 8 pure>)
++4655: p143 = getfield_gc_r(p141, descr=<FieldP tuple3.item1 16 pure>)
++4659: i144 = getfield_gc_i(p141, descr=<FieldU tuple3.item2 24 pure>)
++4664: i149 = call_release_gil_i(1, 140703468959572, 1, i142, 5, descr=<Calli 8 iii EF=7>)
++4849: guard_not_forced(descr=<Guard0x7fa44041e650>) [p0, i142, i144, p143, i149]
++4860: guard_no_exception(descr=<Guard0x7fa4404055a0>) [p0, i142, i144, p143, i149]
++4874: i151 = int_lt(i149, 0)
++4878: guard_false(i151, descr=<Guard0x7fa4404055e0>) [p0, i142, i144, p143, i149]
++4884: call_n(ConstClass(free_nonmovingbuffer_ll), i142, p143, i144, descr=<Callv 0 iri EF=2>)
++4915: p155 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr154), descr=<Callr 8 r EF=5>)
++4981: guard_no_exception(descr=<Guard0x7fa44041e6a8>) [p0, p155]
++4995: i156 = getfield_gc_i(p155, descr=<FieldU tuple3.item0 8 pure>)
++4999: p157 = getfield_gc_r(p155, descr=<FieldP tuple3.item1 16 pure>)
++5003: i158 = getfield_gc_i(p155, descr=<FieldU tuple3.item2 24 pure>)
++5008: i163 = call_release_gil_i(1, 140703468959572, 1, i156, 1, descr=<Calli 8 iii EF=7>)
++5193: guard_not_forced(descr=<Guard0x7fa44041e700>) [p0, i156, i158, p157, i163]
++5204: guard_no_exception(descr=<Guard0x7fa440405620>) [p0, i156, i158, p157, i163]
++5218: i165 = int_lt(i163, 0)
++5222: guard_false(i165, descr=<Guard0x7fa440405660>) [p0, i156, i158, p157, i163]
++5228: call_n(ConstClass(free_nonmovingbuffer_ll), i156, p157, i158, descr=<Callv 0 iri EF=2>)
++5259: call_may_force_n(ConstClass(print_dict), ConstPtr(ptr168), p0, descr=<Callv 0 rr EF=7>)
++5343: guard_not_forced(descr=<Guard0x7fa44041e758>) [p0]
++5354: guard_no_exception(descr=<Guard0x7fa4404204a0>) [p0]
++5368: p170 = getfield_gc_r(ConstPtr(ptr169), descr=<FieldP list.items 16>)
++5379: p172 = getarrayitem_gc_r(p170, 2, descr=<ArrayP 8>)
++5383: p173 = getfield_gc_r(p172, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++5387: i176 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p173, ConstPtr(ptr175), descr=<Calli 1 rr EF=0 OS=24>)
++5417: guard_false(i176, descr=<Guard0x7fa44041fe08>) [i176, p0]
++5426: i179 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p173, 61, descr=<Calli 8 ri EF=0 OS=30>)
++5447: guard_true(i179, descr=<Guard0x7fa44041fdb0>) [i179, p0]
++5456: p181 = getarrayitem_gc_r(p170, 1, descr=<ArrayP 8>)
++5461: p182 = getfield_gc_r(p181, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++5465: i185 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p182, 46, descr=<Calli 8 ri EF=0 OS=30>)
++5489: guard_true(i185, descr=<Guard0x7fa44041fd58>) [i185, p0]
++5498: p187 = getarrayitem_gc_r(p170, 3, descr=<ArrayP 8>)
++5503: p188 = getfield_gc_r(p187, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++5514: i191 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p188, ConstPtr(ptr190), descr=<Calli 1 rr EF=0 OS=24>)
++5544: guard_false(i191, descr=<Guard0x7fa44041fd00>) [p0, i191]
++5553: i194 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p188, 46, descr=<Calli 8 ri EF=0 OS=30>)
++5574: guard_true(i194, descr=<Guard0x7fa44041fca8>) [p0, i194]
++5583: p195 = getfield_gc_r(p187, descr=<FieldP src.awk_vm.token.Token.inst_value 48>)
++5587: guard_nonnull(p195, descr=<Guard0x7fa440420460>) [p0, i194]
++5596: i196 = strhash(p195)
++5600: i198 = cond_call_value_i(i196, ConstClass(_ll_strhash__rpy_stringPtr), p195, descr=<Calli 8 r EF=2>)
++5609: i201 = call_i(ConstClass(ll_call_lookup_function_trampoline__v75___simple_call__function_ll), p0, p195, i198, 0, descr=<Calli 8 rrii EF=5 OS=4>)
++5707: guard_no_exception(descr=<Guard0x7fa44041fc50>) [p0, i201]
++5721: i203 = int_ge(i201, 0)
++5725: guard_true(i203, descr=<Guard0x7fa440420420>) [p0, i201]
++5731: p204 = getfield_gc_r(p0, descr=<FieldP dicttable.entries 48>)
++5749: p205 = getinteriorfield_gc_r(p204, i201, descr=<InteriorFieldDescr <FieldP odictentry.value 8>>)
++5754: p206 = getfield_gc_r(p187, descr=<FieldP src.awk_vm.token.Token.inst_prop 32>)
++5765: guard_nonnull(p206, descr=<Guard0x7fa4404203e0>) [p0, i201]
++5774: i207 = strhash(p206)
++5778: i209 = cond_call_value_i(i207, ConstClass(_ll_strhash__rpy_stringPtr), p206, descr=<Calli 8 r EF=2>)
++5787: i212 = call_i(ConstClass(ll_call_lookup_function_trampoline__v102___simple_call__function_l), p205, p206, i209, 0, descr=<Calli 8 rrii EF=5 OS=4>)
++5865: guard_no_exception(descr=<Guard0x7fa44041fbf8>) [p0, i212, p205]
++5879: i214 = int_ge(i212, 0)
++5883: guard_true(i214, descr=<Guard0x7fa4404203a0>) [p0, i212, p205]
++5889: p215 = getfield_gc_r(p205, descr=<FieldP dicttable.entries 48>)
++5907: i216 = getinteriorfield_gc_i(p215, i212, descr=<InteriorFieldDescr <FieldS odictentry.value 8>>)
++5912: i218 = getfield_gc_i(ConstPtr(ptr217), descr=<FieldS list.length 8>)
++5923: i220 = int_sub(i218, 1)
++5927: i222 = int_lt(4, i220)
++5931: guard_true(i222, descr=<Guard0x7fa440420360>) [p0, i212, p205]
++5937: p224 = getarrayitem_gc_r(p170, 4, descr=<ArrayP 8>)
++5948: p225 = getfield_gc_r(p224, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++5952: i228 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p225, 43, descr=<Calli 8 ri EF=0 OS=30>)
++5979: guard_true(i228, descr=<Guard0x7fa44041fba0>) [p0, i228, i216]
++5988: p230 = getarrayitem_gc_r(p170, 5, descr=<ArrayP 8>)
++5992: p231 = getfield_gc_r(p230, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++5996: i234 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p231, ConstPtr(ptr233), descr=<Calli 1 rr EF=0 OS=24>)
++6030: guard_false(i234, descr=<Guard0x7fa44041fb48>) [p0, i216, i234]
++6039: i237 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p231, 46, descr=<Calli 8 ri EF=0 OS=30>)
++6060: guard_true(i237, descr=<Guard0x7fa44041faf0>) [p0, i216, i237]
++6069: p238 = getfield_gc_r(p230, descr=<FieldP src.awk_vm.token.Token.inst_value 48>)
++6080: guard_nonnull(p238, descr=<Guard0x7fa440420320>) [p0, i216, i237]
++6089: i239 = strhash(p238)
++6093: i241 = cond_call_value_i(i239, ConstClass(_ll_strhash__rpy_stringPtr), p238, descr=<Calli 8 r EF=2>)
++6102: i244 = call_i(ConstClass(ll_call_lookup_function_trampoline__v75___simple_call__function_ll), p0, p238, i241, 0, descr=<Calli 8 rrii EF=5 OS=4>)
++6179: guard_no_exception(descr=<Guard0x7fa44041fa98>) [p0, i216, i244]
++6193: i246 = int_ge(i244, 0)
++6197: guard_true(i246, descr=<Guard0x7fa4404202e0>) [p0, i216, i244]
++6210: p247 = getinteriorfield_gc_r(p204, i244, descr=<InteriorFieldDescr <FieldP odictentry.value 8>>)
++6222: p248 = getfield_gc_r(p230, descr=<FieldP src.awk_vm.token.Token.inst_prop 32>)
++6233: guard_nonnull(p248, descr=<Guard0x7fa4404202a0>) [p0, i216, i244]
++6242: i249 = strhash(p248)
++6246: i251 = cond_call_value_i(i249, ConstClass(_ll_strhash__rpy_stringPtr), p248, descr=<Calli 8 r EF=2>)
++6255: i254 = call_i(ConstClass(ll_call_lookup_function_trampoline__v102___simple_call__function_l), p247, p248, i251, 0, descr=<Calli 8 rrii EF=5 OS=4>)
++6326: guard_no_exception(descr=<Guard0x7fa44041fa40>) [p0, i216, i254, p247]
++6340: i256 = int_ge(i254, 0)
++6344: guard_true(i256, descr=<Guard0x7fa440420260>) [p0, i216, i254, p247]
++6350: p257 = getfield_gc_r(p247, descr=<FieldP dicttable.entries 48>)
++6368: i258 = getinteriorfield_gc_i(p257, i254, descr=<InteriorFieldDescr <FieldS odictentry.value 8>>)
++6373: i260 = int_lt(6, i220)
++6377: guard_true(i260, descr=<Guard0x7fa440420220>) [p0, i216, i254, p247]
++6383: p262 = getarrayitem_gc_r(p170, 6, descr=<ArrayP 8>)
++6394: p263 = getfield_gc_r(p262, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++6398: i266 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p263, 43, descr=<Calli 8 ri EF=0 OS=30>)
++6419: guard_false(i266, descr=<Guard0x7fa44041f9e8>) [p0, i216, i266, i258]
++6428: i267 = int_add(i216, i258)
++6434: p268 = getfield_gc_r(p181, descr=<FieldP src.awk_vm.token.Token.inst_value 48>)
++6445: guard_nonnull(p268, descr=<Guard0x7fa4404201e0>) [p0, i216, i266, i258]
++6454: i269 = strhash(p268)
++6458: i271 = cond_call_value_i(i269, ConstClass(_ll_strhash__rpy_stringPtr), p268, descr=<Calli 8 r EF=2>)
++6467: i274 = call_i(ConstClass(ll_call_lookup_function_trampoline__v75___simple_call__function_ll), p0, p268, i271, 0, descr=<Calli 8 rrii EF=5 OS=4>)
++6547: guard_no_exception(descr=<Guard0x7fa44041f990>) [i274, i267, p0]
++6561: i276 = int_ge(i274, 0)
++6565: guard_true(i276, descr=<Guard0x7fa4404201a0>) [i274, i267, p0]
++6578: p277 = getinteriorfield_gc_r(p204, i274, descr=<InteriorFieldDescr <FieldP odictentry.value 8>>)
++6590: p278 = getfield_gc_r(p181, descr=<FieldP src.awk_vm.token.Token.inst_prop 32>)
++6601: guard_nonnull(p278, descr=<Guard0x7fa440420160>) [i274, i267, p0]
++6610: i279 = strhash(p278)
++6614: i281 = cond_call_value_i(i279, ConstClass(_ll_strhash__rpy_stringPtr), p278, descr=<Calli 8 r EF=2>)
++6623: i284 = call_i(ConstClass(ll_call_lookup_function_trampoline__v102___simple_call__function_l), p277, p278, i281, 1, descr=<Calli 8 rrii EF=5 OS=4>)
++6704: guard_no_exception(descr=<Guard0x7fa44041f938>) [i284, i281, i267, p0, p277, p278]
++6718: call_n(ConstClass(_ll_dict_setitem_lookup_done_trampoline__v155___simple_call__function__), p277, p278, i267, i281, i284, descr=<Callv 0 rriii EF=5>)
++6797: guard_no_exception(descr=<Guard0x7fa44041f8e0>) [p0]
+debug_merge_point(0, 0, '._x')
++6811: p288 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr287), descr=<Callr 8 r EF=5>)
++6874: guard_no_exception(descr=<Guard0x7fa44041f888>) [p0, p288]
++6888: i289 = getfield_gc_i(p288, descr=<FieldU tuple3.item0 8 pure>)
++6892: p290 = getfield_gc_r(p288, descr=<FieldP tuple3.item1 16 pure>)
++6896: i291 = getfield_gc_i(p288, descr=<FieldU tuple3.item2 24 pure>)
++6901: i296 = call_release_gil_i(1, 140703468959572, 1, i289, 7, descr=<Calli 8 iii EF=7>)
++7086: guard_not_forced(descr=<Guard0x7fa44041f830>) [p0, i289, i291, p290, i296]
++7097: guard_no_exception(descr=<Guard0x7fa4404200a0>) [p0, i289, i291, p290, i296]
++7111: i298 = int_lt(i296, 0)
++7115: guard_false(i298, descr=<Guard0x7fa440420060>) [p0, i289, i291, p290, i296]
++7121: call_n(ConstClass(free_nonmovingbuffer_ll), i289, p290, i291, descr=<Callv 0 iri EF=2>)
++7159: p302 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr301), descr=<Callr 8 r EF=5>)
++7218: guard_no_exception(descr=<Guard0x7fa44041f7d8>) [p0, p302]
++7232: i303 = getfield_gc_i(p302, descr=<FieldU tuple3.item0 8 pure>)
++7236: p304 = getfield_gc_r(p302, descr=<FieldP tuple3.item1 16 pure>)
++7240: i305 = getfield_gc_i(p302, descr=<FieldU tuple3.item2 24 pure>)
++7245: i310 = call_release_gil_i(1, 140703468959572, 1, i303, 5, descr=<Calli 8 iii EF=7>)
++7430: guard_not_forced(descr=<Guard0x7fa44041f780>) [p0, i303, i305, p304, i310]
++7441: guard_no_exception(descr=<Guard0x7fa440420020>) [p0, i303, i305, p304, i310]
++7455: i312 = int_lt(i310, 0)
++7459: guard_false(i312, descr=<Guard0x7fa440405fa0>) [p0, i303, i305, p304, i310]
++7465: call_n(ConstClass(free_nonmovingbuffer_ll), i303, p304, i305, descr=<Callv 0 iri EF=2>)
++7496: p316 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr315), descr=<Callr 8 r EF=5>)
++7562: guard_no_exception(descr=<Guard0x7fa44041f728>) [p0, p316]
++7576: i317 = getfield_gc_i(p316, descr=<FieldU tuple3.item0 8 pure>)
++7580: p318 = getfield_gc_r(p316, descr=<FieldP tuple3.item1 16 pure>)
++7584: i319 = getfield_gc_i(p316, descr=<FieldU tuple3.item2 24 pure>)
++7589: i324 = call_release_gil_i(1, 140703468959572, 1, i317, 1, descr=<Calli 8 iii EF=7>)
++7774: guard_not_forced(descr=<Guard0x7fa44041f6d0>) [p0, i317, i319, p318, i324]
++7785: guard_no_exception(descr=<Guard0x7fa440405f60>) [p0, i317, i319, p318, i324]
++7799: i326 = int_lt(i324, 0)
++7803: guard_false(i326, descr=<Guard0x7fa440405f20>) [p0, i317, i319, p318, i324]
++7809: call_n(ConstClass(free_nonmovingbuffer_ll), i317, p318, i319, descr=<Callv 0 iri EF=2>)
++7840: call_may_force_n(ConstClass(print_dict), ConstPtr(ptr329), p0, descr=<Callv 0 rr EF=7>)
++7924: guard_not_forced(descr=<Guard0x7fa44041f678>) [p0]
++7935: guard_no_exception(descr=<Guard0x7fa440405ee0>) [p0]
++7949: p331 = getfield_gc_r(ConstPtr(ptr330), descr=<FieldP list.items 16>)
++7960: p333 = getarrayitem_gc_r(p331, 3, descr=<ArrayP 8>)
++7964: p334 = getfield_gc_r(p333, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++7968: i337 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p334, ConstPtr(ptr336), descr=<Calli 1 rr EF=0 OS=24>)
++7995: guard_false(i337, descr=<Guard0x7fa44041f620>) [i337, p0]
++8004: i340 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p334, 61, descr=<Calli 8 ri EF=0 OS=30>)
++8025: guard_false(i340, descr=<Guard0x7fa44041f5c8>) [i340, p0]
++8034: i343 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p334, ConstPtr(ptr342), descr=<Calli 1 rr EF=0 OS=24>)
++8061: guard_false(i343, descr=<Guard0x7fa44041f570>) [i343, p0]
++8070: i345 = getfield_gc_i(ConstPtr(ptr344), descr=<FieldS list.length 8>)
++8074: i347 = int_lt(4, i345)
++8078: guard_true(i347, descr=<Guard0x7fa440405ea0>) [i343, p0]
+debug_merge_point(0, 0, '+_')
++8084: p350 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr349), descr=<Callr 8 r EF=5>)
++8150: guard_no_exception(descr=<Guard0x7fa44041f518>) [p0, p350]
++8164: i351 = getfield_gc_i(p350, descr=<FieldU tuple3.item0 8 pure>)
++8168: p352 = getfield_gc_r(p350, descr=<FieldP tuple3.item1 16 pure>)
++8172: i353 = getfield_gc_i(p350, descr=<FieldU tuple3.item2 24 pure>)
++8177: i358 = call_release_gil_i(1, 140703468959572, 1, i351, 7, descr=<Calli 8 iii EF=7>)
++8362: guard_not_forced(descr=<Guard0x7fa44041f4c0>) [p0, i351, i353, p352, i358]
++8373: guard_no_exception(descr=<Guard0x7fa440405e60>) [p0, i351, i353, p352, i358]
++8387: i360 = int_lt(i358, 0)
++8391: guard_false(i360, descr=<Guard0x7fa440405e20>) [p0, i351, i353, p352, i358]
++8397: call_n(ConstClass(free_nonmovingbuffer_ll), i351, p352, i353, descr=<Callv 0 iri EF=2>)
++8435: p364 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr363), descr=<Callr 8 r EF=5>)
++8494: guard_no_exception(descr=<Guard0x7fa44041f468>) [p0, p364]
++8508: i365 = getfield_gc_i(p364, descr=<FieldU tuple3.item0 8 pure>)
++8512: p366 = getfield_gc_r(p364, descr=<FieldP tuple3.item1 16 pure>)
++8516: i367 = getfield_gc_i(p364, descr=<FieldU tuple3.item2 24 pure>)
++8521: i372 = call_release_gil_i(1, 140703468959572, 1, i365, 5, descr=<Calli 8 iii EF=7>)
++8706: guard_not_forced(descr=<Guard0x7fa44041f410>) [p0, i365, i367, p366, i372]
++8717: guard_no_exception(descr=<Guard0x7fa440405de0>) [p0, i365, i367, p366, i372]
++8731: i374 = int_lt(i372, 0)
++8735: guard_false(i374, descr=<Guard0x7fa440405da0>) [p0, i365, i367, p366, i372]
++8741: call_n(ConstClass(free_nonmovingbuffer_ll), i365, p366, i367, descr=<Callv 0 iri EF=2>)
++8772: p378 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr377), descr=<Callr 8 r EF=5>)
++8838: guard_no_exception(descr=<Guard0x7fa44041f3b8>) [p0, p378]
++8852: i379 = getfield_gc_i(p378, descr=<FieldU tuple3.item0 8 pure>)
++8856: p380 = getfield_gc_r(p378, descr=<FieldP tuple3.item1 16 pure>)
++8860: i381 = getfield_gc_i(p378, descr=<FieldU tuple3.item2 24 pure>)
++8865: i386 = call_release_gil_i(1, 140703468959572, 1, i379, 1, descr=<Calli 8 iii EF=7>)
++9050: guard_not_forced(descr=<Guard0x7fa44041f360>) [p0, i379, i381, p380, i386]
++9061: guard_no_exception(descr=<Guard0x7fa440405d60>) [p0, i379, i381, p380, i386]
++9075: i388 = int_lt(i386, 0)
++9079: guard_false(i388, descr=<Guard0x7fa440405d20>) [p0, i379, i381, p380, i386]
++9085: call_n(ConstClass(free_nonmovingbuffer_ll), i379, p380, i381, descr=<Callv 0 iri EF=2>)
++9116: call_may_force_n(ConstClass(print_dict), ConstPtr(ptr391), p0, descr=<Callv 0 rr EF=7>)
++9200: guard_not_forced(descr=<Guard0x7fa44041f308>) [p0]
++9211: guard_no_exception(descr=<Guard0x7fa440405ce0>) [p0]
++9225: p393 = getfield_gc_r(ConstPtr(ptr392), descr=<FieldP list.items 16>)
++9236: p395 = getarrayitem_gc_r(p393, 4, descr=<ArrayP 8>)
++9240: p396 = getfield_gc_r(p395, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++9244: i399 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p396, ConstPtr(ptr398), descr=<Calli 1 rr EF=0 OS=24>)
++9271: guard_false(i399, descr=<Guard0x7fa44041f2b0>) [i399, p0]
++9280: i402 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p396, 61, descr=<Calli 8 ri EF=0 OS=30>)
++9301: guard_false(i402, descr=<Guard0x7fa44041f258>) [i402, p0]
++9310: i405 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p396, ConstPtr(ptr404), descr=<Calli 1 rr EF=0 OS=24>)
++9337: guard_false(i405, descr=<Guard0x7fa44041f200>) [i405, p0]
++9346: i407 = getfield_gc_i(ConstPtr(ptr406), descr=<FieldS list.length 8>)
++9350: i409 = int_lt(5, i407)
++9354: guard_true(i409, descr=<Guard0x7fa440405ca0>) [i405, p0]
+debug_merge_point(0, 0, '._x')
++9360: p412 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr411), descr=<Callr 8 r EF=5>)
++9426: guard_no_exception(descr=<Guard0x7fa44041f1a8>) [p0, p412]
++9440: i413 = getfield_gc_i(p412, descr=<FieldU tuple3.item0 8 pure>)
++9444: p414 = getfield_gc_r(p412, descr=<FieldP tuple3.item1 16 pure>)
++9448: i415 = getfield_gc_i(p412, descr=<FieldU tuple3.item2 24 pure>)
++9453: i420 = call_release_gil_i(1, 140703468959572, 1, i413, 7, descr=<Calli 8 iii EF=7>)
++9638: guard_not_forced(descr=<Guard0x7fa44041f150>) [p0, i413, i415, p414, i420]
++9649: guard_no_exception(descr=<Guard0x7fa440405c60>) [p0, i413, i415, p414, i420]
++9663: i422 = int_lt(i420, 0)
++9667: guard_false(i422, descr=<Guard0x7fa440405c20>) [p0, i413, i415, p414, i420]
++9673: call_n(ConstClass(free_nonmovingbuffer_ll), i413, p414, i415, descr=<Callv 0 iri EF=2>)
++9711: p426 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr425), descr=<Callr 8 r EF=5>)
++9770: guard_no_exception(descr=<Guard0x7fa44041f0f8>) [p0, p426]
++9784: i427 = getfield_gc_i(p426, descr=<FieldU tuple3.item0 8 pure>)
++9788: p428 = getfield_gc_r(p426, descr=<FieldP tuple3.item1 16 pure>)
++9792: i429 = getfield_gc_i(p426, descr=<FieldU tuple3.item2 24 pure>)
++9797: i434 = call_release_gil_i(1, 140703468959572, 1, i427, 5, descr=<Calli 8 iii EF=7>)
++9982: guard_not_forced(descr=<Guard0x7fa44041f0a0>) [p0, i427, i429, p428, i434]
++9993: guard_no_exception(descr=<Guard0x7fa440405be0>) [p0, i427, i429, p428, i434]
++10007: i436 = int_lt(i434, 0)
++10011: guard_false(i436, descr=<Guard0x7fa440405ba0>) [p0, i427, i429, p428, i434]
++10017: call_n(ConstClass(free_nonmovingbuffer_ll), i427, p428, i429, descr=<Callv 0 iri EF=2>)
++10048: p440 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr439), descr=<Callr 8 r EF=5>)
++10114: guard_no_exception(descr=<Guard0x7fa44041f048>) [p0, p440]
++10128: i441 = getfield_gc_i(p440, descr=<FieldU tuple3.item0 8 pure>)
++10132: p442 = getfield_gc_r(p440, descr=<FieldP tuple3.item1 16 pure>)
++10136: i443 = getfield_gc_i(p440, descr=<FieldU tuple3.item2 24 pure>)
++10141: i448 = call_release_gil_i(1, 140703468959572, 1, i441, 1, descr=<Calli 8 iii EF=7>)
++10326: guard_not_forced(descr=<Guard0x7fa44041eff0>) [p0, i441, i443, p442, i448]
++10337: guard_no_exception(descr=<Guard0x7fa440405b60>) [p0, i441, i443, p442, i448]
++10351: i450 = int_lt(i448, 0)
++10355: guard_false(i450, descr=<Guard0x7fa440405b20>) [p0, i441, i443, p442, i448]
++10361: call_n(ConstClass(free_nonmovingbuffer_ll), i441, p442, i443, descr=<Callv 0 iri EF=2>)
++10392: call_may_force_n(ConstClass(print_dict), ConstPtr(ptr453), p0, descr=<Callv 0 rr EF=7>)
++10476: guard_not_forced(descr=<Guard0x7fa44041ef98>) [p0]
++10487: guard_no_exception(descr=<Guard0x7fa440405ae0>) [p0]
++10501: p455 = getfield_gc_r(ConstPtr(ptr454), descr=<FieldP list.items 16>)
++10512: p457 = getarrayitem_gc_r(p455, 5, descr=<ArrayP 8>)
++10516: p458 = getfield_gc_r(p457, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++10520: i461 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p458, ConstPtr(ptr460), descr=<Calli 1 rr EF=0 OS=24>)
++10547: guard_false(i461, descr=<Guard0x7fa44041ef40>) [i461, p0]
++10556: i464 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p458, 61, descr=<Calli 8 ri EF=0 OS=30>)
++10577: guard_false(i464, descr=<Guard0x7fa44041eee8>) [i464, p0]
++10586: i467 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p458, ConstPtr(ptr466), descr=<Calli 1 rr EF=0 OS=24>)
++10613: guard_false(i467, descr=<Guard0x7fa44041ee90>) [i467, p0]
++10622: i469 = getfield_gc_i(ConstPtr(ptr468), descr=<FieldS list.length 8>)
++10626: i471 = int_lt(6, i469)
++10630: guard_true(i471, descr=<Guard0x7fa440405aa0>) [i467, p0]
+debug_merge_point(0, 0, ';_')
++10636: p474 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr473), descr=<Callr 8 r EF=5>)
++10702: guard_no_exception(descr=<Guard0x7fa44041ee38>) [p0, p474]
++10716: i475 = getfield_gc_i(p474, descr=<FieldU tuple3.item0 8 pure>)
++10720: p476 = getfield_gc_r(p474, descr=<FieldP tuple3.item1 16 pure>)
++10724: i477 = getfield_gc_i(p474, descr=<FieldU tuple3.item2 24 pure>)
++10729: i482 = call_release_gil_i(1, 140703468959572, 1, i475, 7, descr=<Calli 8 iii EF=7>)
++10914: guard_not_forced(descr=<Guard0x7fa44041ede0>) [p0, i475, i477, p476, i482]
++10925: guard_no_exception(descr=<Guard0x7fa440405a60>) [p0, i475, i477, p476, i482]
++10939: i484 = int_lt(i482, 0)
++10943: guard_false(i484, descr=<Guard0x7fa440405a20>) [p0, i475, i477, p476, i482]
++10949: call_n(ConstClass(free_nonmovingbuffer_ll), i475, p476, i477, descr=<Callv 0 iri EF=2>)
++10987: p488 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr487), descr=<Callr 8 r EF=5>)
++11046: guard_no_exception(descr=<Guard0x7fa44041ed88>) [p0, p488]
++11060: i489 = getfield_gc_i(p488, descr=<FieldU tuple3.item0 8 pure>)
++11064: p490 = getfield_gc_r(p488, descr=<FieldP tuple3.item1 16 pure>)
++11068: i491 = getfield_gc_i(p488, descr=<FieldU tuple3.item2 24 pure>)
++11073: i496 = call_release_gil_i(1, 140703468959572, 1, i489, 5, descr=<Calli 8 iii EF=7>)
++11258: guard_not_forced(descr=<Guard0x7fa44041ed30>) [p0, i489, i491, p490, i496]
++11269: guard_no_exception(descr=<Guard0x7fa4404059e0>) [p0, i489, i491, p490, i496]
++11283: i498 = int_lt(i496, 0)
++11287: guard_false(i498, descr=<Guard0x7fa4404059a0>) [p0, i489, i491, p490, i496]
++11293: call_n(ConstClass(free_nonmovingbuffer_ll), i489, p490, i491, descr=<Callv 0 iri EF=2>)
++11324: p502 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr501), descr=<Callr 8 r EF=5>)
++11390: guard_no_exception(descr=<Guard0x7fa44041ecd8>) [p0, p502]
++11404: i503 = getfield_gc_i(p502, descr=<FieldU tuple3.item0 8 pure>)
++11408: p504 = getfield_gc_r(p502, descr=<FieldP tuple3.item1 16 pure>)
++11412: i505 = getfield_gc_i(p502, descr=<FieldU tuple3.item2 24 pure>)
++11417: i510 = call_release_gil_i(1, 140703468959572, 1, i503, 1, descr=<Calli 8 iii EF=7>)
++11602: guard_not_forced(descr=<Guard0x7fa44041ec80>) [p0, i503, i505, p504, i510]
++11613: guard_no_exception(descr=<Guard0x7fa440405960>) [p0, i503, i505, p504, i510]
++11627: i512 = int_lt(i510, 0)
++11631: guard_false(i512, descr=<Guard0x7fa440405920>) [p0, i503, i505, p504, i510]
++11637: call_n(ConstClass(free_nonmovingbuffer_ll), i503, p504, i505, descr=<Callv 0 iri EF=2>)
++11668: call_may_force_n(ConstClass(print_dict), ConstPtr(ptr515), p0, descr=<Callv 0 rr EF=7>)
++11752: guard_not_forced(descr=<Guard0x7fa44041ec28>) [p0]
++11763: guard_no_exception(descr=<Guard0x7fa4404058e0>) [p0]
++11777: p517 = getfield_gc_r(ConstPtr(ptr516), descr=<FieldP list.items 16>)
++11788: p519 = getarrayitem_gc_r(p517, 6, descr=<ArrayP 8>)
++11792: p520 = getfield_gc_r(p519, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++11796: i523 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p520, ConstPtr(ptr522), descr=<Calli 1 rr EF=0 OS=24>)
++11823: guard_false(i523, descr=<Guard0x7fa44041ebd0>) [i523, p0]
++11832: i526 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p520, 61, descr=<Calli 8 ri EF=0 OS=30>)
++11853: guard_false(i526, descr=<Guard0x7fa44041eb78>) [i526, p0]
++11862: i529 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p520, ConstPtr(ptr528), descr=<Calli 1 rr EF=0 OS=24>)
++11889: guard_false(i529, descr=<Guard0x7fa44041eb20>) [i529, p0]
++11898: i531 = getfield_gc_i(ConstPtr(ptr530), descr=<FieldS list.length 8>)
++11902: i533 = int_lt(7, i531)
++11906: guard_true(i533, descr=<Guard0x7fa4404058a0>) [i529, p0]
+debug_merge_point(0, 0, 'body-end_')
++11912: p536 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr535), descr=<Callr 8 r EF=5>)
++11978: guard_no_exception(descr=<Guard0x7fa44041eac8>) [p0, p536]
++11992: i537 = getfield_gc_i(p536, descr=<FieldU tuple3.item0 8 pure>)
++11996: p538 = getfield_gc_r(p536, descr=<FieldP tuple3.item1 16 pure>)
++12000: i539 = getfield_gc_i(p536, descr=<FieldU tuple3.item2 24 pure>)
++12005: i544 = call_release_gil_i(1, 140703468959572, 1, i537, 7, descr=<Calli 8 iii EF=7>)
++12190: guard_not_forced(descr=<Guard0x7fa44041ea70>) [p0, i537, i539, p538, i544]
++12201: guard_no_exception(descr=<Guard0x7fa440405860>) [p0, i537, i539, p538, i544]
++12215: i546 = int_lt(i544, 0)
++12219: guard_false(i546, descr=<Guard0x7fa440405820>) [p0, i537, i539, p538, i544]
++12225: call_n(ConstClass(free_nonmovingbuffer_ll), i537, p538, i539, descr=<Callv 0 iri EF=2>)
++12263: p550 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr549), descr=<Callr 8 r EF=5>)
++12322: guard_no_exception(descr=<Guard0x7fa44041ea18>) [p0, p550]
++12336: i551 = getfield_gc_i(p550, descr=<FieldU tuple3.item0 8 pure>)
++12340: p552 = getfield_gc_r(p550, descr=<FieldP tuple3.item1 16 pure>)
++12344: i553 = getfield_gc_i(p550, descr=<FieldU tuple3.item2 24 pure>)
++12349: i558 = call_release_gil_i(1, 140703468959572, 1, i551, 5, descr=<Calli 8 iii EF=7>)
++12534: guard_not_forced(descr=<Guard0x7fa44041e9c0>) [p0, i551, i553, p552, i558]
++12545: guard_no_exception(descr=<Guard0x7fa4404057e0>) [p0, i551, i553, p552, i558]
++12559: i560 = int_lt(i558, 0)
++12563: guard_false(i560, descr=<Guard0x7fa4404057a0>) [p0, i551, i553, p552, i558]
++12569: call_n(ConstClass(free_nonmovingbuffer_ll), i551, p552, i553, descr=<Callv 0 iri EF=2>)
++12600: p564 = call_r(ConstClass(get_nonmovingbuffer_ll), ConstPtr(ptr563), descr=<Callr 8 r EF=5>)
++12666: guard_no_exception(descr=<Guard0x7fa44041e968>) [p0, p564]
++12680: i565 = getfield_gc_i(p564, descr=<FieldU tuple3.item0 8 pure>)
++12684: p566 = getfield_gc_r(p564, descr=<FieldP tuple3.item1 16 pure>)
++12688: i567 = getfield_gc_i(p564, descr=<FieldU tuple3.item2 24 pure>)
++12693: i572 = call_release_gil_i(1, 140703468959572, 1, i565, 1, descr=<Calli 8 iii EF=7>)
++12878: guard_not_forced(descr=<Guard0x7fa44041e910>) [p0, i565, i567, p566, i572]
++12889: guard_no_exception(descr=<Guard0x7fa440405760>) [p0, i565, i567, p566, i572]
++12903: i574 = int_lt(i572, 0)
++12907: guard_false(i574, descr=<Guard0x7fa440405720>) [p0, i565, i567, p566, i572]
++12913: call_n(ConstClass(free_nonmovingbuffer_ll), i565, p566, i567, descr=<Callv 0 iri EF=2>)
++12944: call_may_force_n(ConstClass(print_dict), ConstPtr(ptr577), p0, descr=<Callv 0 rr EF=7>)
++13028: guard_not_forced(descr=<Guard0x7fa44041e8b8>) [p0]
++13039: guard_no_exception(descr=<Guard0x7fa4404056e0>) [p0]
++13053: p579 = getfield_gc_r(ConstPtr(ptr578), descr=<FieldP list.items 16>)
++13064: p581 = getarrayitem_gc_r(p579, 7, descr=<ArrayP 8>)
++13068: p582 = getfield_gc_r(p581, descr=<FieldP src.awk_vm.token.Token.inst_token 40>)
++13072: i585 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p582, ConstPtr(ptr584), descr=<Calli 1 rr EF=0 OS=24>)
++13102: guard_false(i585, descr=<Guard0x7fa44041e860>) [i585, p0]
++13111: i588 = call_i(ConstClass(_ll_2_str_eq_checknull_char__rpy_stringPtr_Char), p582, 61, descr=<Calli 8 ri EF=0 OS=30>)
++13132: guard_false(i588, descr=<Guard0x7fa44041e808>) [i588, p0]
++13141: i591 = call_i(ConstClass(ll_streq__rpy_stringPtr_rpy_stringPtr), p582, ConstPtr(ptr590), descr=<Calli 1 rr EF=0 OS=24>)
++13168: guard_false(i591, descr=<Guard0x7fa44041e7b0>) [i591, p0]
++13177: i593 = getfield_gc_i(ConstPtr(ptr592), descr=<FieldS list.length 8>)
++13181: i595 = int_lt(8, i593)
++13185: guard_false(i595, descr=<Guard0x7fa4404056a0>) [i591, p0]
++13191: leave_portal_frame(0)
++13191: finish(p0, descr=<DoneWithThisFrameDescrRef object at 0x100b4cca0>)
++13312: --end of the loop--
+[4e3f1d304a8a] jit-log-opt-loop}

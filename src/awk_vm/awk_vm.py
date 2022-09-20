@@ -1,54 +1,51 @@
 import os
 from sys import argv
-from parser import parse
-from program import eval
+from src.awk_vm.awk_log import print_dict, trace
+from src.awk_vm.parser import parse
+from src.awk_vm.program import eval
+from src.awk_vm.awk_heap import AwkSelfLikeHeap, AwkSimpleHeap
 
-# dict stringify might cause AttributeError: OrderedDictRepr instance has no attribute ll_str
-def print_heap(heap):
-  os.write(1, bytes('Awkward heap:\n'))
-  for key in heap:
-    os.write(1, bytes(key))
-    os.write(1, bytes(' : '))
-    obj = heap[key]
-    os.write(1, bytes('{'))
-    for obj_key in obj:
-      os.write(1, bytes(' '))
-      os.write(1, bytes(obj_key))
-      os.write(1, bytes(' : '))
-      os.write(1, bytes(obj[obj_key]))
-      os.write(1, bytes(', '))
-    os.write(1, bytes('}'))
-    os.write(1, bytes('\n'))
+SELF_LIKE_MAPS_OPT = True
+
 
 def run(fp):
-    program_contents = ''
+    program_contents = ""
     while True:
         read = os.read(fp, 4096)
         if len(read) == 0:
             break
         program_contents += read
+    os.close(fp)
     tokens = parse(program_contents)
-    heap = eval(tokens, {})
-    print_heap(heap)
-    
+    if SELF_LIKE_MAPS_OPT:
+        trace("evaluating with self-like heap")
+        awk_heap = eval(tokens, AwkSelfLikeHeap({}))
+    else:
+        trace("evaluating with simple heap")
+        awk_heap = eval(tokens, AwkSimpleHeap({}))
+    print_dict("awk heap", awk_heap.heap)
 
 
 def target(*args):
+    """
+    "target" returns the entry point.
+    The translation process imports your module and looks for that name,
+    calls it, and the function object returned is where it starts the translation.
+    """
     return entry_point, None
+
 
 def entry_point(argv):
     import os
+
     try:
         filename = argv[1]
     except IndexError:
-        print ('You must supply a filename')
+        print("You must supply a filename")
         return 1
-
     run(os.open(filename, os.O_RDONLY, 777))
     return 0
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     entry_point(argv)
-
-

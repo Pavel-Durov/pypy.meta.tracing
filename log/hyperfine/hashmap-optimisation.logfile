@@ -1,0 +1,12 @@
+kimchi@kimchi-mac 09:48:21 ~/git-repos/side-projects/bf.meta.tracing main *
+λ hyperfine './awk_vm-0.0.7-c ./programs/awk/loops.awk'
+Benchmark 1: ./awk_vm-0.0.7-c ./programs/awk/loops.awk
+  Time (mean ± σ):      5.193 s ±  0.201 s    [User: 5.120 s, System: 0.029 s]
+  Range (min … max):    4.981 s …  5.596 s    10 runs
+ 
+(meta-tracing) 
+kimchi@kimchi-mac 09:49:22 ~/git-repos/side-projects/bf.meta.tracing main *
+λ hyperfine './awk_vm-0.0.6-c ./programs/awk/loops.awk'
+Benchmark 1: ./awk_vm-0.0.6-c ./programs/awk/loops.awk
+  Time (mean ± σ):      5.149 s ±  0.310 s    [User: 5.082 s, System: 0.027 s]
+  Range (min … max):    4.838 s …  5.735 s    10 runs

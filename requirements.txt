@@ -1,16 +1,1 @@
-attrs==22.1.0
-cffi==1.15.1
-enum34==1.1.10
-hypothesis==4.39.3
-iniconfig==1.1.1
-mercurial==6.1.4
-packaging==21.3
-pluggy==1.0.0
-protobuf==4.21.5
-py==1.11.0
-pycparser==2.21
-pyparsing==3.0.9
 pytest==2.9.2
-rpython==0.2.1
-tabulate==0.8.10
-tomli==2.0.1

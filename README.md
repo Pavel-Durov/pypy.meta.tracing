@@ -1,4 +1,5 @@
-[![Python Package using Conda](https://github.com/Pavel-Durov/bf.meta.tracing/actions/workflows/conda.yml/badge.svg)](https://github.com/Pavel-Durov/bf.meta.tracing/actions/workflows/conda.yml)
+[![Test](https://github.com/Pavel-Durov/bf.meta.tracing/actions/workflows/test.yml/badge.svg)](https://github.com/Pavel-Durov/bf.meta.tracing/actions/workflows/test.yml)
+[![RPython Translate](https://github.com/Pavel-Durov/bf.meta.tracing/actions/workflows/rpython.yml/badge.svg)](https://github.com/Pavel-Durov/bf.meta.tracing/actions/workflows/rpython.yml)
 
 # bf.meta.tracing
 Meta tracing code following [pypy](https://www.pypy.org/) tutorials.

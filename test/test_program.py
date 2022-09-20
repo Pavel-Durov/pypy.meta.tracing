@@ -1,35 +1,36 @@
 from src.awk_vm.parser import parse
 from src.awk_vm.program import eval
+from src.awk_vm.awk_heap import AwkSelfLikeHeap, AWKSelfLikeObj, AwkSimpleHeap
 
 
 def test_program_init_object():
     tokens = parse('x = {}; x.a = 123; x.b = 456789;')
-    heap = eval(tokens, {})
-    assert len(heap) == 1
-    assert heap['x']['a'] == 123
-    assert heap['x']['b'] == 456789
+    heap = eval(tokens, AwkSelfLikeHeap({}))
+    assert len(heap.heap) == 1
+    assert heap.get_obj('x').get_field('a') == 123
+    assert heap.get_obj('x').get_field('b') == 456789
 
 def test_program_object_attribute_assign():
     tokens = parse('x = {}; x.a = 0; x.b = 1; x.c = 2;')
-    heap = eval(tokens, {})
-    assert len(heap) == 1
-    assert heap['x']['a'] == 0
-    assert heap['x']['b'] == 1
-    assert heap['x']['c'] == 2
+    heap = eval(tokens, AwkSelfLikeHeap({}))
+    assert len(heap.heap) == 1
+    assert heap.get_obj('x').get_field('a') == 0
+    assert heap.get_obj('x').get_field('b') == 1
+    assert heap.get_obj('x').get_field('c') == 2
 
 def test_program_reference_value():
     tokens = parse('x = {}; x.a = 1; y= {}; y.a = x.a;')
-    heap = eval(tokens, {})
-    assert len(heap) == 2
-    assert heap['x']['a'] == 1
-    assert heap['y']['a'] == 1
+    heap = eval(tokens, AwkSelfLikeHeap({}))
+    assert len(heap.heap) == 2
+    assert heap.get_obj('x').get_field('a') == 1
+    assert heap.get_obj('y').get_field('a') == 1
     
 
 def test_program_expression():
     tokens = parse('x = {}; x.a = 1 + 1 + 2; x.b = 9 + 6;')
-    heap = eval(tokens, {})
-    assert heap['x']['a'] == 4
-    assert heap['x']['b'] == 15
+    heap = eval(tokens, AwkSelfLikeHeap({}))
+    assert heap.get_obj('x').get_field('a') == 4
+    assert heap.get_obj('x').get_field('b') == 15
 
 
 def test_program_expression_reference():
@@ -40,10 +41,10 @@ def test_program_expression_reference():
       z = {};
       z.a = x.a + x.b + 2;
       ''')
-    heap = eval(tokens, {})
-    assert heap['x']['a'] == 1
-    assert heap['x']['b'] == 2
-    assert heap['z']['a'] == 5
+    heap = eval(tokens, AwkSelfLikeHeap({}))
+    assert heap.get_obj('x').get_field('a') == 1
+    assert heap.get_obj('x').get_field('b') == 2
+    assert heap.get_obj('z').get_field('a') == 5
 
 
 def test_program_while_loop_false_cond():
@@ -54,8 +55,8 @@ def test_program_while_loop_false_cond():
         x.a = x.a + 1;
       }
       ''')
-    heap = eval(tokens, {})
-    assert heap['x']['a'] == 0
+    heap = eval(tokens, AwkSelfLikeHeap({}))
+    assert heap.get_obj('x').get_field('a') == 0
 
 
 def test_program_multi_while_loop():
@@ -73,13 +74,16 @@ def test_program_multi_while_loop():
         y.a = y.a + 2;
       }
       ''')
-    heap = eval(tokens, {})
-    assert heap['x']['a'] == 22
-    assert heap['x']['b'] == 8
-    assert heap['y']['a'] == 12
+    heap = eval(tokens, AwkSelfLikeHeap({}))
+    assert heap.get_obj('x').get_field('a') == 22
+    assert heap.get_obj('x').get_field('b') == 8
+    assert heap.get_obj('y').get_field('a') == 12
+
 
 def test_program_existing_heap():
-    heap = { 'p': { 'a': 777 }}
+    p = AWKSelfLikeObj('p')
+    p.set_field('a', 777)
+    heap = { 'p': p }
     tokens = parse('''
       x = {}; 
       x.a = 10;
@@ -94,8 +98,32 @@ def test_program_existing_heap():
         y.a = y.a + 2;
       }
       ''')
-    heap = eval(tokens, heap)
-    assert heap['x']['a'] == 22
-    assert heap['x']['b'] == 8
-    assert heap['y']['a'] == 12
-    assert heap['p']['a'] == 777
+    heap = eval(tokens, AwkSelfLikeHeap(heap))
+    assert heap.get_obj('x').get_field('a') == 22
+    assert heap.get_obj('x').get_field('b') == 8
+    assert heap.get_obj('y').get_field('a') == 12
+    assert heap.get_obj('p').get_field('a') == 777
+
+def test_program_existing_different_heap():
+  tokens = parse('''
+    x = {}; 
+    x.a = 10;
+    x.b = 0 
+    while (x.a < 20) {
+      x.a = x.a + 3;
+      x.b = x.b + 2
+    }
+    y={};
+    y.a = 0; 
+    while (y.a < 11) {
+      y.a = y.a + 2;
+    }
+    ''')
+  self_like_heap = eval(tokens, AwkSelfLikeHeap({}))
+  assert self_like_heap.get_obj('x').get_field('a') == 22
+  assert self_like_heap.get_obj('x').get_field('b') == 8
+  assert self_like_heap.get_obj('y').get_field('a') == 12
+  simple_heap = eval(tokens, AwkSimpleHeap({}))
+  assert simple_heap.get_obj('x').get_field('a') == 22
+  assert simple_heap.get_obj('x').get_field('b') == 8
+  assert simple_heap.get_obj('y').get_field('a') == 12

@@ -1,0 +1,32 @@
+
+Benchmark 1: ./awk_vm-c-0.0.8-self-like-heap-c ./programs/awk/loops.awk
+  Time (mean ± σ):      3.834 s ±  0.112 s    [User: 3.688 s, System: 0.027 s]
+  Range (min … max):    3.672 s …  4.029 s    10 runs
+ 
+Benchmark 1: ./awk_vm-c-0.0.8-simple-heap-c ./programs/awk/loops.awk
+  Time (mean ± σ):      3.738 s ±  1.124 s    [User: 3.614 s, System: 0.021 s]
+  Range (min … max):    3.244 s …  6.901 s    10 runs
+
+Benchmark 1: ./awk_vm-c-0.0.8-get_opcode-purefunction-c ./programs/awk/loops.awk
+  Time (mean ± σ):      3.824 s ±  0.166 s    [User: 3.639 s, System: 0.028 s]
+  Range (min … max):    3.665 s …  4.064 s    10 runs
+                                                   
+Benchmark 1: ./awk_vm-c-0.0.9-get_opcode-purefunction-c ./programs/awk/loops.awk
+  Time (mean ± σ):      2.775 s ±  0.020 s    [User: 2.748 s, System: 0.015 s]
+  Range (min … max):    2.752 s …  2.811 s    10 runs
+
+--------------------------------------------------
+
+Benchmark 1: ./awk_vm-c-0.0.9-get_opcode-purefunction-c ./programs/awk/loops.awk
+  Time (mean ± σ):      2.861 s ±  0.093 s    [User: 2.791 s, System: 0.023 s]
+  Range (min … max):    2.783 s …  3.145 s    15 runs
+ 
+Benchmark 2: ./awk_vm-c-0.0.8-simple-heap-c ./programs/awk/loops.awk
+  Time (mean ± σ):      3.515 s ±  0.542 s    [User: 3.457 s, System: 0.019 s]
+  Range (min … max):    3.219 s …  4.880 s    15 runs
+ 
+  Warning: The first benchmarking run for this command was significantly slower than the rest (4.880 s). This could be caused by (filesystem) caches that were not filled until after the first run. You should consider using the '--warmup' option to fill those caches before the actual benchmark. Alternatively, use the '--prepare' option to clear the caches before each timing run.
+ 
+Summary
+  './awk_vm-c-0.0.9-get_opcode-purefunction-c ./programs/awk/loops.awk' ran
+    1.23 ± 0.19 times faster than './awk_vm-c-0.0.8-simple-heap-c ./programs/awk/loops.awk'
