@@ -9,7 +9,7 @@ def jitpolicy(driver):
 class C: pass
 
 
-jitdriver = JitDriver(greens=["i"], reds=["c"])
+jitdriver = JitDriver(greens=["i", "argv"], reds=["c"])
 
 def entry_point(argv):
   c = C()
@@ -17,7 +17,7 @@ def entry_point(argv):
   c.y = 1
 
   for i in range(100000):
-    jitdriver.jit_merge_point(i=i, c=c)
+    jitdriver.jit_merge_point(i=i, argv=argv, c=c)
     c.x += c.y
   
   return 0
