@@ -57,13 +57,14 @@ class AWKSelfLikeObj(object):
 
 jitdriver = JitDriver(greens=["i", "argv", "EMPTY_MAP"], reds=["c"])
 
+c = AWKSelfLikeObj("test")
 
 def entry_point(argv):
-  c = AWKSelfLikeObj("test")
+  
   c.set_field("x", 0)
   c.set_field("y", 1)
   for i in range(100000):
-    jitdriver.jit_merge_point(i=i, argv=argv, EMPTY_MAP=EMPTY_MAP, c=c,)
+    jitdriver.jit_merge_point(i=i, argv=argv, EMPTY_MAP=EMPTY_MAP, c=c)
     c.set_field("x", c.get_field("x") + c.get_field("y"))
   
   return 0
