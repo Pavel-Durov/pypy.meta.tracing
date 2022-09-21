@@ -1,7 +1,6 @@
 from rpython.rlib.jit import JitDriver, purefunction, hint
 from rpython.jit.codewriter.policy import JitPolicy
 
-
 def jitpolicy(driver):
     return JitPolicy()
 
@@ -62,7 +61,7 @@ jitdriver = JitDriver(greens=["i"], reds=["c"])
 def entry_point(argv):
   c = AWKSelfLikeObj("test")
   c.set_field("x", 0)
-  c.set_field("x", 1)
+  c.set_field("y", 1)
   for i in range(100000):
     jitdriver.jit_merge_point(i=i, c=c)
     x = c.get_field("x")
