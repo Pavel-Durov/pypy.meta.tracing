@@ -4,8 +4,13 @@ on: [push]
 
 jobs:
   rpython-no-jit:
-    name: PYPY translate (no jit)
+    name: Bench
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    strategy:
+      max-parallel: 5
     steps:
     - uses: actions/checkout@v3
     - uses: conda-incubator/setup-miniconda@v2
@@ -18,8 +23,6 @@ jobs:
       run: echo $CONDA/bin >> $GITHUB_PATH
     - name: Download PyPy
       run: make get-pypy
-    - name: RPython Translate
-      run: make translate-awk-vm-no-jit
     - name: Install hyperfine
       run: |
         wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine_1.15.0_amd64.deb
