@@ -15,11 +15,11 @@ def entry_point(argv):
   c = C()
   c.x = 0
   c.y = 1
-
-  for i in range(100000):
-    jitdriver.jit_merge_point(i=i, argv=argv, c=c)
+  i = 0
+  while i < 1000000:
+    # jitdriver.jit_merge_point(i=i, c=c)
     c.x += c.y
-  
+    i += 1
   return 0
   
 
@@ -31,3 +31,5 @@ def target(*args):
     """
     return entry_point, None
  
+if __name__ == '__main__':
+    entry_point(None)
