@@ -1,0 +1,35 @@
+name: Bench
+
+on: [push]
+
+jobs:
+  rpython-no-jit:
+    name: PYPY translate (no jit)
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: conda-incubator/setup-miniconda@v2
+      with:
+        activate-environment: meta-tracing
+        environment-file: environment.yml
+        python-version: 2.7.18
+        auto-activate-base: false
+    - name: Add conda to system path
+      run: echo $CONDA/bin >> $GITHUB_PATH
+    - name: Download PyPy
+      run: make get-pypy
+    - name: RPython Translate
+      run: make translate-awk-vm-no-jit
+    - name: Install hyperfine
+      run: |
+        wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine_1.15.0_amd64.deb
+        sudo dpkg -i hyperfine_1.15.0_amd64.deb
+    - name: Transpile (NO JIT)
+      run: PYTHONPATH=${PWD}:${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py ${PWD}/src/python/self-like.py
+    - name: Transpile (NO JIT)
+      run: PYTHONPATH=${PWD}:${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py ${PWD}/src/python/vanila.py
+    - name: Bench
+      run: |
+        hyperfine --warmup 1 './self-like-c' './vanila-c' 
+        hyperfine -m 15 -M 15 './self-like-c' './vanila-c'
+    
