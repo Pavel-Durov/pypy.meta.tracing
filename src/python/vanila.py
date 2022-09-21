@@ -17,7 +17,7 @@ def entry_point(argv):
   c.y = 1
   i = 0
   while i < 1000000:
-    jitdriver.jit_merge_point(i=i, c=c)
+    jitdriver.jit_merge_point(i=i, argv=argv, c=c)
     c.x += c.y
     i += 1
   return 0
