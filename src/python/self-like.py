@@ -22,7 +22,6 @@ class SelfLikeMap(object):
             self.other_maps[name] = newmap
         return self.other_maps[name]
 
-
 EMPTY_MAP = SelfLikeMap()
 
 class AWKSelfLikeObj(object):
@@ -54,24 +53,25 @@ class AWKSelfLikeObj(object):
         result += "\n"
         return result
 
-jitdriver = JitDriver(greens=["i"], reds=["c"])
+jitdriver = JitDriver(greens=["i", "argv"], reds=["c"])
 
-c = AWKSelfLikeObj("test")
-c.set_field("x", 0)
-c.set_field("y", 1)
-
-def main():  
-  i = 0
-  while i < 1000000:
-    jitdriver.jit_merge_point(i=i, c=c)
-    c.set_field("x", c.get_field("x") + c.get_field("y"))
-    i += 1
-  
 
 def entry_point(argv):
-  main()
-  return 0
+  i = 0
+  c = AWKSelfLikeObj("test")
+  # c.set_field("x", 0)
+  # c.set_field("y", 1)
 
+  while i < 1000000:
+    jitdriver.jit_merge_point(i=i, argv=argv, c=c)
+    c.set_field("x", 1)
+    # x = c.get_field("x")
+    # y = c.get_field("y")
+    # c.set_field("x", x + y)
+    
+    i += 1
+  return 0
+  
 
 def target(*args):
     """
@@ -81,3 +81,5 @@ def target(*args):
     """
     return entry_point, None
  
+if __name__ == '__main__':
+    entry_point(None)
