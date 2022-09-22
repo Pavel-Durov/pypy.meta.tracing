@@ -59,8 +59,8 @@ jitdriver = JitDriver(greens=["i", "argv"], reds=["c"])
 def entry_point(argv):
   i = 0
   c = AWKSelfLikeObj("test")
-  # c.set_field("x", 0)
-  # c.set_field("y", 1)
+  c.set_field("x", 0)
+  c.set_field("y", 1)
 
   while i < 1000000:
     jitdriver.jit_merge_point(i=i, argv=argv, c=c)
