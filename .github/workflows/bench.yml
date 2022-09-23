@@ -1,9 +1,9 @@
-name: Bench
+name: Pypy
 
 on: [push]
 
 jobs:
-  rpython-no-jit:
+  traanslate:
     name: Bench
     runs-on: ubuntu-latest
     environment: meta-tracing-environment
@@ -13,14 +13,13 @@ jobs:
     - uses: actions/checkout@v3
     - name: Download PyPy
       run: make get-pypy
-    - name: Transpile (NO JIT)
-      run: PYTHONPATH=${PWD}:${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py ${PWD}/src/python/vanila.py
-    - name: Upload Artefact
-      run: python ./scripts/drop.py "./vanila-c" "/meta-tracing/$(make version)-$(git rev-parse HEAD)-vanila-c"
-    - name: Transpile (NO JIT)
-      run: PYTHONPATH=${PWD}:${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py ${PWD}/src/python/self-like.py
-    - name: Upload Artefact
-      run: python ./scripts/drop.py "./self-like-c" "/meta-tracing/$(make version)-$(git rev-parse HEAD)-self-like-c"
+    - name: LFS
+      run: git lfs pull
+    - name: Bench
+      run: ./scripts/bench.sh 
+    # TODO: figure our artefact store
+    # - name: Upload Artefact
+    #   run: python ./scripts/drop.py "./self-like-c" "/meta-tracing/$(make version)-$(git rev-parse HEAD)-self-like-c"
     # - name: Bench (NO JIT)
     #   run: |
     #     hyperfine --warmup 1 './self-like-c' './vanila-c' 
@@ -29,7 +28,3 @@ jobs:
     #   run: PYTHONPATH=${PWD}:${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/python/self-like.py
     # - name: Transpile class (JIT)
     #   run: PYTHONPATH=${PWD}:${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/python/class.py
-    # - name: Bench (NO JIT)
-    #   run: |
-    #     hyperfine --warmup 1 './self-like-c' './vanila-c' 
-    #     hyperfine -m 15 -M 15 './self-like-c' './vanila-c'

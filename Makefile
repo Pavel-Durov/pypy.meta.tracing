@@ -13,9 +13,11 @@ version:
 dev.setup.mac:
 	brew update
 	brew list hyperfine  || brew install hyperfine 
-	brew list hg || brew install hgkubectl
-	brew list pyenv || brew install pyenv
 	
+dev.setup.linux:
+	wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine_1.15.0_amd64.deb
+	sudo dpkg -i hyperfine_1.15.0_amd64.deb
+
 init: clone-pypy init-env
 
 init-env: 
@@ -37,31 +39,46 @@ clear:
 	rm ./*-c
 		
 conda-info:
-	echo CONDA_PREFIX=${CONDA_PREFIX}
+	@echo CONDA_PREFIX=${CONDA_PREFIX}
 	conda info --envs
-	
+
+# general
+snapshot-id:
+	@echo $(make version)_$(git rev-parse HEAD)_$(date +%s)
+
 # AWK
 run-awk:
-	PYTHONPATH=$(PYTHONPATH) python ./src/awk_vm/awk_vm.py ./programs/awk/loops.awk
+	PYTHONPATH=${PYTHONPATH} python ./src/awk_vm/awk_vm.py ./programs/awk/loops.awk
 
 translate-awk-vm:
-	PYTHONPATH=$(PYTHONPATH) python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/awk_vm/awk_vm.py
+	PYTHONPATH=${PYTHONPATH} python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/awk_vm/awk_vm.py
 
 translate-awk-vm-no-jit:
-	PYTHONPATH=$(PYTHONPATH) python ./.pypy/rpython/translator/goal/translate.py ${PWD}/src/awk_vm/awk_vm.py
+	PYTHONPATH=${PYTHONPATH} python ./.pypy/rpython/translator/goal/translate.py ${PWD}/src/awk_vm/awk_vm.py
 
 run-awk-c:
 	PYPYLOG=jit-log-opt:./log/awk_vm_loops.logfile ./awk_vm-c ./programs/awk/loops.awk
 
-# BF
+# Python
 
+pypy-translate-python:
+	python2.7 .pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/python/python_self_like_class.py
+	# cp ./python_self_like_class-c ./bin/$(make version)/$(make version)_$(git rev-parse HEAD)_$(date +%s)_python_self_like_class_c
+	python2.7 .pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/python/python_plain_class.py
+	# cp ./python_plain_class-c ./bin/$(make version)/$(make version)_$(git rev-parse HEAD)_$(date +%s)_python_plain_class-c
+
+bench-python:
+	hyperfine --warmup 10 './python_self_like_class-c' './python_plain_class-c' && hyperfine -m 20 -M 20 './python_self_like_class-c' './python_plain_class-c'
+
+
+# BF
 build-all: build-no-jit build-jit-not-optimised build-jit-purefunction build-jit-fixed-size-array build-jit-inlined-class
 
 build-no-jit:
-	PYTHONPATH=$(PYTHONPATH) python ./.pypy/rpython/translator/goal/translate.py ${PWD}/src/bf/no-jit.py
+	PYTHONPATH=${PYTHONPATH} python ./.pypy/rpython/translator/goal/translate.py ${PWD}/src/bf/no-jit.py
 
 build-jit-%:
-	PYTHONPATH=$(PYTHONPATH) python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/bf/jit-$*.py
+	PYTHONPATH=${PYTHONPATH} python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/bf/jit-$*.py
 
 # BF Not Optimised
 jit-not-optimised: build-jit-not-optimised
@@ -80,8 +97,6 @@ bench-awk-vm:
 	hyperfine --export-json ${PWD}/log/hyperfine/hyperfine-$(git rev-parse HEAD)-$(date +%s).json -m 15 -M 15 './awk_vm-c-0.0.9-get_opcode-purefunction-c ./programs/awk/loops.awk' './awk_vm-c-0.0.8-simple-heap-c ./programs/awk/loops.awk'
 	
 # Docker
-
-
 docker-build-ci: docker-login
 	docker build -f docker/ci.Dockerfile -t meta-tracing:build-ci --platform=linux/amd64 .	
 	docker tag meta-tracing:build-ci iamkimchi/pypy-trace:latest
