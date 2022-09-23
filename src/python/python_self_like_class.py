@@ -1,3 +1,4 @@
+import os
 from rpython.rlib.jit import JitDriver, purefunction, hint
 from rpython.jit.codewriter.policy import JitPolicy
 
@@ -53,23 +54,28 @@ class AWKSelfLikeObj(object):
         result += "\n"
         return result
 
-jitdriver = JitDriver(greens=["i", "argv"], reds=["c"])
+jitdriver = JitDriver(greens=["i"], reds=["c"])
 
 
-def entry_point(argv):
+os.write(1, bytes("Python SELF-like class"))
+
+def main():
   i = 0
   c = AWKSelfLikeObj("test")
   c.set_field("x", 0)
   c.set_field("y", 1)
 
+  # TODO: undestand why using range function result in pypy error:
+  # [translation:ERROR] Exception: The variable v129 of type <* GcStruct range { next, stop }> was not explicitly listed in _forcelink.   
   while i < 1000000:
-    jitdriver.jit_merge_point(i=i, argv=argv, c=c)
-    c.set_field("x", 1)
-    # x = c.get_field("x")
-    # y = c.get_field("y")
-    # c.set_field("x", x + y)
-    
+    jitdriver.jit_merge_point(i=i, c=c)
+    c.set_field("x", c.get_field("x") +  c.get_field("y"))
     i += 1
+
+
+def entry_point(argv):
+#   os.write(1, bytes('Running python SELF-like class'))
+  main()
   return 0
   
 

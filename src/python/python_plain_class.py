@@ -1,4 +1,5 @@
-from rpython.rlib.jit import JitDriver, purefunction, hint
+import os
+from rpython.rlib.jit import JitDriver
 from rpython.jit.codewriter.policy import JitPolicy
 
 
@@ -8,20 +9,24 @@ def jitpolicy(driver):
 
 class C: pass
 
+jitdriver = JitDriver(greens=["i"], reds=["c"])
 
-jitdriver = JitDriver(greens=["i", "argv"], reds=["c"])
-
-def entry_point(argv):
+def main():
   c = C()
   c.x = 0
   c.y = 1
   i = 0
   while i < 1000000:
-    jitdriver.jit_merge_point(i=i, argv=argv, c=c)
+    jitdriver.jit_merge_point(i=i, c=c)
     c.x += c.y
     i += 1
+
+
+def entry_point(argv):
+  # os.write(1, bytes('Running python plain class'))
+  main()
   return 0
-  
+
 
 def target(*args):
     """
