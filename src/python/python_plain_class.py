@@ -25,6 +25,8 @@ def main():
 
 
 def entry_point(argv):
+  # TODO: figure out why it throws an error:
+  # Late-stage annotation is not allowed to modify the existing annotation for variable data_0: SomeString(const='Running python plain class', no_nul=True)
   # os.write(1, bytes('Running python plain class'))
   main()
   return 0
