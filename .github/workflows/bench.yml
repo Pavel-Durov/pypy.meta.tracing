@@ -16,11 +16,11 @@ jobs:
     - name: Transpile (NO JIT)
       run: PYTHONPATH=${PWD}:${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py ${PWD}/src/python/vanila.py
     - name: Upload Artefact
-      run: python ./scripts/drop.py ""./vanila-c" "/meta-tracing/$(make version)-$(git rev-parse HEAD)-vanila-c"
+      run: python ./scripts/drop.py "./vanila-c" "/meta-tracing/$(make version)-$(git rev-parse HEAD)-vanila-c"
     - name: Transpile (NO JIT)
       run: PYTHONPATH=${PWD}:${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py ${PWD}/src/python/self-like.py
     - name: Upload Artefact
-      run: python ./scripts/drop.py ""./self-like-c" "/meta-tracing/$(make version)-$(git rev-parse HEAD)-self-like-c"
+      run: python ./scripts/drop.py "./self-like-c" "/meta-tracing/$(make version)-$(git rev-parse HEAD)-self-like-c"
     # - name: Bench (NO JIT)
     #   run: |
     #     hyperfine --warmup 1 './self-like-c' './vanila-c' 
