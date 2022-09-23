@@ -139,3 +139,4 @@ pypy*.tar.*
 .idea
 
 *-c
+!bin/**/*
