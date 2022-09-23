@@ -16,7 +16,7 @@ jobs:
     - name: LFS
       run: git lfs pull
     - name: Bench
-      run: ./scripts/bench.sh 
+      run: bash ./scripts/bench.sh 
     # TODO: figure our artefact store
     # - name: Upload Artefact
     #   run: python ./scripts/drop.py "./self-like-c" "/meta-tracing/$(make version)-$(git rev-parse HEAD)-self-like-c"
