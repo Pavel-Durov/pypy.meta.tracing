@@ -67,7 +67,7 @@ def main():
 
   # TODO: undestand why using range function result in pypy error:
   # [translation:ERROR] Exception: The variable v129 of type <* GcStruct range { next, stop }> was not explicitly listed in _forcelink.   
-  while i < 1000000:
+  while i < 999999:
     jitdriver.jit_merge_point(i=i, c=c)
     c.set_field("x", c.get_field("x") +  c.get_field("y"))
     i += 1

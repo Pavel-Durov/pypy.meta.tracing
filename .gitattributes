@@ -1,2 +1,6 @@
 bin/0.0.9/0.0.9_95b96047da7f8c853652fe96042cea88f485931d_1663933505_python_self_like_class-c filter=lfs diff=lfs merge=lfs -text
 bin/0.0.9/0.0.9_95b96047da7f8c853652fe96042cea88f485931d_1663933511_python_plain_class-c filter=lfs diff=lfs merge=lfs -text
+bin/0.0.10/0.0.10_3d907f134862988933d6171baa21186306657be6_1663953396_python_self_like_class_c filter=lfs diff=lfs merge=lfs -text
+bin/0.0.10/0.0.10_3d907f134862988933d6171baa21186306657be6_1663953401_python_plain_class-c filter=lfs diff=lfs merge=lfs -text
+bin/0.0.10/0.0.10_3d907f134862988933d6171baa21186306657be6_python_plain_class-c filter=lfs diff=lfs merge=lfs -text
+bin/0.0.10/0.0.10_3d907f134862988933d6171baa21186306657be6_python_self_like_class-c filter=lfs diff=lfs merge=lfs -text

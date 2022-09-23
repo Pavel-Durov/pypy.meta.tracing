@@ -29,6 +29,9 @@ get-pypy:
 	wget https://downloads.python.org/pypy/$(PYPY_VERSION_ARTIFACT).tar.bz2
 	tar -xvf $(PYPY_VERSION_ARTIFACT).tar.bz2 && mv ./$(PYPY_VERSION_ARTIFACT) .pypy && rm $(PYPY_VERSION_ARTIFACT).tar.bz2
 
+git-lfs:
+	git lfs track ./bin/**/*
+
 test:
 	pytest ./test
 
@@ -61,11 +64,15 @@ run-awk-c:
 
 # Python
 
-pypy-translate-python:
+pypy-translate-python-self-class:
 	python2.7 .pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/python/python_self_like_class.py
-	# cp ./python_self_like_class-c ./bin/$(make version)/$(make version)_$(git rev-parse HEAD)_$(date +%s)_python_self_like_class_c
+	cp ./python_self_like_class-c ./bin/$(make version)/$(make version)_$(git rev-parse HEAD)_python_self_like_class-c
+	PYPYLOG=jit-log-opt:./bin/$(make version)/$(make version)_$(git rev-parse HEAD)_python_self_like_class_c.logfile  ./bin/$(make version)/$(make version)_$(git rev-parse HEAD)_python_self_like_class-c
+
+pypy-translate-python-plain-class:
 	python2.7 .pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/python/python_plain_class.py
-	# cp ./python_plain_class-c ./bin/$(make version)/$(make version)_$(git rev-parse HEAD)_$(date +%s)_python_plain_class-c
+	cp ./python_plain_class-c ./bin/$(make version)/$(make version)_$(git rev-parse HEAD)_python_plain_class-c
+	PYPYLOG=jit-log-opt:./bin/$(make version)/$(make version)_$(git rev-parse HEAD)_python_self_like_class_c.logfile ./bin/$(make version)/$(make version)_$(git rev-parse HEAD)_python_plain_class-c
 
 bench-python:
 	hyperfine --warmup 10 './python_self_like_class-c' './python_plain_class-c' && hyperfine -m 20 -M 20 './python_self_like_class-c' './python_plain_class-c'

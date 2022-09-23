@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-file_names=($( ls ./bin/0.0.9/*-c ))
+file_names=($( ls ./bin/0.0.10/*-c ))
 files_to_bench=$file_names
 counter=0
 for file_name in $file_names ; do

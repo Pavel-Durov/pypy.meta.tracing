@@ -11,12 +11,14 @@ class C: pass
 
 jitdriver = JitDriver(greens=["i"], reds=["c"])
 
+os.write(1, bytes("Python plain class"))
+
 def main():
   c = C()
   c.x = 0
   c.y = 1
   i = 0
-  while i < 1000000:
+  while i < 999999:
     jitdriver.jit_merge_point(i=i, c=c)
     c.x += c.y
     i += 1

@@ -1,4 +1,4 @@
-name: Pypy
+name: Bench
 
 on: [push]
 
@@ -13,10 +13,13 @@ jobs:
     - uses: actions/checkout@v3
     - name: Download PyPy
       run: make get-pypy
-    - name: LFS
+    - name: lfs install
+      run: git lfs install
+    - name: lfs pull
       run: git lfs pull
     - name: Bench
-      run: bash ./scripts/bench.sh 
+      run: bash ./scripts/bench.sh
+        
     # TODO: figure our artefact store
     # - name: Upload Artefact
     #   run: python ./scripts/drop.py "./self-like-c" "/meta-tracing/$(make version)-$(git rev-parse HEAD)-self-like-c"
