@@ -17,17 +17,7 @@ jobs:
       run: git lfs install
     - name: lfs pull
       run: git lfs pull
-    - name: Bench
-      run: bash ./scripts/bench.sh
-        
-    # TODO: figure our artefact store
-    # - name: Upload Artefact
-    #   run: python ./scripts/drop.py "./self-like-c" "/meta-tracing/$(make version)-$(git rev-parse HEAD)-self-like-c"
-    # - name: Bench (NO JIT)
-    #   run: |
-    #     hyperfine --warmup 1 './self-like-c' './vanila-c' 
-    #     hyperfine -m 15 -M 15 './self-like-c' './vanila-c'
-    # - name: Transpile self-like (JIT)
-    #   run: PYTHONPATH=${PWD}:${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/python/self-like.py
-    # - name: Transpile class (JIT)
-    #   run: PYTHONPATH=${PWD}:${PWD}/.pypy/ python ./.pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/python/class.py
+    - name: Bench 0.0.9
+      run: bash ./scripts/bench.sh 0.0.9
+    - name: Bench 0.0.10
+      run: bash ./scripts/bench.sh 0.0.10

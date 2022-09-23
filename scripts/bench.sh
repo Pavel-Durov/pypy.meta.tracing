@@ -1,7 +1,13 @@
 #!/bin/bash
 
+VERSION=$1
 
-file_names=($( ls ./bin/0.0.10/*-c ))
+if [ -z $VERSION]; then
+  echo "Please provide project version to benchmark!"
+  exit 1
+fi
+
+file_names=($( ls ./bin/${VERSION}/*-c ))
 files_to_bench=$file_names
 counter=0
 for file_name in $file_names ; do
