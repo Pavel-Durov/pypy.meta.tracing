@@ -7,16 +7,16 @@ MIN=$2
 MAX=$3
 
 if [ -z "$VERSION" ]; then
-  echo "$VERSION argument ismendatory!"
+  echo "VERSION argument ismendatory!"
   exit 1
 fi
 
 if [ -z "$MIN" ]; then
-  echo "$MIN argument ismendatory!"
+  echo "MIN argument ismendatory!"
   exit 1
 fi
 if [ -z "$MIN" ]; then
-  echo "$MAX argument ismendatory!"
+  echo "MAX argument ismendatory!"
   exit 1
 fi
 
