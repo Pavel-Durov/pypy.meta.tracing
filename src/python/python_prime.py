@@ -38,7 +38,3 @@ def target(*args):
 
 if __name__ == '__main__':
     entry_point(sys.argv)
-# export NUM=10000 
-
-
-# hyperfine - warmup 10 './python_prime-c 10000' 'python ./python_prime.py 10000' hyperfine -m 100 -M 100 './python_prime-c 10000' 'python ./python_prime.py 10000'
