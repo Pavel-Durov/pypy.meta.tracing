@@ -7,7 +7,7 @@ Meta tracing exploration using PYPY.
 ## Getting Started
 
 ```shell
-$ dev.setup.mac # local environemnt setup
+$ make dev.setup.mac # local environemnt setup
 $ make init # virtual environment setup, pypy source code and shell config
 ```
 
@@ -52,6 +52,8 @@ $ make bench # runs hyperfine benchmarking for all targets
 [act](https://github.com/nektos/act) - Run your GitHub Actions locally
 
 ## Other Resources
+[A gentle introduction to PyPy, Python performance and benchmarking](https://medium.com/@pav3ldurov/a-gentle-introduction-to-pypy-python-performance-and-benchmarking-3d0e5609985)
+
 [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck)
 
 [BF Tests](https://github.com/ykjit/ykcbf/tree/master/lang_tests)
