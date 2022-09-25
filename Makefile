@@ -1,4 +1,4 @@
-VERSION := 0.0.10
+VERSION := 0.0.11
 SHELL := /bin/bash
 CWD := $(shell cd -P -- '$(shell dirname -- "$0")' && pwd -P)
 VENV := venv
@@ -65,14 +65,14 @@ run-awk-c:
 # Python
 
 pypy-translate-python-self-class:
-	python2.7 .pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/python/python_self_like_class.py
-	cp ./python_self_like_class-c ./bin/$(make version)/$(make version)_$(git rev-parse HEAD)_python_self_like_class-c
-	PYPYLOG=jit-log-opt:./bin/$(make version)/$(make version)_$(git rev-parse HEAD)_python_self_like_class_c.logfile  ./bin/$(make version)/$(make version)_$(git rev-parse HEAD)_python_self_like_class-c
+	./scripts/translate_and_store.sh ${VERSION} ./src/python/python_self_like_class.py
+	./scripts/translate_and_store.sh ${VERSION} ./src/python/python_self_like_class.py jit
 
 pypy-translate-python-plain-class:
-	python2.7 .pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/python/python_plain_class.py
-	cp ./python_plain_class-c ./bin/$(make version)/$(make version)_$(git rev-parse HEAD)_python_plain_class-c
-	PYPYLOG=jit-log-opt:./bin/$(make version)/$(make version)_$(git rev-parse HEAD)_python_self_like_class_c.logfile ./bin/$(make version)/$(make version)_$(git rev-parse HEAD)_python_plain_class-c
+	./scripts/translate_and_store.sh ${VERSION} ./src/python/python_plain_class.py
+	./scripts/translate_and_store.sh ${VERSION} ./src/python/python_plain_class.py jit
+	
+	
 
 bench-python:
 	hyperfine --warmup 10 './python_self_like_class-c' './python_plain_class-c' && hyperfine -m 20 -M 20 './python_self_like_class-c' './python_plain_class-c'
