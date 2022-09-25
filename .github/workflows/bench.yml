@@ -21,3 +21,5 @@ jobs:
       run: bash ./scripts/bench.sh 0.0.9 100 100
     - name: Bench 0.0.10
       run: bash ./scripts/bench.sh 0.0.10 100 100
+    - name: Bench 0.0.11
+      run: bash ./scripts/bench.sh 0.0.11 100 100
