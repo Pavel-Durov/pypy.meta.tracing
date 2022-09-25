@@ -25,33 +25,34 @@ jobs:
       run: make get-pypy
     - name: RPython Translate
       run: make translate-awk-vm-no-jit
-    - name: Upload artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: awk_vm-c-no-jit
-        path: ./awk_vm-c
-
-  translate-jit:
-    name: Bench
-    runs-on: ubuntu-latest
-    environment: meta-tracing-environment
-    container:  
-      image: iamkimchi/pypy-trace:latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Download PyPy
-      run: make get-pypy
-    - name: Transpile (JIT)
-      run: PYTHONPATH=${PWD}:${PWD}/.pypy/ python .pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/python/python_plain_class.py
-    - name: Transpile (JIT)
-      run: PYTHONPATH=${PWD}:${PWD}/.pypy/ python .pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/python/python_self_like_class.py
-    - name: Upload artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: python_plain_class-c
-        path: python_plain_class-c
-    - name: Upload artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: python_self_like_class-c
-        path: python_self_like_class-c
+    # TODO: Enable when in use
+    # - name: Upload artifact
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: awk_vm-c-no-jit
+    #     path: ./awk_vm-c
+  # TODO: Enable when in use
+  # translate-jit:
+  #   name: Bench
+  #   runs-on: ubuntu-latest
+  #   environment: meta-tracing-environment
+  #   container:  
+  #     image: iamkimchi/pypy-trace:latest
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - name: Download PyPy
+  #     run: make get-pypy
+  #   - name: Transpile (JIT)
+  #     run: PYTHONPATH=${PWD}:${PWD}/.pypy/ python .pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/python/python_plain_class.py
+  #   - name: Transpile (JIT)
+  #     run: PYTHONPATH=${PWD}:${PWD}/.pypy/ python .pypy/rpython/translator/goal/translate.py --opt=jit ${PWD}/src/python/python_self_like_class.py
+  #   - name: Upload artifact
+  #     uses: actions/upload-artifact@v3
+  #     with:
+  #       name: python_plain_class-c
+  #       path: python_plain_class-c
+  #   - name: Upload artifact
+  #     uses: actions/upload-artifact@v3
+  #     with:
+  #       name: python_self_like_class-c
+  #       path: python_self_like_class-c
