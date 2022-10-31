@@ -18,16 +18,23 @@ dev.setup.linux:
 	wget https://github.com/sharkdp/hyperfine/releases/download/v1.15.0/hyperfine_1.15.0_amd64.deb
 	sudo dpkg -i hyperfine_1.15.0_amd64.deb
 
-init: clone-pypy init-env
+init: get-pypy init-env
 
 init-env: 
 	conda env create -f environment.yml
 	conda init zsh && conda activate meta-tracing
 	pip install -r requirements.txt
 
-get-pypy:
-	wget https://downloads.python.org/pypy/$(PYPY_VERSION_ARTIFACT).tar.bz2
-	tar -xvf $(PYPY_VERSION_ARTIFACT).tar.bz2 && mv ./$(PYPY_VERSION_ARTIFACT) .pypy && rm $(PYPY_VERSION_ARTIFACT).tar.bz2
+clean-pypy:
+	rm -fr .pypy
+
+get-pypy: clean
+	wget -S  https://downloads.python.org/pypy/${PYPY_VERSION_ARTIFACT}.tar.bz2
+	tar -xvf ${PYPY_VERSION_ARTIFACT}.tar.bz2
+	mv ./${PYPY_VERSION_ARTIFACT} ./.pypy && rm "${PYPY_VERSION_ARTIFACT}.tar.bz2"
+
+test-pypy:
+	PYTHONPATH=${PYTHONPATH} python .pypy/rpython/translator/goal/translate.py ${PWD}/src/python/hello_world.py
 
 git-lfs:
 	git lfs track ./bin/**/*
