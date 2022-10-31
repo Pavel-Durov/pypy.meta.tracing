@@ -2,7 +2,7 @@ import os
 import sys
 
 def entry_point(argv):
-    os.write(1, bytes("Hello World!"))
+    os.write(1, bytes("Hello World!\n"))
     return 0
 
 
