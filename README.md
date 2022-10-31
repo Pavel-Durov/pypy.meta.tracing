@@ -1,5 +1,5 @@
 [![Test](https://github.com/Pavel-Durov/bf.meta.tracing/actions/workflows/test.yml/badge.svg)](https://github.com/Pavel-Durov/bf.meta.tracing/actions/workflows/test.yml)
-[![RPython Translate](https://github.com/Pavel-Durov/bf.meta.tracing/actions/workflows/rpython.yml/badge.svg)](https://github.com/Pavel-Durov/bf.meta.tracing/actions/workflows/rpython.yml)
+[![RPython Translate](https://github.com/Pavel-Durov/pypy.meta.tracing/actions/workflows/rpython-translate.yml/badge.svg)](https://github.com/Pavel-Durov/pypy.meta.tracing/actions/workflows/rpython-translate.yml)
 
 # bf.meta.tracing
 Meta tracing exploration using PYPY.
