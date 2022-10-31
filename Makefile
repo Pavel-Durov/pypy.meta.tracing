@@ -28,7 +28,7 @@ init-env:
 clean-pypy:
 	rm -fr .pypy
 
-get-pypy: clean
+get-pypy: clean-pypy
 	wget -S  https://downloads.python.org/pypy/${PYPY_VERSION_ARTIFACT}.tar.bz2
 	tar -xvf ${PYPY_VERSION_ARTIFACT}.tar.bz2
 	mv ./${PYPY_VERSION_ARTIFACT} ./.pypy && rm "${PYPY_VERSION_ARTIFACT}.tar.bz2"
