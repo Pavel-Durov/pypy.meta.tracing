@@ -1,8 +1,15 @@
 [![Test](https://github.com/Pavel-Durov/bf.meta.tracing/actions/workflows/test.yml/badge.svg)](https://github.com/Pavel-Durov/bf.meta.tracing/actions/workflows/test.yml)
 [![RPython Translate](https://github.com/Pavel-Durov/pypy.meta.tracing/actions/workflows/rpython-translate.yml/badge.svg)](https://github.com/Pavel-Durov/pypy.meta.tracing/actions/workflows/rpython-translate.yml)
+# pypy.meta.tracing
 
-# bf.meta.tracing
-Meta tracing exploration using PYPY.
+Meta-tracing exploration and PyPy toolchain.
+
+Interpreters:
+- `Bf` - ./src/bf (https://en.wikipedia.org/wiki/Brainfuck)
+- `Awkward VM` - ./src/awk_vm (very simple implementation of something with loops and objects)
+- `RPython` - ./src/python (straight-forward RPython code)
+
+See [kimchi.py](https://github.com/Pavel-Durov/kimchi.py) as another reference to RPython VM.
 
 ## Getting Started
 
