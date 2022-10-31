@@ -140,3 +140,4 @@ pypy*.tar.*
 
 *-c
 !bin/**/*
+.DS_Store
